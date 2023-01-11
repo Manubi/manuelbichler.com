@@ -25,11 +25,11 @@ function Appearance({ title, description, event, cta, href }) {
   )
 }
 
-export default function Speaking() {
+export default function Dashboard() {
   return (
     <>
       <Head>
-        <title>Speaking - Manuel Bichler</title>
+        <title>Dashboard - Manuel Bichler</title>
         <meta
           name="description"
           content="I’ve spoken at events all around the world and been interviewed for many podcasts."

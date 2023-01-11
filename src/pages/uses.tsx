@@ -51,66 +51,81 @@ export default function Uses() {
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="16” MacBook Pro, M1 Max, 64GB RAM (2021)">
-              I was using an Intel-based 16” MacBook Pro prior to this and the
-              difference is night and day. I’ve never heard the fans turn on a
-              single time, even under the incredibly heavy loads I put it
-              through with our various launch simulations.
+            <Tool title="16” MacBook Pro, 2,6 GHz 6-Core Intel Core i7, 32GB RAM (2019)">
+              As the fans are turning on quiet often I am thinking about
+              changing to the next generation of MacBook Pro with the M2 chip.
+              They are supposed to be out early 2023.
             </Tool>
-            <Tool title="Apple Pro Display XDR (Standard Glass)">
-              The only display on the market if you want something HiDPI and
-              bigger than 27”. When you’re working at planetary scale, every
-              pixel you can get counts.
+            <Tool title="2 x Dell U2415 Monitors">Simple enough.</Tool>
+            <Tool title="Kinesis Advantage360 Pro">
+              Best keyboard I&apos;ve ever used. Also good for my wrists which
+              tend to hurt if I use a traditional keyboard for to long.
             </Tool>
-            <Tool title="IBM Model M SSK Industrial Keyboard">
-              They don’t make keyboards the way they used to. I buy these any
-              time I see them go up for sale and keep them in storage in case I
-              need parts or need to retire my main.
+            <Tool title="Apple Magic Mouse">
+              I know, the mouse has some slight issues, and I wouldn&apos;t buy
+              it again.
             </Tool>
-            <Tool title="Apple Magic Trackpad">
-              Something about all the gestures makes me feel like a wizard with
-              special powers. I really like feeling like a wizard with special
-              powers.
-            </Tool>
-            <Tool title="Herman Miller Aeron Chair">
-              If I’m going to slouch in the worst ergonomic position imaginable
-              all day, I might as well do it in an expensive chair.
+            <Tool title="Apple Airpod Pros 2">
+              Most of the time it&apos;s easier to get into the zone with some
+              music.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
-            <Tool title="Sublime Text 4">
-              I don’t care if it’s missing all of the fancy IDE features
-              everyone else relies on, Sublime Text is still the best text
-              editor ever made.
+            <Tool title="NeoVim">
+              I was a long time VSCode user but I&apos;ve recently switched to
+              NeoVim. I believe it is the best editor for me. Mainly because it
+              is fast.
             </Tool>
             <Tool title="iTerm2">
-              I’m honestly not even sure what features I get with this that
-              aren’t just part of the macOS Terminal but it’s what I use.
+              I&apos;ve added some plugins for autocomplete, syntax highlighting
+              and a few other things. I also use it with tmux, zsh and Fig. I
+              also tried warp but don&apos;t like it.
             </Tool>
-            <Tool title="TablePlus">
-              Great software for working with databases. Has saved me from
-              building about a thousand admin interfaces for my various projects
-              over the years.
+            <Tool title="Github Copilot">
+              I like it and it will just become bettet and better.
             </Tool>
+            <Tool title="Postico">Simple database client for postgres.</Tool>
           </ToolsSection>
           <ToolsSection title="Design">
             <Tool title="Figma">
-              We started using Figma as just a design tool but now it’s become
-              our virtual whiteboard for the entire company. Never would have
-              expected the collaboration features to be the real hook.
+              Use it to quickly mock up some designs and to collaborate with
+              colleagues on designs and prototypes.
+            </Tool>
+            <Tool title="Tailwind">
+              I am a fan of TailwindCSS. This page is build with it and is using
+              spotlight theme from TailwindUI.
+            </Tool>
+          </ToolsSection>
+          <ToolsSection title="Programming Languages">
+            <Tool title="Typescript">My go to language.</Tool>
+            <Tool title="Rust">
+              Recently started looking into Rust. I like it so far. If people
+              are not too lazy, I believe it will become the next big thing.
+            </Tool>
+            <Tool title="TailwindCSS">
+              Simple tool for blocking distracting websites when I need to just
+              do the work and get some momentum going.
+            </Tool>
+            <Tool title="NextJS">
+              Simple tool for blocking distracting websites when I need to just
+              do the work and get some momentum going.
+            </Tool>
+            <Tool title="&Others">
+              Just to give you an impression. I also use/d React, React Native,
+              Vue, Express, Fastify, GraphQL, Apollo, Prisma, NodeJS, Docker,
+              AWS, GCP, Azure, Vercel, MongoDB, Postgres, Redis, MySQL, and a
+              few others.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
             <Tool title="Alfred">
               It’s not the newest kid on the block but it’s still the fastest.
-              The Sublime Text of the application launcher world.
             </Tool>
-            <Tool title="Reflect">
-              Using a daily notes system instead of trying to keep things
-              organized by topics has been super powerful for me. And with
-              Reflect, it’s still easy for me to keep all of that stuff
-              discoverable by topic even though all of my writing happens in the
-              daily note.
+            <Tool title="Notes">
+              I came full circle and now use it as basically for everything.
+            </Tool>
+            <Tool title="SpaceLauncher">
+              Simple shortcut app that can do things for you.
             </Tool>
             <Tool title="SavvyCal">
               Great tool for scheduling meetings while protecting my calendar

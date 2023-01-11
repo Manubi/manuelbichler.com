@@ -135,6 +135,12 @@ function MobileNavigation(props) {
                 <MobileNavItem href={routes.articles.path}>
                   {routes.articles.label}
                 </MobileNavItem>
+                <MobileNavItem href={routes.projects.path}>
+                  {routes.projects.label}
+                </MobileNavItem>
+                <MobileNavItem href={routes.dashboard.path}>
+                  {routes.dashboard.label}
+                </MobileNavItem>
                 <MobileNavItem href={routes.uses.path}>
                   {routes.uses.label}
                 </MobileNavItem>
@@ -176,6 +182,8 @@ function DesktopNavigation(props) {
       <ul className="flex px-3 text-sm font-medium rounded-full shadow-lg bg-white/90 text-zinc-800 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
         <NavItem href={routes.about.path}>{routes.about.label}</NavItem>
         <NavItem href={routes.articles.path}>{routes.articles.label}</NavItem>
+        <NavItem href={routes.projects.path}>{routes.projects.label}</NavItem>
+        <NavItem href={routes.dashboard.path}>{routes.dashboard.label}</NavItem>
         <NavItem href={routes.uses.path}>{routes.uses.label}</NavItem>
       </ul>
     </nav>

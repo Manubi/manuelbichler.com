@@ -4,10 +4,17 @@ import remarkGfm from 'remark-gfm'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['tsx', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'mdx'],
   reactStrictMode: true,
   experimental: {
     scrollRestoration: true,
+  },
+  images: {
+    domains: [
+      'i.scdn.co', // Spotify Album Art
+      'pbs.twimg.com', // Twitter Profile Picture
+      'images.unsplash.com',
+    ],
   },
 }
 

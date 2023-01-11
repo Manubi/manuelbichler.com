@@ -3,8 +3,8 @@ export const routes = {
   about: { label: 'About', path: '/about' },
   articles: { label: 'Articles', path: '/articles' },
   uses: { label: 'Uses', path: '/uses' },
-  stack: { label: 'Stack', path: '/stack' },
-
+  projects: { label: 'Projects', path: '/projects' },
+  dashboard: { label: 'Dashboard', path: '/dashboard' },
   socials: {
     github: 'https://github.com/Manubi',
     twitter: 'https://twitter.com/manuelbichler',
