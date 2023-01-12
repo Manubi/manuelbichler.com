@@ -86,16 +86,6 @@ export default function Uses() {
             </Tool>
             <Tool title="Postico">Simple database client for postgres.</Tool>
           </ToolsSection>
-          <ToolsSection title="Design">
-            <Tool title="Figma">
-              Use it to quickly mock up some designs and to collaborate with
-              colleagues on designs and prototypes.
-            </Tool>
-            <Tool title="Tailwind">
-              I am a fan of TailwindCSS. This page is build with it and is using
-              spotlight theme from TailwindUI.
-            </Tool>
-          </ToolsSection>
           <ToolsSection title="Programming Languages">
             <Tool title="Typescript">My go to language.</Tool>
             <Tool title="Rust">
@@ -126,15 +116,6 @@ export default function Uses() {
             </Tool>
             <Tool title="SpaceLauncher">
               Simple shortcut app that can do things for you.
-            </Tool>
-            <Tool title="SavvyCal">
-              Great tool for scheduling meetings while protecting my calendar
-              and making sure I still have lots of time for deep work during the
-              week.
-            </Tool>
-            <Tool title="Focus">
-              Simple tool for blocking distracting websites when I need to just
-              do the work and get some momentum going.
             </Tool>
           </ToolsSection>
         </div>
