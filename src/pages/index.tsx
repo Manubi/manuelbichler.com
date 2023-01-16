@@ -1,13 +1,10 @@
 import clsx from 'clsx'
-import Head from 'next/head'
 import Image, { StaticImageData } from 'next/image'
 
 import NextLink from 'next/link'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
-import { Container } from '@/components/Container'
-import { GitHubIcon, TwitterIcon } from '@/components/SocialIcons'
 import logoAAA from '@/images/logos/aaa.png'
 import logoCemm from '@/images/logos/cemm.png'
 import logoWhooop from '@/images/logos/whooop.png'
@@ -21,7 +18,6 @@ import { formatDate } from '@/lib/formatDate'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import Link from 'next/link'
-import { routes } from 'utils/routes'
 
 type TResume = {
   company: string
@@ -266,8 +262,8 @@ function Photos() {
 
 export default function Home({ articles }) {
   return (
-    <>
-      <Head>
+    <><p>🦺</p>
+      {/* <Head>
         <title>Manuel Bichler - Software engineer, working in biotech.</title>
         <meta
           name="description"
@@ -319,7 +315,7 @@ export default function Home({ articles }) {
             <Resume />
           </div>
         </div>
-      </Container>
+      </Container> */}
     </>
   )
 }
