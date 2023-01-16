@@ -8,8 +8,11 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 
+import type { AppProps } from 'next/app'
+
 import '@/styles/tailwind.css'
 import 'focus-visible'
+import { trpc } from './utils/trpc'
 
 function usePrevious(value) {
   let ref = useRef()
@@ -20,8 +23,11 @@ function usePrevious(value) {
 
   return ref.current
 }
-
-export default function App({ Component, pageProps, router }) {
+function MyApp({
+  Component,
+  pageProps,
+  router,
+}: AppProps<{ dehydratedState: unknown }>) {
   let previousPathname = usePrevious(router.pathname)
   // Create a client
   const [queryClient] = useState(() => new QueryClient())
@@ -45,3 +51,5 @@ export default function App({ Component, pageProps, router }) {
     </QueryClientProvider>
   )
 }
+
+export default trpc.withTRPC(MyApp)

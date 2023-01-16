@@ -4,7 +4,8 @@ import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { Stat } from '@/components/Stat'
-import { ArrowUpIcon } from '@heroicons/react/20/solid'
+import { XCircleIcon } from '@heroicons/react/24/outline'
+import { ArrowUpIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
 
 function SpeakingSection({ children, ...props }) {
   return (
@@ -51,15 +52,38 @@ export default function Dashboard() {
               <dt className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
                 Meditation
               </dt>
-              <Card.Description>some description</Card.Description>
-              <dd className="flex items-baseline justify-between mt-1 md:block lg:flex">
-                <div className="flex items-baseline text-2xl font-semibold text-teal-500">
-                  12
-                  <span className="ml-2 text-sm font-medium text-gray-500">
-                    from 10
-                  </span>
+              <Card.Description>5 times a week</Card.Description>
+              <dd className="flex flex-row items-baseline justify-between mt-1 md:block lg:flex">
+                <div>
+                  <CheckCircleIcon
+                    className="w-6 h-6 text-green-500 "
+                    aria-hidden="true"
+                  />
                 </div>
-
+                <div>
+                  <CheckCircleIcon
+                    className="w-6 h-6 text-green-500 "
+                    aria-hidden="true"
+                  />
+                </div>
+                <div>
+                  <CheckCircleIcon
+                    className="w-6 h-6 text-green-500"
+                    aria-hidden="true"
+                  />
+                </div>
+                <div>
+                  <XCircleIcon
+                    className="w-6 h-6 text-gray-500"
+                    aria-hidden="true"
+                  />
+                </div>
+                <div>
+                  <XCircleIcon
+                    className="w-6 h-6 text-gray-500"
+                    aria-hidden="true"
+                  />
+                </div>
                 <div
                   className={classNames(
                     // item.changeType === 'increase' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800',
