@@ -3,6 +3,8 @@ import Head from 'next/head'
 import { Card } from '@/components/Card'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
+import { Stat } from '@/components/Stat'
+import { ArrowUpIcon } from '@heroicons/react/20/solid'
 
 function SpeakingSection({ children, ...props }) {
   return (
@@ -25,6 +27,10 @@ function Appearance({ title, description, event, cta, href }) {
   )
 }
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
 export default function Dashboard() {
   return (
     <>
@@ -40,6 +46,42 @@ export default function Dashboard() {
         intro="One of my favorite ways to share my ideas is live on stage, where there’s so much more communication bandwidth than there is in writing, and I love podcast interviews because they give me the opportunity to answer questions instead of just present my opinions."
       >
         <div className="space-y-20">
+          <Stat>
+            <div className="px-4 py-5 sm:p-6">
+              <dt className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+                Meditation
+              </dt>
+              <Card.Description>some description</Card.Description>
+              <dd className="flex items-baseline justify-between mt-1 md:block lg:flex">
+                <div className="flex items-baseline text-2xl font-semibold text-teal-500">
+                  12
+                  <span className="ml-2 text-sm font-medium text-gray-500">
+                    from 10
+                  </span>
+                </div>
+
+                <div
+                  className={classNames(
+                    // item.changeType === 'increase' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800',
+                    'inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium md:mt-2 lg:mt-0'
+                  )}
+                >
+                  {/* {item.changeType === 'increase' ? (
+                  <Arrow
+                    className="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-green-500"
+                    aria-hidden="true"
+                  /> */}
+                  <ArrowUpIcon
+                    className="-ml-1 mr-0.5 h-5 w-5 flex-shrink-0 self-center text-green-500"
+                    aria-hidden="true"
+                  />
+                  {/* <span className="sr-only"> {item.changeType === 'increase' ? 'Increased' : 'Decreased'} by </span> */}
+                  <span className="sr-only"> Increased by </span>
+                  12
+                </div>
+              </dd>
+            </div>
+          </Stat>
           <SpeakingSection title="Conferences">
             <Appearance
               href="#"
