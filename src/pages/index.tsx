@@ -1,15 +1,11 @@
-import clsx from 'clsx'
-import Head from 'next/head'
-import Image, { StaticImageData } from 'next/image'
-
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import { GitHubIcon, TwitterIcon } from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
+import logoAAA from '@/images/logos/aaa.png'
+import logoCemm from '@/images/logos/cemm.png'
+import logoWhooop from '@/images/logos/whooop.png'
+import logoXBionic from '@/images/logos/xbionic.png'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
@@ -18,11 +14,16 @@ import image5 from '@/images/photos/image-5.jpg'
 import { formatDate } from '@/lib/formatDate'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
+import clsx from 'clsx'
+import Head from 'next/head'
+import Image, { StaticImageData } from 'next/image'
+import Link from 'next/link'
 import { routes } from 'utils/routes'
 
 type TResume = {
   company: string
   title: string
+  url?: string
   logo: StaticImageData
   start: string
   end: string
@@ -104,9 +105,9 @@ function Article({ article }) {
 
 function SocialLink({ icon: Icon, href, ...props }) {
   return (
-    <Card.Link className="p-1 -m-1 group" href={href} {...props}>
+    <Link className="p-1 -m-1 group" href={href} {...props}>
       <Icon className="w-6 h-6 transition fill-zinc-500 group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-    </Card.Link>
+    </Link>
   )
 }
 
@@ -142,32 +143,35 @@ function Newsletter() {
 function Resume() {
   let resume: TResume[] = [
     {
-      company: 'Planetaria',
-      title: 'CEO',
-      logo: logoPlanetaria,
-      start: '2019',
+      company: 'CeMM',
+      title: 'Software Engineer',
+      url: 'https://www.cemm.at',
+      logo: logoCemm,
+      start: '2020',
       end: 'Present',
     },
     {
-      company: 'Airbnb',
-      title: 'Product Designer',
-      logo: logoAirbnb,
-      start: '2014',
+      company: 'allaboutapps',
+      title: 'Junior Fullstack Developer',
+      url: 'https://allaboutapps.at',
+      logo: logoAAA,
+      start: '2019',
       end: '2019',
     },
     {
-      company: 'Facebook',
-      title: 'iOS Software Engineer',
-      logo: logoFacebook,
-      start: '2011',
-      end: '2014',
+      company: 'whooop',
+      title: 'Co-founder',
+      logo: logoWhooop,
+      start: '2016',
+      end: '2018',
     },
     {
-      company: 'Starbucks',
-      title: 'Shift Supervisor',
-      logo: logoStarbucks,
-      start: '2008',
-      end: '2011',
+      company: 'X-Bionic',
+      title: 'Marketing & PR',
+      url: 'https://www.x-bionic.com',
+      logo: logoXBionic,
+      start: '2014',
+      end: '2015',
     },
   ]
 
@@ -181,13 +185,26 @@ function Resume() {
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative flex items-center justify-center flex-none w-10 h-10 mt-1 rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+              <Image
+                src={role.logo}
+                alt=""
+                className="rounded-full h-7 w-7"
+                unoptimized
+              />
             </div>
             <dl className="flex flex-wrap flex-auto gap-x-2">
               <dt className="sr-only">Company</dt>
-              <dd className="flex-none w-full text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                {role.company}
-              </dd>
+              {role.url ? (
+                <Link href={role.url} className="flex-none w-full ">
+                  <dd className="text-sm font-medium text-zinc-900 hover:text-teal-500 dark:text-zinc-100 dark:hover:text-teal-400">
+                    {role.company}
+                  </dd>
+                </Link>
+              ) : (
+                <dd className="flex-none w-full text-sm font-medium text-zinc-900 dark:text-zinc-100">
+                  {role.company}
+                </dd>
+              )}
               <dt className="sr-only">Role</dt>
               <dd className="text-xs text-zinc-500 dark:text-zinc-400">
                 {role.title}
@@ -205,7 +222,11 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="w-full mt-6 group">
+      <Button
+        href="/CV_manuel.pdf"
+        variant="secondary"
+        className="w-full mt-6 group"
+      >
         Download CV
         <ArrowDownIcon className="w-4 h-4 transition stroke-zinc-400 group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
@@ -253,19 +274,20 @@ export default function Home({ articles }) {
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Software engineer, blockchain nerd and biology newb.
+            Welcome to <br />
+            my corner of the web!
           </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I currently live in Vienna/Austria and work at the{' '}
+          <p className="mt-6 text-base prose text-zinc-600 dark:text-zinc-400">
+            I&rsquo;m Manuel, a software engineer at the{' '}
             <a href={routes.external.CeMM} target="_blank" rel="noreferrer">
-              Center for Molecular Medicine (CeMM)
-            </a>
-            . I help scientists build a{' '}
-            <a href={routes.external.Resolute} target="_blank" rel="noreferrer">
-              solid carrier knowledgebase.
+              Center for Molecular Medicine (CeMM)/Vienna
             </a>{' '}
-            My current areas of interest are the Rust language, blockchain and
-            biotech.
+            where I support scientists in building a comprehensive{' '}
+            <a href={routes.external.Resolute} target="_blank" rel="noreferrer">
+              knowledgebase.
+            </a>{' '}
+            My interests include Rust programming, blockchain technology, and
+            biotech. Thanks for stopping by!
           </p>
           <div className="flex gap-6 mt-6">
             <SocialLink
