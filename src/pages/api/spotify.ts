@@ -3,7 +3,7 @@ import { type NextRequest } from 'next/server'
 import { getNowPlayingSpotify } from '@/lib/spotify'
 
 export const config = {
-  runtime: 'experimental-edge',
+  runtime: 'edge',
 }
 
 export default async function handler(req: NextRequest) {
