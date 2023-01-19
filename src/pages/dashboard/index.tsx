@@ -6,7 +6,7 @@ import { SimpleLayout } from '@/components/SimpleLayout'
 import { Stat } from '@/components/Stat'
 import { XCircleIcon } from '@heroicons/react/24/outline'
 import { ArrowUpIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
-import { trpc } from '../utils/trpc'
+import { trpc } from '../../utils/trpc'
 
 function SpeakingSection({ children, ...props }) {
   return (
@@ -57,34 +57,34 @@ export default function Dashboard() {
                 Meditation
               </dt>
               <Card.Description>5 times a week</Card.Description>
-              <dd className="flex flex-row items-baseline justify-between mt-1 md:block lg:flex">
+              <dd className="mt-1 flex flex-row items-baseline justify-between md:block lg:flex">
                 <div>
                   <CheckCircleIcon
-                    className="w-6 h-6 text-green-500 "
+                    className="h-6 w-6 text-green-500 "
                     aria-hidden="true"
                   />
                 </div>
                 <div>
                   <CheckCircleIcon
-                    className="w-6 h-6 text-green-500 "
+                    className="h-6 w-6 text-green-500 "
                     aria-hidden="true"
                   />
                 </div>
                 <div>
                   <CheckCircleIcon
-                    className="w-6 h-6 text-green-500"
+                    className="h-6 w-6 text-green-500"
                     aria-hidden="true"
                   />
                 </div>
                 <div>
                   <XCircleIcon
-                    className="w-6 h-6 text-gray-500"
+                    className="h-6 w-6 text-gray-500"
                     aria-hidden="true"
                   />
                 </div>
                 <div>
                   <XCircleIcon
-                    className="w-6 h-6 text-gray-500"
+                    className="h-6 w-6 text-gray-500"
                     aria-hidden="true"
                   />
                 </div>

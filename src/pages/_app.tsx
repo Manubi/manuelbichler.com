@@ -12,7 +12,7 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import '@/styles/tailwind.css'
 import 'focus-visible'
-import { trpc } from './utils/trpc'
+import { trpc } from '../utils/trpc'
 
 function usePrevious(value) {
   let ref = useRef()

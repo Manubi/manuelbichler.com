@@ -6,8 +6,8 @@ import { useRouter } from 'next/router'
 
 import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
+import { routes } from '@/utils/routes'
 import { Fragment, useEffect, useRef } from 'react'
-import { routes } from 'utils/routes'
 
 type TAvatarProps = {
   className?: string
