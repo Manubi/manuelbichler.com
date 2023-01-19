@@ -7,7 +7,6 @@ export const config = {
 }
 
 export default async function handler(req: NextRequest) {
-  console.log('in api handler')
   const response = await getNowPlayingSpotify()
 
   if (response.status === 204 || response.status > 400) {

@@ -1,18 +1,11 @@
-import { z } from 'zod'
-import { procedure, router } from '../trcp'
+import { publicProcedure, router } from '../trcp'
+import { statRouter } from './stat'
+import { userRouter } from './user'
 
 export const appRouter = router({
-  hello: procedure
-    .input(
-      z.object({
-        text: z.string(),
-      })
-    )
-    .query(({ input }) => {
-      return {
-        greeting: `hello ${input.text}`,
-      }
-    }),
+  healthcheck: publicProcedure.query(() => 'yay!'),
+  user: userRouter,
+  stat: statRouter,
 })
 
 // export type definition of API

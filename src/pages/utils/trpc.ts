@@ -1,5 +1,7 @@
-import { httpBatchLink } from '@trpc/client'
+import { httpBatchLink, loggerLink } from '@trpc/client'
 import { createTRPCNext } from '@trpc/next'
+import { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
+import SuperJSON from 'superjson'
 import type { AppRouter } from '../server/routers/_app'
 
 function getBaseUrl() {
@@ -22,7 +24,22 @@ function getBaseUrl() {
 export const trpc = createTRPCNext<AppRouter>({
   config({ ctx }) {
     return {
+      transformer: SuperJSON,
+      // queryClientConfig: {
+      //   defaultOptions: {
+      //     queries: {
+      //       refetchOnMount: false,
+      //       refetchOnWindowFocus: false,
+      //     },
+      //   },
+      // },
       links: [
+        // adds pretty logs to your console in development and logs errors in production
+        loggerLink({
+          enabled: (opts) =>
+            process.env.NODE_ENV === 'development' ||
+            (opts.direction === 'down' && opts.result instanceof Error),
+        }),
         httpBatchLink({
           /**
            * If you want to use SSR, you need to use the server's full URL
@@ -42,3 +59,6 @@ export const trpc = createTRPCNext<AppRouter>({
    **/
   ssr: false,
 })
+
+export type RouterInput = inferRouterInputs<AppRouter>
+export type RouterOutput = inferRouterOutputs<AppRouter>

@@ -40,3 +40,10 @@ To learn more about the technologies used in this site template, see the followi
 - [Next.js](https://nextjs.org/docs) - the official Next.js documentation
 - [Headless UI](https://headlessui.dev) - the official Headless UI documentation
 - [MDX](https://mdxjs.com) - the MDX documentation
+
+## plantescale database
+
+connect to pscale `pscale auth login`
+connect to pscale database `pscale connect manuelbichler inital-setup --port 3309`
+do`npx prisma db push` to update the planetscale database.
+This will update the `initial-setup` branch of the database. To push it to main you need to create a deploy request in the planetscale dashboard.
