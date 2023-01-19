@@ -7,7 +7,7 @@ import type { Activity } from '@prisma/client'
 import NextError from 'next/error'
 import { Fragment, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { trpc } from '../utils/trpc'
+import { trpc } from '../../utils/trpc'
 
 const activities = [
   { value: 'ALCOHOL', displayName: 'No Alcohol' },
@@ -31,9 +31,9 @@ function Activities({ setSelected, selected }) {
         <div className="relative mt-1">
           <Listbox.Button className="relative w-full cursor-default rounded-lg border border-zinc-900/10 bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-500 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm">
             <span className="block truncate">{selected.displayName}</span>
-            <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
               <ChevronUpDownIcon
-                className="w-5 h-5 text-gray-400"
+                className="h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
             </span>
@@ -44,7 +44,7 @@ function Activities({ setSelected, selected }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
               {activities.map((activity, activityIdx) => (
                 <Listbox.Option
                   key={activityIdx}
@@ -66,7 +66,7 @@ function Activities({ setSelected, selected }) {
                       </span>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-teal-600">
-                          <CheckIcon className="w-5 h-5" aria-hidden="true" />
+                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
                         </span>
                       ) : null}
                     </>
@@ -134,16 +134,16 @@ const StatAddPage = () => {
           <pre>{JSON.stringify(data, null, 2)}</pre>
           <form
             onSubmit={onSubmit}
-            className="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40"
+            className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
           >
             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-              <BoltIcon className="flex-none w-6 h-6" />
+              <BoltIcon className="h-6 w-6 flex-none" />
               <span className="ml-3">Add activity</span>
             </h2>
             <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
               Some allow Minutes to add as duration
             </p>
-            <div className="flex flex-col gap-6 mt-6">
+            <div className="mt-6 flex flex-col gap-6">
               <Activities selected={selected} setSelected={setSelected} />
               <input
                 {...register('minutes')}

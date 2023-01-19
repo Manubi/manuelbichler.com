@@ -6,7 +6,7 @@ import type { AppProps } from 'next/app'
 
 import '@/styles/tailwind.css'
 import 'focus-visible'
-import { trpc } from './utils/trpc'
+import { trpc } from '../utils/trpc'
 
 function usePrevious(value) {
   let ref = useRef()
@@ -28,7 +28,7 @@ function MyApp({
   const [queryClient] = useState(() => new QueryClient())
 
   return (
-    <div className="flex justify-center mt-20 align-middle">{':)'}</div>
+    <div className="mt-20 flex justify-center align-middle">{':)'}</div>
     // <QueryClientProvider client={queryClient}>
     //   <Hydrate state={pageProps.dehydratedState}>
     //     <div className="fixed inset-0 flex justify-center sm:px-8">
