@@ -285,7 +285,7 @@ export function Header() {
     }
 
     function updateHeaderStyles() {
-      let { top, height } = headerRef.current.getBoundingClientRect()
+      let { top, height } = headerRef?.current?.getBoundingClientRect() as any
       let scrollY = clamp(
         window.scrollY,
         0,
@@ -382,7 +382,7 @@ export function Header() {
         {isHomePage && (
           <>
             <div
-              ref={avatarRef}
+              ref={avatarRef as any}
               className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"
             />
             <Container
@@ -418,7 +418,7 @@ export function Header() {
           </>
         )}
         <div
-          ref={headerRef}
+          ref={headerRef as any}
           className="top-0 z-10 h-16 pt-6"
           style={{ position: 'var(--header-position)' } as any}
         >
