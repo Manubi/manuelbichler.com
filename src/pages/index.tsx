@@ -291,7 +291,7 @@ export default function Home({ articles }) {
                 /sɛs/
                 <SpeakerWaveIcon className="mt-1 ml-1 h-[12px] w-[12px] text-zinc-500 dark:text-zinc-400" />
               </a>
-              <p className="invisible ml-3 text-base text-zinc-500 peer-hover:visible dark:text-zinc-400">
+              <p className="invisible ml-3 text-base text-zinc-600 peer-hover:visible dark:text-zinc-400">
                 Saying &quot;Hi&quot; in my home town Matrei.
               </p>
             </div>
