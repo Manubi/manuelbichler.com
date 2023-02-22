@@ -44,7 +44,7 @@ function Activities({ setSelected, selected }) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:text-zinc-200 sm:text-sm">
               {activities.map((activity, activityIdx) => (
                 <Listbox.Option
                   key={activityIdx}
@@ -131,7 +131,7 @@ const StatAddPage = () => {
     <SimpleLayout title="Activities" intro="yoyoyo">
       <div className="space-y-20">
         <div>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
+          <pre className="text-white">{JSON.stringify(data, null, 2)}</pre>
           <form
             onSubmit={onSubmit}
             className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"

@@ -1,0 +1,62 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { Button } from '@/components/Button'
+
+export const meta = {
+  author: 'Manuel Bichler',
+  date: '2023-01-12',
+  title: 'AI will be the greatest and worst thing that happens to us',
+  description:
+    'Setting up Docker for your project can be a pain. This article will help you to get started with Docker and Docker Compose.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+# Introduction to Docker
+
+<div className="grid grid-cols-3" style={{ display: 'flex', color: 'red' }}>
+  <p>seas</p>
+  <p>seas</p>
+  <p>seas</p>
+  <p>seas</p>
+  <p>seas</p>
+</div>
+<Button>buton</Button>
+## What is Docker?
+
+Docker is a platform that lets you easily build, deploy, and run apps in containers, making your development and production environments more consistent and streamlined.
+
+## What problems does Docker solve?
+
+Docker solves the problem of "it works on my machine" by allowing developers to package their application and its dependencies into a self-contained unit called a container. The container can run consistently across different environments, making it easier to move from development to production and reducing the risk of compatibility issues. This helps to improve collaboration between teams and increase the speed and efficiency of the development process.
+
+### Let's start with a simple example
+
+Let's say you have a simple Node.js application that you want to run on your local machine. You can install Node.js and all the dependencies of your application on your machine, but this can be a pain. You can also use a virtual machine to run your application, but this is also a pain. Docker solves this problem by allowing you to package your application and its dependencies into a container. The container can run consistently across different environments, making it easier to move from development to production and reducing the risk of compatibility issues. This helps to improve collaboration between teams and increase the speed and efficiency of the development process.
+
+What you often end up with is a Dockerfile that looks like this:
+
+FROM node:10
+
+# Create app directory
+
+WORKDIR /usr/src/app
+
+# Install app dependencies
+
+COPY package\*.json ./
+
+RUN npm install
+
+# If you are building your code for production
+
+# RUN npm ci --only=production
+
+# Bundle app source
+
+COPY . .
+
+EXPOSE 8080
+
+CMD [ "node", "server.js" ]
+
+This Dockerfile defines an application that uses Node.js 10 as its base image. It then copies the package.json file from your project directory into the Docker image and runs npm install to install the dependencies of your application. It also copies the rest of your project into the Docker image and sets the working directory to /usr/src/app . Finally, it exposes port 8080 and runs the node server.js command to start your application.

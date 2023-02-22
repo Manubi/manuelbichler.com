@@ -1,9 +1,14 @@
 import Head from 'next/head'
 
 import { Card } from '@/components/Card'
+import { OuraDashboard } from '@/components/dashboard/OuraDashboard'
+import { StatsCard } from '@/components/dashboard/StatsCard'
+import { WakaTime } from '@/components/dashboard/WakatTime'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { Stat } from '@/components/Stat'
+import { getOuraDailyActivities } from '@/lib/oura'
+import { getWakaStats } from '@/lib/waka'
 import { XCircleIcon } from '@heroicons/react/24/outline'
 import { ArrowUpIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
 import { trpc } from '../../utils/trpc'
@@ -33,7 +38,29 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Dashboard() {
+export type Cursor = {
+  count: number
+  next: string
+  previous?: string
+}
+
+type TScore = {
+  date: string
+  score: number
+}
+
+export type TOura = {
+  activities: TScore[]
+  sleep: TScore[]
+  readiness: TScore[]
+}
+
+type TProps = {
+  oura: TOura
+  waka: any
+}
+
+export default function Dashboard({ oura, waka }: TProps) {
   const stats = trpc.stat.list.useQuery()
 
   return (
@@ -41,16 +68,50 @@ export default function Dashboard() {
       <Head>
         <title>Dashboard - Manuel Bichler</title>
         <meta
-          name="description"
-          content="I’ve spoken at events all around the world and been interviewed for many podcasts."
+          name="Manuel's Dashboard"
+          content="Keeping Track of My Life: One Hot Mess at a Time"
         />
       </Head>
       <SimpleLayout
-        title="I’ve spoken at events all around the world and been interviewed for many podcasts."
-        intro="One of my favorite ways to share my ideas is live on stage, where there’s so much more communication bandwidth than there is in writing, and I love podcast interviews because they give me the opportunity to answer questions instead of just present my opinions."
+        title="Keeping Track of My Life: One Hot Mess at a Time"
+        intro="I tried many things. Read to many self-help books. Listened way too long go productivity podcasts. What I for me found out, is keep it stupid fucking simple. That's - in my case - necessary as I am not the smartest cookie. So here we are."
       >
-        <div className="space-y-20">
+        <div className="prose space-y-20">
+          <h2>Why all this?</h2>
+          <p>
+            I hesitated to make this public as it kind of makes me feel
+            uncomfortable. It kinda gives the impression I am a cheap version of{' '}
+            <a href="https://www.iflscience.com/millionaire-spends-over-2-million-in-an-attempt-to-make-his-body-young-again-67266">
+              &quot;Millionaire Spends Over $2 Million In An Attempt To Make His
+              Body Young Again&quot;
+            </a>{' '}
+            You can find less clickbaity info about the guy{' '}
+            <a href="https://blueprint.bryanjohnson.co/">Blueprint</a>.
+          </p>{' '}
+          But anyway why should I care what you think. I can&rsquo;t change it
+          anyway. But what I can do is work on myself. So I decided to publish
+          it because I believe there might be people out there who might find
+          inspiration to change something in there life. I am 36 by the way.
+          <p>
+            I am torn, if such a system is good or bad. What I know is, what
+            gets measured usually can be improved. And if I look around. Sports.
+            Businesses. Politics. All of them are using data to improve. I know
+            poltics sucks, and you probably don&apos;t want to become a
+            poltician anway, but also influencers are data junkies.
+          </p>
+          <p>
+            So let&apos;s have a look at my system. I am not a huge fan of
+            goals, but of systems. So how it basically works, you decide for a
+            gaol and then you build the system.
+          </p>
+          <div className="grid grid-cols-4">
+            <div>Sweat</div>
+            <div>Learn</div>
+            <div>Reflect</div>
+            <div>Nos</div>
+          </div>
           <pre>{JSON.stringify(stats.data, null, 2)}</pre>
+          <StatsCard></StatsCard>
           <Stat>
             <div className="px-4 py-5 sm:p-6">
               <dt className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
@@ -60,19 +121,19 @@ export default function Dashboard() {
               <dd className="mt-1 flex flex-row items-baseline justify-between md:block lg:flex">
                 <div>
                   <CheckCircleIcon
-                    className="h-6 w-6 text-green-500 "
+                    className="h-6 w-6 text-gray-300 "
                     aria-hidden="true"
                   />
                 </div>
                 <div>
                   <CheckCircleIcon
-                    className="h-6 w-6 text-green-500 "
+                    className="h-6 w-6 text-gray-300 "
                     aria-hidden="true"
                   />
                 </div>
                 <div>
                   <CheckCircleIcon
-                    className="h-6 w-6 text-green-500"
+                    className="h-6 w-6 text-gray-300 "
                     aria-hidden="true"
                   />
                 </div>
@@ -110,6 +171,8 @@ export default function Dashboard() {
               </dd>
             </div>
           </Stat>
+          <OuraDashboard oura={oura} />
+          <WakaTime waka={waka} />
           <SpeakingSection title="Conferences">
             <Appearance
               href="#"
@@ -153,4 +216,11 @@ export default function Dashboard() {
       </SimpleLayout>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const oura = await getOuraDailyActivities()
+  const waka = await getWakaStats()
+
+  return { props: { oura, waka } }
 }

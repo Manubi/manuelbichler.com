@@ -15,6 +15,7 @@ import { formatDate } from '@/lib/formatDate'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { routes } from '@/utils/routes'
+import { SpeakerWaveIcon } from '@heroicons/react/24/outline'
 import clsx from 'clsx'
 import Head from 'next/head'
 import Image, { StaticImageData } from 'next/image'
@@ -262,32 +263,54 @@ function Photos() {
 }
 
 export default function Home({ articles }) {
+  function saySess() {
+    const audio = new Audio('/sess.m4a')
+    audio.play()
+  }
+
   return (
     <>
       <Head>
-        <title>Manuel Bichler - Software engineer, working in biotech.</title>
+        <title>Manuel Bichler</title>
         <meta
           name="description"
-          content="I’m Manuel, a software engineer based in Vienna/Austria. Currently I help scientists build a solid carrier knowledgebase."
+          content="I’m Manuel, a software engineer based in Vienna/Austria."
         />
       </Head>
       <Container className="mt-9">
         <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Welcome to <br />
-            my corner of the web!
-          </h1>
-          <p className="prose mt-6 text-base text-zinc-600 dark:text-zinc-400">
+          <div className="flex items-baseline">
+            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+              Sess!{' '}
+            </h1>
+            <div className="prose flex items-baseline dark:prose-invert">
+              <a
+                onClick={saySess}
+                className="peer -my-8 ml-3 flex hover:cursor-pointer sm:text-lg "
+              >
+                /sɛs/
+                <SpeakerWaveIcon className="mt-1 ml-1 h-[12px] w-[12px] text-zinc-500 dark:text-zinc-400" />
+              </a>
+              <p className="invisible ml-3 text-base text-zinc-500 peer-hover:visible dark:text-zinc-400">
+                Saying &quot;Hi&quot; in my home town Matrei.
+              </p>
+            </div>
+          </div>
+          <p className="prose text-base text-zinc-600 dark:text-zinc-400">
             I&rsquo;m Manuel, a software engineer at the{' '}
             <a href={routes.external.CeMM} target="_blank" rel="noreferrer">
               Center for Molecular Medicine (CeMM)/Vienna
             </a>{' '}
             where I support scientists in building a comprehensive{' '}
             <a href={routes.external.Resolute} target="_blank" rel="noreferrer">
-              knowledgebase.
+              knowledgebase of SLCs.
             </a>{' '}
-            My interests include Rust programming, blockchain technology, and
-            biotech. Thanks for stopping by!
+            Apart from work, my interests include blockchain technology, Rust
+            programming, and (who would&rsquo;ve thought) AI. I only recently
+            started writing about things I do. So forgive me if my texts are
+            bad, but as we all know it&rsquo;s the AI that&rsquo;s really to
+            blame. <br />
+            Anyway, thanks for stopping by!
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

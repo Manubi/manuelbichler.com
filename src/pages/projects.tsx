@@ -3,26 +3,27 @@ import Image from 'next/image'
 
 import { Card } from '@/components/Card'
 import { SimpleLayout } from '@/components/SimpleLayout'
-import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoCosmos from '@/images/logos/cosmos.svg'
 import logoHelioStream from '@/images/logos/helio-stream.svg'
+import logoLabio from '@/images/logos/labio.png'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
+import logoResolute from '@/images/logos/resolute.png'
 
 const projects = [
   {
-    name: 'Planetaria',
+    name: 'Labio',
     description:
-      'Creating technology to empower civilians to explore space on their own terms.',
-    link: { href: 'http://planetaria.tech', label: 'planetaria.tech' },
-    logo: logoPlanetaria,
+      'A decentralized data storage solution built on top of IPFS and the Filecoin EVM.',
+    link: { href: 'http://labio.vercel.app', label: 'labio.vercel.app' },
+    logo: logoLabio,
+    github: 'https://github.com/Manubi/labio',
   },
   {
-    name: 'Animaginary',
-    description:
-      'High performance web animation library, hand-written in optimized WASM.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoAnimaginary,
+    name: 'RESOLUTE',
+    description: 'A monorepo in typescript with react, graphql and fastify.',
+    link: { href: 'https://re-solute.eu', label: 're-solute.eu' },
+    logo: logoResolute,
+    github: '',
   },
   {
     name: 'HelioStream',
@@ -69,7 +70,7 @@ export default function Stack() {
         />
       </Head>
       <SimpleLayout
-        title="Things I’ve made trying to learn something about how the world works."
+        title="Some things I’ve made."
         intro="I’ve worked on tons of little and bigger projects over the years. Most of them are gone or used as internal tools. This is now my attempt to give future projects a home. If you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
       >
         <ul
@@ -82,7 +83,9 @@ export default function Stack() {
                 <Image
                   src={project.logo}
                   alt=""
-                  className="w-8 h-8"
+                  className={
+                    project.name === 'RESOLUTE' ? 'h-8 w-8 p-1' : 'h-8 w-8'
+                  }
                   unoptimized
                 />
               </div>

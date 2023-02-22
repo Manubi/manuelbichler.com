@@ -17,6 +17,24 @@ model User {
   name  String?
 }
 
+model Categories {
+  id        Int         @id @default(autoincrement())
+  name      Category
+  questions Questions[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model Questions {
+  id         Int          @id @default(autoincrement())
+  question   String       @db.Text
+  answer     String       @db.Text
+  categories Int          @default(NONE)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  Categories Categories[]
+}
+
 model Stats {
   id        Int      @id @default(autoincrement())
   activity  Activity
@@ -39,4 +57,13 @@ enum Activity {
   SCREENTIME
   CODE
   SOCIALMEDIA
+}
+
+enum Category {
+  NONE
+  PYTHON
+  TYPESCRIPT
+  REACT
+  RUST
+  DEEPLEARNING
 }

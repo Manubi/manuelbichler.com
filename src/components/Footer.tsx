@@ -33,10 +33,12 @@ export function Footer() {
                 <NavLink href={routes.articles.path}>
                   {routes.articles.label}
                 </NavLink>
+                <NavLink href={routes.projects.path}>
+                  {routes.projects.label}
+                </NavLink>
                 <NavLink href={routes.dashboard.path}>
                   {routes.dashboard.label}
                 </NavLink>
-                <NavLink href={routes.uses.path}>{routes.uses.label}</NavLink>
               </div>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">
                 &copy; {new Date().getFullYear()} Manuel Bichler. All rights

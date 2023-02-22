@@ -45,5 +45,5 @@ To learn more about the technologies used in this site template, see the followi
 
 connect to pscale `pscale auth login`
 connect to pscale database `pscale connect manuelbichler inital-setup --port 3309`
-do`npx prisma db push` to update the planetscale database.
+do`npx prisma db push` to update the planetscale database. If you get a `Error: direct DDL is disabled` check if you have the correct pw from pscale. You'll find it in the settings of the branch in the pscale dashboard.
 This will update the `initial-setup` branch of the database. To push it to main you need to create a deploy request in the planetscale dashboard.
