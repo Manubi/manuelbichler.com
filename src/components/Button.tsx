@@ -7,6 +7,7 @@ type TButtonProps = {
   href?: string
   children: React.ReactNode
   type?: 'submit'
+  onClick?: () => void
 }
 
 const variantStyles = {

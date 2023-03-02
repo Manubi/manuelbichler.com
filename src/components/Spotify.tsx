@@ -75,7 +75,6 @@ function useNowPlaying() {
   return useQuery(['posts'], async () => {
     const res = await fetch('/api/spotify')
     const data = await res.json()
-    console.log('data', data)
     return data
   })
 }

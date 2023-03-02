@@ -10,7 +10,7 @@ export const routes = {
   },
   uses: { label: 'Uses', path: '/uses' },
   projects: { label: 'Projects', path: '/projects' },
-  snippets: { label: 'Snippets', path: '/snippets' },
+  flashCards: { label: 'Flashcards', path: '/flashcards' },
   dashboard: { label: 'Dashboard', path: '/dashboard' },
   socials: {
     github: 'https://github.com/Manubi',

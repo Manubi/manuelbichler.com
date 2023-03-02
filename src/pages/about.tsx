@@ -139,7 +139,11 @@ export default function About() {
                 I still enjoy being in the mountains. Be it skiing, climbing,
                 hiking or just being outside. I also do like the ocean.
               </p>
-            </div>
+              My main goal for the next couple years is to build a bridge
+              between the different fields that I am interested in. I want to be
+              able to talk to people from all of them and understand what they
+              are doing. So my focus will be on AI, blockchain and biology.
+            </div> 
           </div>
           <div className="lg:pl-20">
             <ul role="list">

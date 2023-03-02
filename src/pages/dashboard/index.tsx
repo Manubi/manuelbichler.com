@@ -2,13 +2,13 @@ import Head from 'next/head'
 
 import { Card } from '@/components/Card'
 import { OuraDashboard } from '@/components/dashboard/OuraDashboard'
-import { StatsCard } from '@/components/dashboard/StatsCard'
 import { WakaTime } from '@/components/dashboard/WakatTime'
 import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { Stat } from '@/components/Stat'
 import { getOuraDailyActivities } from '@/lib/oura'
 import { getWakaStats } from '@/lib/waka'
+import { classNames } from '@/utils/classNames'
 import { XCircleIcon } from '@heroicons/react/24/outline'
 import { ArrowUpIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
 import { trpc } from '../../utils/trpc'
@@ -34,10 +34,6 @@ function Appearance({ title, description, event, cta, href }) {
   )
 }
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
 export type Cursor = {
   count: number
   next: string
@@ -61,7 +57,7 @@ type TProps = {
 }
 
 export default function Dashboard({ oura, waka }: TProps) {
-  const stats = trpc.stat.list.useQuery()
+  const stats = trpc.habit.list.useQuery()
 
   return (
     <>
@@ -97,7 +93,7 @@ export default function Dashboard({ oura, waka }: TProps) {
             gets measured usually can be improved. And if I look around. Sports.
             Businesses. Politics. All of them are using data to improve. I know
             poltics sucks, and you probably don&apos;t want to become a
-            poltician anway, but also influencers are data junkies.
+            poltician anyway, but also influencers are data junkies.
           </p>
           <p>
             So let&apos;s have a look at my system. I am not a huge fan of
@@ -110,8 +106,13 @@ export default function Dashboard({ oura, waka }: TProps) {
             <div>Reflect</div>
             <div>Nos</div>
           </div>
+          <p>
+            I have the impression people are good in bending reality towards
+            their thinking. For me it&apos;s important to see the world as it
+            is. Not how I would like it to have/behave it. Because the world
+            just shows up.{' '}
+          </p>
           <pre>{JSON.stringify(stats.data, null, 2)}</pre>
-          <StatsCard></StatsCard>
           <Stat>
             <div className="px-4 py-5 sm:p-6">
               <dt className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">

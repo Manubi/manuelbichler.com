@@ -4,16 +4,15 @@ import { z } from 'zod'
 import { prisma } from '../prisma'
 import { publicProcedure, router } from '../trcp'
 
-const defaultStatSelect = Prisma.validator<Prisma.QuestionsSelect>()({
+const defaultHabitSelect = Prisma.validator<Prisma.HabitSelect>()({
   id: true,
-  question: true,
-  answer: true,
-  categorie: true,
+  activity: true,
+  date: true,
   createdAt: true,
   updatedAt: true,
 })
 
-export const statRouter = router({
+export const habitRouter = router({
   list: publicProcedure.query(async () => {
     /**
      * For pagination docs you can have a look here
@@ -21,8 +20,8 @@ export const statRouter = router({
      * @see https://www.prisma.io/docs/concepts/components/prisma-client/pagination
      */
 
-    const stats = await prisma.stats.findMany({
-      select: defaultStatSelect,
+    const habits = await prisma.habit.findMany({
+      select: defaultHabitSelect,
       // get an extra item at the end which we'll use as next cursor
 
       where: {},
@@ -32,7 +31,7 @@ export const statRouter = router({
     })
 
     return {
-      stats: stats.reverse(),
+      habits: habits.reverse(),
     }
   }),
   byDate: publicProcedure
@@ -43,35 +42,34 @@ export const statRouter = router({
     )
     .query(async ({ input }) => {
       const { date } = input
-      const stats = await prisma.stats.findMany({
+      const habits = await prisma.habit.findMany({
         where: { date },
-        select: defaultStatSelect,
+        select: defaultHabitSelect,
       })
-      if (!stats) {
+      console.log('habits', habits)
+      if (!habits) {
         throw new TRPCError({
           code: 'NOT_FOUND',
-          message: `No stats with date '${date}'`,
+          message: `No habits with date '${date}'`,
         })
       }
-      return stats
+      return habits
     }),
   add: publicProcedure
     .input(
       z.object({
         activity: z.nativeEnum(Activity),
         date: z.date(),
-        minutes: z.number().optional(),
       })
     )
     .mutation(async ({ input }) => {
       const newInput = {
         activity: input.activity,
         date: input.date,
-        minutes: input.minutes,
       }
-      const stat = await prisma.stats.create({
+      const habits = await prisma.habit.create({
         data: newInput,
       })
-      return stat
+      return habits
     }),
 })

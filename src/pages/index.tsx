@@ -237,7 +237,8 @@ function Resume() {
 
 function Photos() {
   let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
-
+  // image with espresso machine, image skiing, image climbing, image yoga, image with dog,
+  // image keyboard and mouse and monitor
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
@@ -305,12 +306,14 @@ export default function Home({ articles }) {
             <a href={routes.external.Resolute} target="_blank" rel="noreferrer">
               knowledgebase of SLCs.
             </a>{' '}
-            Apart from work, my interests include blockchain technology, Rust
-            programming, and (who would&rsquo;ve thought) AI. I only recently
-            started writing about things I do. So forgive me if my texts are
+            Sometimes I play around with blockchains, the Rust programming
+            language and AI. I only recently started writing about things I do
+            in order to understand things better. So forgive me if my texts are
             bad, but as we all know it&rsquo;s the AI that&rsquo;s really to
             blame. <br />
-            Anyway, thanks for stopping by!
+            I also started making flashcards to learn new things. Both can be
+            seen here.
+            <br /> Anyway, thanks for stopping by!
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink

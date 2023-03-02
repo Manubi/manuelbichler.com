@@ -8,11 +8,10 @@ import { nord } from '@milkdown/theme-nord'
 
 import '@milkdown/theme-nord/style.css'
 
-const markdown = `# Milkdown React Commonmark
+const markdown = `# write yor answer in
 
-> You're scared of a world where you're needed.
-
-This is a demo for using Milkdown with **React**.`
+> some fancy markdown
+`
 
 export const MilkdownEditor: FC = () => {
   useEditor((root) => {

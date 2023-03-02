@@ -17,53 +17,67 @@ model User {
   name  String?
 }
 
-model Categories {
-  id        Int         @id @default(autoincrement())
-  name      Category
-  questions Questions[]
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+model FlashCardCategory {
+  id        Int                 @id @default(autoincrement())
+  name      FlashCardCategories
+  flashCard FlashCard[]
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
 }
 
-model Questions {
-  id         Int          @id @default(autoincrement())
-  question   String       @db.Text
-  answer     String       @db.Text
-  categories Int          @default(NONE)
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
-  Categories Categories[]
+model Deck {
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String
+  flashCard   FlashCard[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
 
-model Stats {
+model FlashCard {
+  id        Int                 @id @default(autoincrement())
+  question  String              @db.Text
+  answer    String              @db.Text
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+  category  FlashCardCategory[]
+  Deck      Deck?               @relation(fields: [deckId], references: [id])
+  deckId    Int?
+}
+
+model Habit {
   id        Int      @id @default(autoincrement())
   activity  Activity
   date      DateTime
-  minutes   Int?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 enum Activity {
-  MEDITATION
-  SPORT
+  YOGA
+  CLIMBING
+  RUNNING
+  SKIING
+  SWIMMING
+  BIKING
+  CODING
   COLDSHOWER
-  SLEEP
-  READ
-  WRITE
-  BEARDTIK
-  ALCOHOL
-  SUGAR
-  SCREENTIME
-  CODE
-  SOCIALMEDIA
+  WRITING
+  MEDITATING
+  READING
+  HANDSTAND
+  NOALCOHOL
+  NOSOCIALMEDIA
+  NOSUGAR
 }
 
-enum Category {
+enum FlashCardCategories {
   NONE
   PYTHON
   TYPESCRIPT
   REACT
   RUST
   DEEPLEARNING
+  BIOLOGY
+  AI
 }
