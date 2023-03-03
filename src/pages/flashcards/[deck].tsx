@@ -1,4 +1,4 @@
-import { Flashcard } from '@/components/flashCards/Flashcard'
+import { Flashcard } from '@/components/flashcards/Flashcard'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import Head from 'next/head'
 

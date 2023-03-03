@@ -1,6 +1,6 @@
 import { Button } from '@/components/Button'
 import { MilkdownEditor } from '@/components/Editor'
-import { AddDeck } from '@/components/flashCards/AddDeck'
+import { AddDeck } from '@/components/flashcards/AddDeck'
 import { ListboxSelect } from '@/components/Listbox'
 
 import { SimpleLayout } from '@/components/SimpleLayout'

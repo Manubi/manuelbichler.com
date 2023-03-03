@@ -24,7 +24,7 @@ function Deck({ deck }) {
       <Card.Eyebrow
         as="time"
         dateTime={deck.updatedAt}
-        className="hidden mt-1 md:block"
+        className="mt-1 hidden md:block"
       >
         {formatDate(deck.updatedAt)}
       </Card.Eyebrow>
@@ -50,7 +50,7 @@ export default function flashCardIndex({ decks }) {
         intro="As with many fields you need to know the language. Here I collect some flashcard decks that I use to read threw and learn from."
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-          <div className="flex flex-col max-w-3xl space-y-16">
+          <div className="flex max-w-3xl flex-col space-y-16">
             {data?.decks.map((deck) => (
               <Deck key={deck.id} deck={deck} />
             ))}
