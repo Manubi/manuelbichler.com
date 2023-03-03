@@ -1,6 +1,6 @@
 import { publicProcedure, router } from '../trcp'
 import { deckRouter } from './deck'
-import { flashcardRouter } from './flashcard'
+import { flashcardRouter } from './flashcard1'
 import { habitRouter } from './habit'
 import { userRouter } from './user'
 
