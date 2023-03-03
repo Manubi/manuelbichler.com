@@ -17,10 +17,10 @@ model User {
   name  String?
 }
 
-model FlashCardCategory {
+model FlashcardCategory {
   id        Int                 @id @default(autoincrement())
-  name      FlashCardCategories
-  flashCard FlashCard[]
+  name      FlashcardCategories
+  flashcard Flashcard[]
   createdAt DateTime            @default(now())
   updatedAt DateTime            @updatedAt
 }
@@ -29,18 +29,18 @@ model Deck {
   id          Int         @id @default(autoincrement())
   name        String
   description String
-  flashCard   FlashCard[]
+  flashcard   Flashcard[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }
 
-model FlashCard {
+model Flashcard {
   id        Int                 @id @default(autoincrement())
   question  String              @db.Text
   answer    String              @db.Text
   createdAt DateTime            @default(now())
   updatedAt DateTime            @updatedAt
-  category  FlashCardCategory[]
+  category  FlashcardCategory[]
   Deck      Deck?               @relation(fields: [deckId], references: [id])
   deckId    Int?
 }
@@ -71,7 +71,7 @@ enum Activity {
   NOSUGAR
 }
 
-enum FlashCardCategories {
+enum FlashcardCategories {
   NONE
   PYTHON
   TYPESCRIPT

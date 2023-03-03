@@ -40,13 +40,24 @@ export default function ArticlesIndex({ articles }) {
         <title>Articles - Manuel Bichler</title>
         <meta
           name="description"
-          content="All of my long-form thoughts on programming, product design, and more, collected in chronological order."
+          content="All of my long-form thoughts on programming, product design, and more."
         />
       </Head>
       <SimpleLayout
-        title="Writing on software design, company building, and the aerospace industry."
-        intro="All of my long-form thoughts on programming, product design, and more, collected in chronological order."
+        title="Ramblings about my own stupidity, then endless cycle of facepalms and self-deprecation that follows. "
+        intro="What's my hope with this? To improve my thinking. To keep a personal notebook. To send a message to my younger self."
       >
+        <p>
+          What will it be about? A lot of tech. Some biology. And basically
+          everything else that my mind decides to deal with. I never was able to
+          get into writing. Therefor my expectations are lower than low. &quot;
+          <span className="italic">
+            Expectations are like mosquitoes in a nudist colony: you&apos;re
+            never quite sure what&apos;s going to happen, but you know it&apos;s
+            going to be annoying.&quot;{' '}
+          </span>
+          (unkown) - Let&apos;s see what happens.
+        </p>
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex flex-col max-w-3xl space-y-16">
             {articles.map((article) => (

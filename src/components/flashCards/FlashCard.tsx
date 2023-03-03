@@ -5,11 +5,11 @@ import {
 import { useState } from 'react'
 import { Card } from '../Card'
 
-export function FlashCard() {
+export function Flashcard() {
   const [isFront, setIsFront] = useState(true)
   if (isFront) {
     return (
-      <Card className="borer rounded-lg border-red-500 md:col-span-3">
+      <Card className="border-red-500 rounded-lg borer md:col-span-3">
         <Card.Title>What&apos;s the questions?</Card.Title>
         <ArrowUturnRightIcon
           className="h-6"

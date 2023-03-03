@@ -1,28 +1,29 @@
+import { RouterOutput } from '@/utils/trpc'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
-const people = [
-  { name: 'Wade Cooper' },
-  { name: 'Arlene Mccoy' },
-  { name: 'Devon Webb' },
-  { name: 'Tom Cook' },
-  { name: 'Tanya Fox' },
-  { name: 'Hellen Schmidt' },
-]
+type DeckListOutput = RouterOutput['deck']['list']
 
-export function ListboxSelect() {
-  const [selected, setSelected] = useState(people[0])
+type ListboxSelectProps = {
+  setSelectedId: (id: number) => void
+} & DeckListOutput
 
+export function ListboxSelect({ decks, setSelectedId }: ListboxSelectProps) {
+  const [selected, setSelected] = useState(decks[0])
+
+  useEffect(() => {
+    setSelectedId(selected.id)
+  }, [selected.id, setSelectedId])
   return (
-    <div className="absolute top-16 w-72">
+    <div className="w-72">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
-          <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+          <Listbox.Button className="my-4 flex w-full min-w-0 flex-auto appearance-none justify-between rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm">
             <span className="block truncate">{selected.name}</span>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+            <span className="inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <ChevronUpDownIcon
-                className="h-5 w-5 text-gray-400"
+                className="w-5 h-5 text-gray-400"
                 aria-hidden="true"
               />
             </span>
@@ -33,16 +34,16 @@ export function ListboxSelect() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {people.map((person, personIdx) => (
+            <Listbox.Options className="w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              {decks.map((deck, deckIdx) => (
                 <Listbox.Option
-                  key={personIdx}
+                  key={deckIdx}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                      active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
+                      active ? 'bg-teal-100 text-teal-900' : 'text-gray-900'
                     }`
                   }
-                  value={person}
+                  value={deck}
                 >
                   {({ selected }) => (
                     <>
@@ -51,11 +52,11 @@ export function ListboxSelect() {
                           selected ? 'font-medium' : 'font-normal'
                         }`}
                       >
-                        {person.name}
+                        {deck.name}
                       </span>
                       {selected ? (
-                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">
-                          <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                        <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-teal-600">
+                          <CheckIcon className="w-5 h-5" aria-hidden="true" />
                         </span>
                       ) : null}
                     </>

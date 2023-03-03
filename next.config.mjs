@@ -6,6 +6,9 @@ import remarkGfm from 'remark-gfm'
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'mdx'],
   reactStrictMode: true,
+  webpack: {
+    ignorePatterns: ['**/drafts/*.mdx'],
+  },
   experimental: {
     scrollRestoration: true,
   },

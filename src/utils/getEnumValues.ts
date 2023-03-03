@@ -10,7 +10,7 @@ function splitEnumKeysAndValues<T>(value: any): {
 
   return {
     keys: enumKeysKeyNames,
-    values: enumKeysKeyValues,
+    values: enumKeys,
   }
 }
 

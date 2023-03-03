@@ -1,5 +1,6 @@
 import NextError from 'next/error'
-import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/router'
+
 import { RouterOutput, trpc } from '../../utils/trpc'
 
 type StatByDateOutput = RouterOutput['habit']['byDate']
@@ -20,8 +21,7 @@ function StatItem(props: { stat: StatByDateOutput }) {
 }
 
 const StatViewPage = () => {
-  const searchParams = useSearchParams()
-  const date = searchParams.get('date')
+  const date = useRouter().query.date as string
   const statQuery = date && trpc.habit.byDate.useQuery({ date: new Date(date) })
   if (!statQuery) return
   if (statQuery.error) {

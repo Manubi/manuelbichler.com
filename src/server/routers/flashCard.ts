@@ -1,10 +1,10 @@
-import { FlashCardCategories, Prisma } from '@prisma/client'
+import { FlashcardCategories, Prisma } from '@prisma/client'
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { prisma } from '../prisma'
 import { publicProcedure, router } from '../trcp'
 
-const defaultFlashCardSelect = Prisma.validator<Prisma.FlashCardSelect>()({
+const defaultFlashcardSelect = Prisma.validator<Prisma.FlashcardSelect>()({
   id: true,
   question: true,
   answer: true,
@@ -13,16 +13,16 @@ const defaultFlashCardSelect = Prisma.validator<Prisma.FlashCardSelect>()({
   updatedAt: true,
 })
 
-const defaultFlashCardCategorySelect =
-  Prisma.validator<Prisma.FlashCardCategorySelect>()({
+const defaultFlashcardCategorySelect =
+  Prisma.validator<Prisma.FlashcardCategorySelect>()({
     id: true,
     name: true,
-    flashCard: true,
+    flashcard: true,
     createdAt: true,
     updatedAt: true,
   })
 
-export const flashCardRouter = router({
+export const flashcardRouter = router({
   list: publicProcedure.query(async () => {
     /**
      * For pagination docs you can have a look here
@@ -30,8 +30,8 @@ export const flashCardRouter = router({
      * @see https://www.prisma.io/docs/concepts/components/prisma-client/pagination
      */
 
-    const flashCards = await prisma.flashCard.findMany({
-      select: defaultFlashCardSelect,
+    const flashcards = await prisma.flashcard.findMany({
+      select: defaultFlashcardSelect,
       // get an extra item at the end which we'll use as next cursor
 
       where: {},
@@ -41,7 +41,7 @@ export const flashCardRouter = router({
     })
 
     return {
-      flashCards: flashCards.reverse(),
+      flashcards: flashcards.reverse(),
     }
   }),
   byCategory: publicProcedure
@@ -52,35 +52,37 @@ export const flashCardRouter = router({
     )
     .query(async ({ input }) => {
       const { category } = input
-      const flashCardCategory = await prisma.flashCardCategory.findMany({
+      const flashcardCategory = await prisma.flashcardCategory.findMany({
         where: { name: category as any },
-        select: defaultFlashCardSelect,
+        select: defaultFlashcardSelect,
       })
-      if (!flashCardCategory) {
+      if (!flashcardCategory) {
         throw new TRPCError({
           code: 'NOT_FOUND',
-          message: `No flashCards with category '${category} found.'`,
+          message: `No flashcards with category '${category} found.'`,
         })
       }
-      return flashCardCategory
+      return flashcardCategory
     }),
   add: publicProcedure
     .input(
       z.object({
-        category: z.nativeEnum(FlashCardCategories),
+        deckId: z.number(),
+        category: z.nativeEnum(FlashcardCategories),
         question: z.string(),
         answer: z.string(),
       })
     )
     .mutation(async ({ input }) => {
       const newInput = {
+        deckId: input.deckId,
         question: input.question,
         answer: input.answer,
-        category: input.category as FlashCardCategories,
+        category: input.category as FlashcardCategories,
       }
-      const flashCard = await prisma.flashCard.create({
+      const flashcard = await prisma.flashcard.create({
         data: newInput as any,
       })
-      return flashCard
+      return flashcard
     }),
 })

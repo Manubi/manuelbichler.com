@@ -39,15 +39,15 @@ export default function flashCardIndex({ decks }) {
   return (
     <>
       <Head>
-        <title>Flash card decks- Manuel Bichler</title>
+        <title>Flashcard decks- Manuel Bichler</title>
         <meta
           name="description"
-          content="Some flash card decks that I use to read threw and learn from."
+          content="Some flashcard decks that I use to read threw and learn from."
         />
       </Head>
       <SimpleLayout
         title="Decks"
-        intro="As with many fields you need to know the language. Here I collect some flash card decks that I use to read threw and learn from."
+        intro="As with many fields you need to know the language. Here I collect some flashcard decks that I use to read threw and learn from."
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
           <div className="flex flex-col max-w-3xl space-y-16">
