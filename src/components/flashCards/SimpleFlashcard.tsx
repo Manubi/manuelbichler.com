@@ -5,7 +5,7 @@ import {
 import { useState } from 'react'
 import { Card } from '../Card'
 
-export function Flashcard() {
+export function SimpleFlashcard() {
   const [isFront, setIsFront] = useState(true)
   if (isFront) {
     return (
