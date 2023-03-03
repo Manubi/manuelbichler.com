@@ -2,7 +2,7 @@ import { SimpleFlashcard } from '@/components/flashcards/SimpleFlashcard'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import Head from 'next/head'
 
-export default function FalshCards() {
+export default function Flashcard() {
   return (
     <>
       <Head>
