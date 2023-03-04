@@ -1,3 +1,4 @@
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { useEffect, useRef, useState } from 'react'
 
 import {
@@ -12,6 +13,7 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import '@/styles/tailwind.css'
 import 'focus-visible'
+import { Toaster } from 'react-hot-toast'
 import { trpc } from '../utils/trpc'
 
 function usePrevious(value) {
@@ -47,8 +49,10 @@ function MyApp({
             <Component previousPathname={previousPathname} {...pageProps} />
           </main>
           <Footer />
+          <Toaster />
         </div>
       </Hydrate>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   )
 }

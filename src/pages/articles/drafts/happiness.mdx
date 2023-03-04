@@ -1,0 +1,23 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+
+export const meta = {
+  author: 'Manuel Bichler',
+  date: '2023-01-12',
+  title:
+    'write about how living to your real potential is the only way to happiness',
+  description:
+    'Setting up Docker for your project can be a pain. This article will help you to get started with Docker and Docker Compose.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+# AI basics
+
+Every model is trained on historical data. If you want to give it context you need to send it to the model. It's like of a short term memory you can give it.
+But language models are often limited by the amount of text that you can pass on to them. Because of that it's necessary to split information up into smaller chunks.
+As you can imagine the data you want to feed to a model can be huge. In order to make that more feasable there is the intermediate stage of querying a so called vectorstore for data that you want to send with the query.
+So basically if you have a certain usecase, you gather your data, put it into a vectorstore and then you can query it with your model. For example you are searching for jelly and the model will return the most relevant results such as jam.
+I imagine these vector stores just as a two deminsional area where you can put your data into. In our case jam and jelly would be on the same spot. When people talk about vector embaddings, they mean that they are organising the data in a way that makes these vectors easy to compare to each other.
+So as I sad before, when in the past you where not happy with the search performance, it's basically because the computer was only able to look for jam if you searched for jam. But know with this fancy nearest neighbor search you can also look for jelly and get jam as a result.
+Basically it gives you results that otherwise maye have remained hidden.
+All the large language models are trained on different data which makes them useful for different tasks. Usually the more high quality data you have the better the model will be.
