@@ -25,7 +25,7 @@ export function MilkdownViewer({ markdown }: TProps) {
           ...prev,
           attributes: {
             class:
-              'milkdown-editor outline-none min-w-0 flex-auto appearance-none  bg-white px-3 py-[calc(theme(spacing.2)-1px)]  dark:bg-zinc-700/[0.15] dark:text-zinc-200  sm:text-sm',
+              'milkdown-editor outline-none min-w-0 flex-auto appearance-none bg-white dark:bg-zinc-700/[0.15] dark:text-zinc-200 sm:text-sm',
             spellcheck: 'false',
           },
         }))

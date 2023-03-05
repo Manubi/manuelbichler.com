@@ -32,7 +32,13 @@ export default function Flashcard() {
         }
       >
         <div className="flex flex-col space-y-16">
-          {data?.flashcard && <SimpleFlashcard flashcards={data?.flashcard} />}
+          {data?.flashcard ? (
+            <SimpleFlashcard flashcards={data?.flashcard} />
+          ) : (
+            <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+              no flashcards
+            </p>
+          )}
         </div>
       </SimpleLayout>
     </>
