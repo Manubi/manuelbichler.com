@@ -4,7 +4,7 @@
         <title>Manuel Bichler</title>
         <link>http://localhost:3000</link>
         <description>Your blog description</description>
-        <lastBuildDate>Fri, 03 Mar 2023 15:21:02 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 05 Mar 2023 19:43:13 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -15,8 +15,8 @@
         <copyright>All rights reserved 2023</copyright>
         <item>
             <title><![CDATA[The midlife crisis begins]]></title>
-            <link>http://localhost:3000/articles/midlifecrisis</link>
-            <guid>http://localhost:3000/articles/midlifecrisis</guid>
+            <link>http://localhost:3000/articles/midlife-crisis</link>
+            <guid>http://localhost:3000/articles/midlife-crisis</guid>
             <pubDate>Thu, 12 Jan 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[We hop hop hop. From crisis to crisis.]]></description>
             <content:encoded><![CDATA[<h1>A spoiled brats crisis</h1>
