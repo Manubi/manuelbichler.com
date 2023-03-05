@@ -1,5 +1,6 @@
 import { Activity, Prisma } from '@prisma/client'
 import { TRPCError } from '@trpc/server'
+import { format } from 'date-fns'
 import { z } from 'zod'
 import { prisma } from '../prisma'
 import { publicProcedure, router } from '../trcp'
@@ -22,11 +23,8 @@ export const habitRouter = router({
 
     const habits = await prisma.habit.findMany({
       select: defaultHabitSelect,
-      // get an extra item at the end which we'll use as next cursor
-
-      where: {},
       orderBy: {
-        createdAt: 'desc',
+        date: 'desc',
       },
     })
 
@@ -67,9 +65,36 @@ export const habitRouter = router({
         activity: input.activity,
         date: input.date,
       }
+      const checkIfHabitExists = await prisma.habit.findFirst({
+        where: { date: newInput.date, activity: newInput.activity },
+      })
+      if (checkIfHabitExists) {
+        throw new TRPCError({
+          code: 'CONFLICT',
+          message: `habit already in database for '${format(
+            newInput.date,
+            'dd.MM.yyyy'
+          )}' and activity '${newInput.activity}'`,
+        })
+      }
       const habits = await prisma.habit.create({
         data: newInput,
       })
       return habits
+    }),
+  deleteByDate: publicProcedure
+    .input(
+      z.object({
+        date: z.date(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      const newInput = {
+        date: input.date,
+      }
+      const habits = await prisma.habit.deleteMany({
+        where: { date: newInput.date },
+      })
+      return { habits, date: newInput.date }
     }),
 })

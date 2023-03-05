@@ -9,8 +9,10 @@ import { Stat } from '@/components/Stat'
 import { getOuraDailyActivities } from '@/lib/oura'
 import { getWakaStats } from '@/lib/waka'
 import { classNames } from '@/utils/classNames'
+import { routes } from '@/utils/routes'
 import { XCircleIcon } from '@heroicons/react/24/outline'
 import { ArrowUpIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
+import Link from 'next/link'
 import { trpc } from '../../utils/trpc'
 
 function SpeakingSection({ children, ...props }) {
@@ -70,10 +72,38 @@ export default function Dashboard({ oura, waka }: TProps) {
       </Head>
       <SimpleLayout
         title="Keeping Track of My Life: One Hot Mess at a Time"
-        intro="I tried many things. Read to many self-help books. Listened way too long go productivity podcasts. What I for me found out, is keep it stupid fucking simple. That's - in my case - necessary as I am not the smartest cookie. So here we are."
+        intro=""
       >
         <div className="prose space-y-20">
-          <h2>Why all this?</h2>
+          <blockquote className="text-xl font-semibold italic text-zinc-600 dark:text-zinc-400">
+            <svg
+              aria-hidden="true"
+              className="h-10 w-10 text-gray-400 dark:text-gray-600"
+              viewBox="0 0 24 27"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"
+                fill="currentColor"
+              />
+            </svg>
+            <p className="text-zinc-800 dark:text-zinc-200">
+              &quot;Measurement is the first step that leads to control and
+              eventually to improvement.&quot; - James Harrington
+            </p>
+          </blockquote>
+          {/* todo manuel add link to living up to your potential */}
+          <p>
+            I recently wrote about my{' '}
+            <Link href={routes.article.midlifeCrisis}>midlife crisis</Link>{' '}
+            which made me realize I want to change something. To create change,
+            action is necessary. While setting goals is important, I find it
+            more effective to have a system. Meaning this here is less about
+            tracking stuff and becoming obsessed by it, but more about getting
+            back into a state of action. Like a snowball rolling down the
+            mountain.
+          </p>
           <p>
             I hesitated to make this public as it kind of makes me feel
             uncomfortable. It kinda gives the impression I am a cheap version of{' '}

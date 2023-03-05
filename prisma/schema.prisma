@@ -18,11 +18,11 @@ model User {
 }
 
 model FlashcardCategory {
-  id        Int                 @id @default(autoincrement())
-  name      FlashcardCategories
+  id        Int         @id @default(autoincrement())
+  name      String      @unique
   flashcard Flashcard[]
-  createdAt DateTime            @default(now())
-  updatedAt DateTime            @updatedAt
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
 }
 
 model Deck {
@@ -43,6 +43,8 @@ model Flashcard {
   category  FlashcardCategory[]
   Deck      Deck?               @relation(fields: [deckId], references: [id])
   deckId    Int?
+
+  @@index([deckId])
 }
 
 model Habit {
@@ -69,15 +71,4 @@ enum Activity {
   NOALCOHOL
   NOSOCIALMEDIA
   NOSUGAR
-}
-
-enum FlashcardCategories {
-  NONE
-  PYTHON
-  TYPESCRIPT
-  REACT
-  RUST
-  DEEPLEARNING
-  BIOLOGY
-  AI
 }

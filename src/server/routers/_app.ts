@@ -1,4 +1,5 @@
 import { publicProcedure, router } from '../trcp'
+import { categoryRouter } from './category'
 import { deckRouter } from './deck'
 import { flashcardRouter } from './flashcard'
 import { habitRouter } from './habit'
@@ -9,6 +10,7 @@ export const appRouter = router({
   user: userRouter,
   habit: habitRouter,
   flashcard: flashcardRouter,
+  category: categoryRouter,
   deck: deckRouter,
 })
 

@@ -6,18 +6,20 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { Button } from '../Button'
 
-export function AddDeck({
-  setShowAddDeck,
+export function AddCategory({
+  setShowAddCategory,
 }: {
-  setShowAddDeck: (value: boolean) => void
+  setShowAddCategory: (value: boolean) => void
 }) {
   const { register, handleSubmit, reset } = useForm()
   const queryClient = useQueryClient()
 
-  const { isLoading, mutate: addDeck } = trpc.deck.add.useMutation({
+  const { isLoading, mutate: addCategory } = trpc.category.add.useMutation({
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [['deck', 'list']] })
-      toast.success('Deck added successfully.', {
+      queryClient.invalidateQueries({
+        queryKey: [['category', 'list']],
+      })
+      toast.success('Category added successfully.', {
         position: 'top-right',
       })
     },
@@ -26,8 +28,8 @@ export function AddDeck({
     },
   })
 
-  const onSubmit = handleSubmit(({ name, description }) => {
-    addDeck({ name, description })
+  const onSubmit = handleSubmit(({ name }) => {
+    addCategory({ name })
     reset()
   })
 
@@ -40,34 +42,25 @@ export function AddDeck({
         <div className="flex flex-col gap-6 ">
           <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
             <PlusCircleIcon className="h-6 w-6 flex-none" />
-            <span className="ml-3">Add new deck</span>
+            <span className="ml-3">Add new category</span>
           </h2>
           <fieldset className="flex flex-col">
             <input
               {...register('name')}
               type="input"
               required
-              placeholder="deck name"
+              placeholder="category name"
               id="name"
-              className="my-4 min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
-            />
-
-            <input
-              {...register('description')}
-              type="input"
-              required
-              placeholder="deck description"
-              id="description"
               className="my-4 min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
             />
           </fieldset>
           <Button type="submit" className="flex-none">
-            {isLoading ? 'Adding...' : 'Add deck'}
+            {isLoading ? 'Adding...' : 'Add category'}
           </Button>
           <Button
             variant="secondary"
             className="flex-none"
-            onClick={() => setShowAddDeck(false)}
+            onClick={() => setShowAddCategory(false)}
           >
             Close
           </Button>

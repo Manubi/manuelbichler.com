@@ -1,4 +1,4 @@
-import { FlashcardCategories, Prisma } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { prisma } from '../prisma'
@@ -68,21 +68,25 @@ export const flashcardRouter = router({
     .input(
       z.object({
         deckId: z.number(),
-        category: z.nativeEnum(FlashcardCategories),
+        category: z.array(z.number()),
         question: z.string(),
         answer: z.string(),
       })
     )
     .mutation(async ({ input }) => {
-      const newInput = {
+      const newFlashcard = {
         deckId: input.deckId,
         question: input.question,
         answer: input.answer,
-        category: input.category as FlashcardCategories,
+        category: {
+          connect: input.category.map((category) => ({ id: category })),
+        },
       }
-      const flashcard = await prisma.flashcard.create({
-        data: newInput as any,
+
+      const createdFlashcard = await prisma.flashcard.create({
+        data: newFlashcard,
       })
-      return flashcard
+
+      return createdFlashcard
     }),
 })

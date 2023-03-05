@@ -7,6 +7,7 @@ export const routes = {
     aiGreatestWorst: '/articles/ai-greatest-worst',
     rustEverywhere: '/articles/rust-everywhere',
     biotechNextNextBigThing: '/articles/biotech-next-next-big-thing',
+    midlifeCrisis: '/articles/midlife-crisis',
   },
   uses: { label: 'Uses', path: '/uses' },
   projects: { label: 'Projects', path: '/projects' },

@@ -25,7 +25,7 @@ function Article({ article }) {
       <Card.Eyebrow
         as="time"
         dateTime={article.date}
-        className="hidden mt-1 md:block"
+        className="mt-1 hidden md:block"
       >
         {formatDate(article.date)}
       </Card.Eyebrow>
@@ -44,7 +44,7 @@ export default function ArticlesIndex({ articles }) {
         />
       </Head>
       <SimpleLayout
-        title="Ramblings about my own stupidity, then endless cycle of facepalms and self-deprecation that follows. "
+        title="Ramblings about my own stupidity, endless cycle of facepalms and self-deprecation that follows. "
         intro="What's my hope with this? To improve my thinking. To keep a personal notebook. To send a message to my younger self."
       >
         <p>
@@ -59,7 +59,7 @@ export default function ArticlesIndex({ articles }) {
           (unkown) - Let&apos;s see what happens.
         </p>
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-          <div className="flex flex-col max-w-3xl space-y-16">
+          <div className="flex max-w-3xl flex-col space-y-16">
             {articles.map((article) => (
               <Article key={article.slug} article={article} />
             ))}
