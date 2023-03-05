@@ -33,7 +33,19 @@ export const deckRouter = router({
       decks: decks.reverse(),
     }
   }),
-
+  listFlashcards: publicProcedure
+    .input(
+      z.object({
+        id: z.number(),
+      })
+    )
+    .query(async ({ input }) => {
+      const flashcards = await prisma.deck.findUnique({
+        where: { id: input.id },
+        include: { flashcard: true },
+      })
+      return flashcards
+    }),
   add: publicProcedure
     .input(
       z.object({

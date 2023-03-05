@@ -41,8 +41,7 @@ export function Footer() {
                 </NavLink>
               </div>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">
-                &copy; {new Date().getFullYear()} Manuel Bichler. All rights
-                reserved.
+                &copy; {new Date().getFullYear()} Manuel. All rights reserved.
               </p>
             </div>
           </InnerContainer>

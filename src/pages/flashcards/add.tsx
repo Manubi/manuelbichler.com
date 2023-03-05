@@ -1,8 +1,8 @@
 import { Button } from '@/components/Button'
-import { MilkdownEditor } from '@/components/Editor'
 import { AddCategory } from '@/components/flashcards/AddCategory'
 import { AddDeck } from '@/components/flashcards/AddDeck'
 import { ListboxSelect } from '@/components/Listbox'
+import { MilkdownEditor } from '@/components/MarkdownEditor'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { trpc } from '@/utils/trpc'
