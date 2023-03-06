@@ -13,6 +13,7 @@ export const routes = {
   projects: { label: 'Projects', path: '/projects' },
   flashCards: { label: 'Flashcards', path: '/flashcards' },
   dashboard: { label: 'Dashboard', path: '/dashboard' },
+  guestbook: { label: 'Guestbook', path: '/guestbook' },
   socials: {
     github: 'https://github.com/Manubi',
     twitter: 'https://twitter.com/manuelbichler',

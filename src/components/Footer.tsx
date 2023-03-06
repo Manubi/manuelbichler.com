@@ -24,8 +24,8 @@ export function Footer() {
   return (
     <footer className="mt-32">
       <OuterContainer>
-        <div className="border-t border-zinc-100 pt-10 pb-16 dark:border-zinc-700/40">
-          <InnerContainer>
+        <div className="pb-16">
+          <InnerContainer className="pt-10 border-t border-zinc-100 dark:border-zinc-700/40">
             <Spotify />
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
