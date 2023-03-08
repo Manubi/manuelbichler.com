@@ -26,8 +26,11 @@ export default async function handler(req, res) {
   console.log('MESSAGE', msg)
 
   return prisma.user.upsert({
-    where: { id: msg.user.id },
-    update: { email: msg.user.email },
-    create: { id: msg.user.id, email: msg.user.email },
+    where: { id: msg.data.id },
+    update: { email: msg.data.email_addresses[0].email_address },
+    create: {
+      id: msg.user.id,
+      email: msg.data.email_addresses[0].email_address,
+    },
   })
 }
