@@ -15,8 +15,7 @@ import { publicProcedure, router } from '../trcp'
  */
 const defaultUserSelect = Prisma.validator<Prisma.UserSelect>()({
   id: true,
-  email: true,
-  name: true,
+  username: true,
 })
 
 export const userRouter = router({

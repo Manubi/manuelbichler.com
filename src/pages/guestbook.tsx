@@ -85,7 +85,7 @@ export default function Guestbook() {
         <div>Messages</div>
         {messages.data?.messages.map((message) => (
           <div key={message.id}>
-            {message.user.name} - {message.message} -{' '}
+            {message.user.username} - {message.message} -{' '}
             {format(message.createdAt, 'dd.MM.yyyy')}
           </div>
         ))}

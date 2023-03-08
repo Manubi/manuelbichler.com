@@ -14,24 +14,23 @@ const secret = process.env.CLERK_WEBHOOK_SECRET ?? ''
 export default async function handler(req, res) {
   const payload = (await buffer(req)).toString()
   const headers = req.headers
-  console.log('REQ', req)
+
   const wh = new Webhook(secret)
   let msg
   try {
     msg = wh.verify(payload, headers)
-  } catch (err) {
-    res.status(400).json({})
+  } catch (error) {
+    res.status(400).send(error.message)
   }
   try {
-    const updatedUser = await prisma.user.upsert({
+    await prisma.user.upsert({
       where: { id: msg.data.id },
-      update: { email: msg.data.email_addresses[0].email_address },
+      update: { username: msg.data.username },
       create: {
         id: msg.data.id,
-        email: msg.data.email_addresses[0].email_address,
+        username: msg.data.username,
       },
     })
-    console.log('updatedUser', updatedUser)
     res.status(200).json()
   } catch (error) {
     console.error(error)

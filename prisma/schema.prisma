@@ -15,9 +15,7 @@ generator client {
 // that's also the reason why the id is String and not Int
 model User {
   id        String      @id @unique
-  email     String?     @unique
-  name      String?
-  wallet    String?     @unique
+  username  String?
   guestbook Guestbook[]
 }
 

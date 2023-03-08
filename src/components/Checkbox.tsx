@@ -5,7 +5,7 @@ const people = [
   { id: 4, name: 'Kathryn Murphy' },
   { id: 5, name: 'Theresa Webb' },
 ]
-
+// manuel todo // loock for the other checkboxes and refactor them
 export function Checkboxes({
   title,
   checkboxes,
