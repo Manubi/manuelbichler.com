@@ -2,7 +2,7 @@ import { Prisma } from '@prisma/client'
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { prisma } from '../prisma'
-import { publicProcedure, router } from '../trcp'
+import { adminProcedure, publicProcedure, router } from '../trcp'
 
 const defaultFlashcardSelect = Prisma.validator<Prisma.FlashcardSelect>()({
   id: true,
@@ -64,7 +64,7 @@ export const flashcardRouter = router({
       }
       return flashcardCategory
     }),
-  add: publicProcedure
+  add: adminProcedure
     .input(
       z.object({
         deckId: z.number(),

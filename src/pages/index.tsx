@@ -145,17 +145,17 @@ function Newsletter() {
 function Resume() {
   let resume: TResume[] = [
     {
-      company: 'CeMM',
+      company: routes.external.work.CeMM.label,
       title: 'Software Engineer',
-      url: 'https://www.cemm.at',
+      url: routes.external.work.CeMM.url,
       logo: logoCemm,
       start: '2020',
       end: 'Present',
     },
     {
-      company: 'allaboutapps',
+      company: routes.external.work.AllAboutApps.label,
       title: 'Junior Fullstack Developer',
-      url: 'https://allaboutapps.at',
+      url: routes.external.work.AllAboutApps.url,
       logo: logoAAA,
       start: '2019',
       end: '2019',
@@ -168,9 +168,9 @@ function Resume() {
       end: '2018',
     },
     {
-      company: 'X-Bionic',
+      company: routes.external.work.Xbionic.label,
       title: 'Marketing & PR',
-      url: 'https://www.x-bionic.com',
+      url: routes.external.work.Xbionic.url,
       logo: logoXBionic,
       start: '2014',
       end: '2015',
@@ -225,7 +225,7 @@ function Resume() {
         ))}
       </ol>
       <Button
-        href="/CV_manuel.pdf"
+        href={routes.contacts.CV}
         variant="secondary"
         className="w-full mt-6 group"
       >
@@ -285,8 +285,9 @@ export default function Home({ articles }) {
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
               Sess!{' '}
             </h1>
-            <div className="flex items-baseline ">
+            <div className="flex items-baseline prose">
               <a
+                href="#"
                 onClick={saySess}
                 className="flex ml-3 -my-8 peer hover:cursor-pointer sm:text-lg "
               >
@@ -294,19 +295,23 @@ export default function Home({ articles }) {
                 <SpeakerWaveIcon className="mt-1 ml-1 h-[12px] w-[12px] text-zinc-500 dark:text-zinc-400" />
               </a>
               <p className="invisible ml-3 text-base text-zinc-600 peer-hover:visible dark:text-zinc-400">
-                Saying &quot;Hi&quot; in my home town Matrei.
+                Saying &quot;Hi&quot; in my home town Matrei i.O.
               </p>
             </div>
           </div>
           <Prose>
             <p className="text-base text-zinc-600 dark:text-zinc-400">
               I&rsquo;m Manuel, a software engineer at the{' '}
-              <a href={routes.external.CeMM} target="_blank" rel="noreferrer">
+              <a
+                href={routes.external.work.CeMM.url}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Center for Molecular Medicine (CeMM)/Vienna
               </a>{' '}
               where I support scientists in building a comprehensive{' '}
               <a
-                href={routes.external.Resolute}
+                href={routes.external.work.Resolute.url}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -324,12 +329,12 @@ export default function Home({ articles }) {
           </Prose>
           <div className="flex gap-6 mt-6">
             <SocialLink
-              href={routes.socials.twitter}
+              href={routes.external.socials.twitter.url}
               aria-label="Follow on Twitter"
               icon={TwitterIcon}
             />
             <SocialLink
-              href={routes.socials.github}
+              href={routes.external.socials.github.url}
               aria-label="Follow on GitHub"
               icon={GitHubIcon}
             />

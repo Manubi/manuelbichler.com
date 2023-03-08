@@ -3,7 +3,7 @@ import { TRPCError } from '@trpc/server'
 import { format } from 'date-fns'
 import { z } from 'zod'
 import { prisma } from '../prisma'
-import { publicProcedure, router } from '../trcp'
+import { adminProcedure, publicProcedure, router } from '../trcp'
 
 const defaultHabitSelect = Prisma.validator<Prisma.HabitSelect>()({
   id: true,
@@ -53,7 +53,7 @@ export const habitRouter = router({
       }
       return habits
     }),
-  add: publicProcedure
+  add: adminProcedure
     .input(
       z.object({
         activity: z.nativeEnum(Activity),
@@ -82,7 +82,7 @@ export const habitRouter = router({
       })
       return habits
     }),
-  deleteByDate: publicProcedure
+  deleteByDate: adminProcedure
     .input(
       z.object({
         date: z.date(),

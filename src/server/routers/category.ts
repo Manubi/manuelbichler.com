@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { z } from 'zod'
 import { prisma } from '../prisma'
-import { publicProcedure, router } from '../trcp'
+import { adminProcedure, publicProcedure, router } from '../trcp'
 
 const defaultCategorySelect =
   Prisma.validator<Prisma.FlashcardCategorySelect>()({
@@ -27,7 +27,7 @@ export const categoryRouter = router({
       category,
     }
   }),
-  add: publicProcedure
+  add: adminProcedure
     .input(
       z.object({
         name: z.string(),

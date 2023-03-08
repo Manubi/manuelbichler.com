@@ -10,7 +10,7 @@ export const getOuraDailyActivities = async () => {
 
   const endDate = today.toISOString().split('T')[0]
   const startDate = oneWeekBack.toISOString().split('T')[0]
-
+  // manueltodo add oura to /api routes to keep it secret
   const DAILY_ACTIVITY_ENDPOINT = `https://api.ouraring.com/v1/activity?start?start=${startDate}&end=${endDate}`
   const DAILY_READINESS_ENDPOINT = `https://api.ouraring.com/v1/readiness?start=${startDate}&end=${endDate}`
   const DAILY_SLEEP_ENDPOINT = `https://api.ouraring.com/v1/sleep?start=${startDate}&end=${endDate}`

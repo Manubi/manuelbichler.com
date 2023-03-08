@@ -34,7 +34,7 @@ export const userRouter = router({
   byId: publicProcedure
     .input(
       z.object({
-        id: z.number(),
+        id: z.string(),
       })
     )
     .query(async ({ input }) => {
@@ -49,18 +49,6 @@ export const userRouter = router({
           message: `No user with id '${id}'`,
         })
       }
-      return user
-    }),
-  add: publicProcedure
-    .input(
-      z.object({
-        email: z.string(),
-      })
-    )
-    .mutation(async ({ input }) => {
-      const user = await prisma.user.create({
-        data: input,
-      })
       return user
     }),
 })

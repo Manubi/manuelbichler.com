@@ -98,7 +98,9 @@ export default function Dashboard({ oura, waka }: TProps) {
             {/* todo manuel add link to living up to your potential */}
             <p>
               I recently wrote about my{' '}
-              <Link href={routes.article.midlifeCrisis}>midlife crisis</Link>{' '}
+              <Link href={routes.public.article.midlifeCrisis}>
+                midlife crisis
+              </Link>{' '}
               which made me realize I want to change something. To create
               change, action is necessary. While setting goals is important, I
               find it more effective to have a system. Meaning this here is less

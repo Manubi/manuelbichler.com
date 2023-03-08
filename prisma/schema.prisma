@@ -11,10 +11,24 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// the usermanagement is done in clerk.dev and updated via a webhook
+// that's also the reason why the id is String and not Int
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id        String      @id @unique
+  email     String?     @unique
+  name      String?
+  wallet    String?     @unique
+  guestbook Guestbook[]
+}
+
+model Guestbook {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  message   String
+  createdAt DateTime @default(now())
+
+  @@index([userId])
 }
 
 model FlashcardCategory {
@@ -41,7 +55,7 @@ model Flashcard {
   createdAt DateTime            @default(now())
   updatedAt DateTime            @updatedAt
   category  FlashcardCategory[]
-  Deck      Deck?               @relation(fields: [deckId], references: [id])
+  deck      Deck?               @relation(fields: [deckId], references: [id])
   deckId    Int?
 
   @@index([deckId])

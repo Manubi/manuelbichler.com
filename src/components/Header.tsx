@@ -1,4 +1,4 @@
-import { Popover, Transition } from '@headlessui/react'
+import { Menu, Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,7 +6,10 @@ import { useRouter } from 'next/router'
 
 import { Container } from '@/components/Container'
 import avatarImage from '@/images/avatar.jpg'
+import { classNames } from '@/utils/classNames'
 import { routes } from '@/utils/routes'
+import { useUser } from '@clerk/nextjs'
+import Avatar from 'boring-avatars'
 import { Fragment, useEffect, useRef } from 'react'
 
 type TAvatarProps = {
@@ -15,6 +18,12 @@ type TAvatarProps = {
   style?: React.CSSProperties
   children?: React.ReactNode
 }
+
+const profileNavigation = [
+  { name: 'Your Profile', href: '#' },
+  { name: 'Settings', href: '#' },
+  { name: 'Sign out', href: '#' },
+]
 
 function CloseIcon(props) {
   return (
@@ -129,26 +138,26 @@ function MobileNavigation(props) {
             </div>
             <nav className="mt-6">
               <ul className="-my-2 text-base divide-y divide-zinc-100 text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                <MobileNavItem href={routes.about.path}>
-                  {routes.about.label}
+                <MobileNavItem href={routes.public.about.path}>
+                  {routes.public.about.label}
                 </MobileNavItem>
-                <MobileNavItem href={routes.articles.path}>
-                  {routes.articles.label}
+                <MobileNavItem href={routes.public.articles.path}>
+                  {routes.public.articles.label}
                 </MobileNavItem>
-                <MobileNavItem href={routes.projects.path}>
-                  {routes.projects.label}
+                <MobileNavItem href={routes.public.projects.path}>
+                  {routes.public.projects.label}
                 </MobileNavItem>
-                <MobileNavItem href={routes.dashboard.path}>
-                  {routes.dashboard.label}
+                <MobileNavItem href={routes.public.dashboard.path}>
+                  {routes.public.dashboard.label}
                 </MobileNavItem>
-                <MobileNavItem href={routes.flashCards.path}>
-                  {routes.flashCards.label}
+                <MobileNavItem href={routes.public.flashCards.path}>
+                  {routes.public.flashCards.label}
                 </MobileNavItem>
-                <MobileNavItem href={routes.uses.path}>
-                  {routes.uses.label}
+                <MobileNavItem href={routes.public.uses.path}>
+                  {routes.public.uses.label}
                 </MobileNavItem>
-                <MobileNavItem href={routes.guestbook.path}>
-                  {routes.guestbook.label}
+                <MobileNavItem href={routes.public.guestbook.path}>
+                  {routes.public.guestbook.label}
                 </MobileNavItem>
               </ul>
             </nav>
@@ -186,15 +195,27 @@ function DesktopNavigation(props) {
   return (
     <nav {...props}>
       <ul className="flex px-3 text-sm font-medium rounded-full shadow-lg bg-white/90 text-zinc-800 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href={routes.about.path}>{routes.about.label}</NavItem>
-        <NavItem href={routes.articles.path}>{routes.articles.label}</NavItem>
-        <NavItem href={routes.projects.path}>{routes.projects.label}</NavItem>
-        <NavItem href={routes.dashboard.path}>{routes.dashboard.label}</NavItem>
-        <NavItem href={routes.flashCards.path}>
-          {routes.flashCards.label}
+        <NavItem href={routes.public.about.path}>
+          {routes.public.about.label}
         </NavItem>
-        <NavItem href={routes.uses.path}>{routes.uses.label}</NavItem>
-        <NavItem href={routes.guestbook.path}>{routes.guestbook.label}</NavItem>
+        <NavItem href={routes.public.articles.path}>
+          {routes.public.articles.label}
+        </NavItem>
+        <NavItem href={routes.public.projects.path}>
+          {routes.public.projects.label}
+        </NavItem>
+        <NavItem href={routes.public.dashboard.path}>
+          {routes.public.dashboard.label}
+        </NavItem>
+        <NavItem href={routes.public.flashCards.path}>
+          {routes.public.flashCards.label}
+        </NavItem>
+        <NavItem href={routes.public.uses.path}>
+          {routes.public.uses.label}
+        </NavItem>
+        <NavItem href={routes.public.guestbook.path}>
+          {routes.public.guestbook.label}
+        </NavItem>
       </ul>
     </nav>
   )
@@ -253,7 +274,51 @@ function AvatarContainer({ className, ...props }: TAvatarProps) {
   )
 }
 
-function Avatar({ large = false, className, ...props }: TAvatarProps) {
+function Profile() {
+  const { isSignedIn, user, isLoaded } = useUser()
+  console.log('user in profile', user)
+  return (
+    <Menu as="div" className="relative flex-shrink-0 ml-4">
+      <div>
+        <Menu.Button className="flex text-sm bg-white rounded-full ring-2 ring-white ring-opacity-20 focus:outline-none focus:ring-opacity-100">
+          <span className="sr-only">Open user menu</span>
+          <Avatar
+            size={26}
+            name="Maria Mitchell"
+            variant="marble"
+            colors={['#92A1C6', '#146A7C', '#F0AB3D', '#C271B4', '#C20D90']}
+          />
+        </Menu.Button>
+      </div>
+      <Transition
+        as={Fragment}
+        leave="transition ease-in duration-75"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-95"
+      >
+        <Menu.Items className="absolute z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg -right-2 ring-1 ring-black ring-opacity-5 focus:outline-none">
+          {profileNavigation.map((item) => (
+            <Menu.Item key={item.name}>
+              {({ active }) => (
+                <a
+                  href={item.href}
+                  className={classNames(
+                    active ? 'bg-gray-100' : '',
+                    'block px-4 py-2 text-sm text-gray-700'
+                  )}
+                >
+                  {item.name}
+                </a>
+              )}
+            </Menu.Item>
+          ))}
+        </Menu.Items>
+      </Transition>
+    </Menu>
+  )
+}
+
+function MyAvatar({ large = false, className, ...props }: TAvatarProps) {
   return (
     <Link
       href="/"
@@ -415,7 +480,7 @@ export function Header() {
                       } as any
                     }
                   />
-                  <Avatar
+                  <MyAvatar
                     large
                     className="block w-16 h-16 origin-left"
                     style={
@@ -440,7 +505,7 @@ export function Header() {
               <div className="flex flex-1">
                 {!isHomePage && (
                   <AvatarContainer>
-                    <Avatar />
+                    <MyAvatar />
                   </AvatarContainer>
                 )}
               </div>
@@ -449,6 +514,7 @@ export function Header() {
                 <DesktopNavigation className="hidden pointer-events-auto md:block" />
               </div>
               <div className="flex justify-end md:flex-1">
+                <Profile />
                 <div className="pointer-events-auto">
                   <ModeToggle />
                 </div>

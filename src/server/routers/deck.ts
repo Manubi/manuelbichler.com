@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { z } from 'zod'
 import { prisma } from '../prisma'
-import { publicProcedure, router } from '../trcp'
+import { adminProcedure, publicProcedure, router } from '../trcp'
 
 const defaultDeckSelect = Prisma.validator<Prisma.DeckSelect>()({
   id: true,
@@ -46,7 +46,8 @@ export const deckRouter = router({
       })
       return flashcards
     }),
-  add: publicProcedure
+
+  add: adminProcedure
     .input(
       z.object({
         name: z.string(),

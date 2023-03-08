@@ -6,6 +6,7 @@ import { MilkdownEditor } from '@/components/MarkdownEditor'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { trpc } from '@/utils/trpc'
+import { useAuth } from '@clerk/nextjs'
 import { BoltIcon } from '@heroicons/react/24/outline'
 import { MilkdownProvider } from '@milkdown/react'
 import { useState } from 'react'
@@ -13,6 +14,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
 export default function AddFlashcard() {
+  const { isLoaded, userId, sessionId, getToken } = useAuth()
   const [selectedDeckId, setSelectedDeckId] = useState<number>(0)
   const [markdown, setMarkdown] = useState<string>('answer')
   const [showAddDeck, setShowAddDeck] = useState(false)
@@ -61,8 +63,17 @@ export default function AddFlashcard() {
     }
   )
 
+  // In case the user signs out while on the page.
+  if (!isLoaded || !userId) {
+    return null
+  }
+
   return (
     <SimpleLayout title="Add flashcard" intro="">
+      <div>
+        Hello, {userId} your current active session is {sessionId}
+      </div>
+      ;
       <div className="mt-8 space-y-20">
         {showAddDeck && <AddDeck setShowAddDeck={setShowAddDeck} />}
         {showAddCategory && (
@@ -71,10 +82,10 @@ export default function AddFlashcard() {
         <div>
           <form
             onSubmit={onSubmit}
-            className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+            className="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40"
           >
             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-              <BoltIcon className="h-6 w-6 flex-none" />
+              <BoltIcon className="flex-none w-6 h-6" />
               <span className="ml-3">Add new flashcard</span>
             </h2>
             <div className="flex flex-col gap-3 ">
@@ -108,21 +119,21 @@ export default function AddFlashcard() {
                     key={categoryIdx + category.name}
                     className="relative flex items-start py-2"
                   >
-                    <div className="min-w-0 flex-1 text-sm">
+                    <div className="flex-1 min-w-0 text-sm">
                       <label
                         htmlFor={`category-${category.name}`}
-                        className="select-none font-medium text-zinc-600 dark:text-zinc-400"
+                        className="font-medium select-none text-zinc-600 dark:text-zinc-400"
                       >
                         {category.name}
                       </label>
                     </div>
-                    <div className="ml-3 flex h-5 items-center">
+                    <div className="flex items-center h-5 ml-3">
                       <input
                         {...register('checkboxes')}
                         name="checkboxes"
                         type="checkbox"
                         value={category.id}
-                        className="h-4 w-4 rounded border-gray-300 text-teal-500 focus:ring-teal-500 "
+                        className="w-4 h-4 text-teal-500 border-gray-300 rounded focus:ring-teal-500 "
                       />
                     </div>
                   </div>
@@ -142,7 +153,7 @@ export default function AddFlashcard() {
 
               <input
                 {...register('question')}
-                type="input"
+                type="text"
                 placeholder="question"
                 required
                 className="my-4 w-full min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"

@@ -29,15 +29,17 @@ export function Footer() {
             <Spotify />
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                <NavLink href={routes.about.path}>{routes.about.label}</NavLink>
-                <NavLink href={routes.articles.path}>
-                  {routes.articles.label}
+                <NavLink href={routes.public.about.path}>
+                  {routes.public.about.label}
                 </NavLink>
-                <NavLink href={routes.projects.path}>
-                  {routes.projects.label}
+                <NavLink href={routes.public.articles.path}>
+                  {routes.public.articles.label}
                 </NavLink>
-                <NavLink href={routes.dashboard.path}>
-                  {routes.dashboard.label}
+                <NavLink href={routes.public.projects.path}>
+                  {routes.public.projects.label}
+                </NavLink>
+                <NavLink href={routes.public.dashboard.path}>
+                  {routes.public.dashboard.label}
                 </NavLink>
               </div>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">

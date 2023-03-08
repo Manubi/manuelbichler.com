@@ -8,20 +8,27 @@ import logoHelioStream from '@/images/logos/helio-stream.svg'
 import logoLabio from '@/images/logos/labio.png'
 import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
 import logoResolute from '@/images/logos/resolute.png'
+import { routes } from '@/utils/routes'
 
 const projects = [
   {
-    name: 'Labio',
+    name: routes.external.projects.Labio.label,
     description:
       'A decentralized data storage solution built on top of IPFS and the Filecoin EVM.',
-    link: { href: 'http://labio.vercel.app', label: 'labio.vercel.app' },
+    link: {
+      href: routes.external.projects.Labio.url,
+      label: 'labio.vercel.app',
+    },
     logo: logoLabio,
     github: 'https://github.com/Manubi/labio',
   },
   {
-    name: 'RESOLUTE',
+    name: routes.external.projects.Resolute.label,
     description: 'A monorepo in typescript with react, graphql and fastify.',
-    link: { href: 'https://re-solute.eu', label: 're-solute.eu' },
+    link: {
+      href: routes.external.projects.Resolute.url,
+      label: 're-solute.eu',
+    },
     logo: logoResolute,
     github: '',
   },
