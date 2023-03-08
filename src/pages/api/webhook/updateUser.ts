@@ -23,6 +23,15 @@ export default async function handler(req, res) {
     res.status(400).send(error.message)
   }
   try {
+    // delete case
+    if (msg.data.deleted) {
+      await prisma.user.delete({
+        where: { id: msg.data.id },
+      })
+      res.status(200).json()
+      return
+    }
+    // update create case
     await prisma.user.upsert({
       where: { id: msg.data.id },
       update: { username: msg.data.username },

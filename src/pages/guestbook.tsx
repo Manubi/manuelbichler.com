@@ -11,6 +11,7 @@ import { toast } from 'react-hot-toast'
 export default function Guestbook() {
   const { isLoaded, isSignedIn, user } = useUser()
   console.log('user', user)
+  const deleteMutation = trpc.guestbook.deleteAll.useMutation({})
   const {
     register,
     handleSubmit,
@@ -35,12 +36,13 @@ export default function Guestbook() {
     const { message } = data
     const formData = {
       message,
-      email: 'seas@seas.at',
-      name: 'manuel bichler',
+      username: user?.username,
     }
     addGuestbook(formData)
     reset()
   })
+
+  const deleteAll = () => deleteMutation.mutate()
 
   return (
     <>
@@ -52,6 +54,7 @@ export default function Guestbook() {
         title="Guestbook"
         intro="Say hi! I'd love to hear from you."
       >
+        <Button onClick={deleteAll}>Delete all</Button>
         {!isSignedIn ? (
           <SignUpButton mode="modal">
             <Button className="px-6">Sign up to leave a message</Button>

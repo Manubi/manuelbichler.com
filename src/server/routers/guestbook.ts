@@ -21,6 +21,11 @@ export const guestbookRouter = router({
       messages,
     }
   }),
+  deleteAll: publicProcedure.mutation(async () => {
+    const messages = await prisma.guestbook.deleteMany({})
+    console.log('messagesDEL', messages)
+    return messages
+  }),
   add: protectedProcedure
     .input(
       z.object({
