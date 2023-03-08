@@ -50,4 +50,17 @@ export const userRouter = router({
       }
       return user
     }),
+  // deleteById: publicProcedure
+  //   .input(
+  //     z.object({
+  //       id: z.string(),
+  //     })
+  //   )
+  //   .mutation(async ({ input }) => {
+  //     const { id } = input
+  //     const user = await prisma.user.delete({
+  //       where: { id },
+  //     })
+  //     return user
+  //   }),
 })

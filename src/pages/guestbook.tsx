@@ -3,12 +3,14 @@ import { SimpleLayout } from '@/components/SimpleLayout'
 import { trpc } from '@/utils/trpc'
 import { SignUpButton, useUser } from '@clerk/nextjs'
 import { ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline'
+import { useQueryClient } from '@tanstack/react-query'
 import { format } from 'date-fns'
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
 export default function Guestbook() {
+  const queryClient = useQueryClient()
   const { isLoaded, isSignedIn, user } = useUser()
   console.log('user', user)
   const deleteMutation = trpc.guestbook.deleteAll.useMutation({})
@@ -21,6 +23,7 @@ export default function Guestbook() {
   const messages = trpc.guestbook.list.useQuery()
   const { isLoading, mutate: addGuestbook } = trpc.guestbook.add.useMutation({
     onSuccess(data) {
+      queryClient.invalidateQueries({ queryKey: [['guestbook', 'list']] })
       toast.success('Message successfully added.', {
         position: 'top-right',
       })
@@ -43,7 +46,6 @@ export default function Guestbook() {
   })
 
   const deleteAll = () => deleteMutation.mutate()
-
   return (
     <>
       <Head>

@@ -21,7 +21,7 @@ model User {
 
 model Guestbook {
   id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
   userId    String
   message   String
   createdAt DateTime @default(now())
@@ -53,7 +53,7 @@ model Flashcard {
   createdAt DateTime            @default(now())
   updatedAt DateTime            @updatedAt
   category  FlashcardCategory[]
-  deck      Deck?               @relation(fields: [deckId], references: [id])
+  deck      Deck?               @relation(fields: [deckId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   deckId    Int?
 
   @@index([deckId])

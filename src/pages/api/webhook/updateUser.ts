@@ -24,11 +24,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    // delete case
+    // delete case  (also deletes all the guestbook entries as it cascades)
     if (msg.data.deleted) {
       await prisma.user.delete({
         where: { id: msg.data.id },
-        include: { guestbook: true },
       })
       res.status(200).json()
       return
