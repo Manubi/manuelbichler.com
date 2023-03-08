@@ -1,5 +1,5 @@
 import { prisma } from '@/server/prisma'
-import { arrayBuffer } from 'stream/consumers'
+import { buffer } from 'micro'
 
 import { Webhook } from 'svix'
 
@@ -12,7 +12,7 @@ export const config = {
 const secret = process.env.CLERK_WEBHOOK_SECRET ?? ''
 
 export default async function handler(req, res) {
-  const payload = (await arrayBuffer(req)).toString()
+  const payload = (await buffer(req)).toString()
   const headers = req.headers
   console.log('REQ', req)
   const wh = new Webhook(secret)

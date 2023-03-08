@@ -47,6 +47,7 @@
     "feed": "^4.2.2",
     "focus-visible": "^5.2.0",
     "framer-motion": "^10.0.2",
+    "micro": "^10.0.1",
     "motion": "^10.15.3",
     "next": "^13.2.3",
     "postcss-focus-visible": "^7.1.0",
