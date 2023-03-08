@@ -22,14 +22,21 @@ export default async function handler(req, res) {
   } catch (err) {
     res.status(400).json({})
   }
-  console.log('MESSAGE', msg)
+  try {
+    const updatedUser = await prisma.user.upsert({
+      where: { id: msg.data.id },
+      update: { email: msg.data.email_addresses[0].email_address },
+      create: {
+        id: msg.data.id,
+        email: msg.data.email_addresses[0].email_address,
+      },
+    })
+    console.log('updatedUser', updatedUser)
+    res.status(200).json()
+  } catch (error) {
+    console.error(error)
+    res.status(error.requestResult.statusCode).send(error.message)
+  }
 
-  return prisma.user.upsert({
-    where: { id: msg.data.id },
-    update: { email: msg.data.email_addresses[0].email_address },
-    create: {
-      id: msg.user.id,
-      email: msg.data.email_addresses[0].email_address,
-    },
-  })
+  return
 }
