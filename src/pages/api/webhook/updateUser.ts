@@ -22,11 +22,13 @@ export default async function handler(req, res) {
   } catch (error) {
     res.status(400).send(error.message)
   }
+
   try {
     // delete case
     if (msg.data.deleted) {
       await prisma.user.delete({
         where: { id: msg.data.id },
+        include: { guestbook: true },
       })
       res.status(200).json()
       return

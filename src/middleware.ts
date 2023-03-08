@@ -24,6 +24,7 @@ export default withClerkMiddleware((request: NextRequest) => {
 
     const signInUrl = new URL('/sign-in', request.url)
     signInUrl.searchParams.set('redirect_url', request.url)
+    console.log('signingURL', signInUrl)
     return NextResponse.redirect(signInUrl)
   }
   return NextResponse.next()
