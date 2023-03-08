@@ -4,7 +4,6 @@ import { arrayBuffer } from 'stream/consumers'
 import { Webhook } from 'svix'
 
 export const config = {
-  runtime: 'edge',
   api: {
     bodyParser: false,
   },
