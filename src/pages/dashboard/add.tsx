@@ -63,10 +63,10 @@ export default function AddHabit() {
         <div>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+            className="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40"
           >
             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-              <BoltIcon className="h-6 w-6 flex-none" />
+              <BoltIcon className="flex-none w-6 h-6" />
               <span className="ml-3">
                 yesterday you said tomorrow - just do it
               </span>
@@ -80,7 +80,7 @@ export default function AddHabit() {
                   type="date"
                   className="my-4 min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
                 />
-                <div className="mt-4 divide-y divide-gray-200 border-t border-b border-gray-200">
+                <div className="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200">
                   {getEnumValues(Activity)
                     .sort()
                     .map((activity, activityIdx) => (
@@ -88,22 +88,22 @@ export default function AddHabit() {
                         key={activityIdx}
                         className="relative flex items-start py-4"
                       >
-                        <div className="min-w-0 flex-1 text-sm">
+                        <div className="flex-1 min-w-0 text-sm">
                           <label
                             htmlFor={`${activity}`}
-                            className="select-none font-medium text-zinc-600 dark:text-zinc-400"
+                            className="font-medium select-none text-zinc-600 dark:text-zinc-400"
                           >
                             {activity as string}
                           </label>
                         </div>
-                        <div className="ml-3 flex h-5 items-center">
+                        <div className="flex items-center h-5 ml-3">
                           <input
                             id={`${activity}`}
                             {...register(`${activity}` as any)}
                             name={`${activity}`}
                             type="checkbox"
                             value={`${activity}`}
-                            className="h-4 w-4 rounded border-gray-300 text-teal-500 focus:ring-teal-500 "
+                            className="w-4 h-4 text-teal-500 border-gray-300 rounded focus:ring-teal-500 "
                           />
                         </div>
                       </div>

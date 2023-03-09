@@ -14,9 +14,10 @@ generator client {
 // the usermanagement is done in clerk.dev and updated via a webhook
 // that's also the reason why the id is String and not Int
 model User {
-  id        String      @id @unique
-  username  String?
-  guestbook Guestbook[]
+  id              String      @id @unique
+  username        String?
+  profileImageUrl String?
+  guestbook       Guestbook[]
 }
 
 model Guestbook {

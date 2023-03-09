@@ -1,10 +1,10 @@
 import { Button } from '@/components/Button'
+import { MessageCard } from '@/components/guetsbook/MessageCard'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { trpc } from '@/utils/trpc'
 import { SignUpButton, useUser } from '@clerk/nextjs'
 import { ChatBubbleLeftEllipsisIcon } from '@heroicons/react/24/outline'
 import { useQueryClient } from '@tanstack/react-query'
-import { format } from 'date-fns'
 import Head from 'next/head'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
@@ -12,7 +12,6 @@ import { toast } from 'react-hot-toast'
 export default function Guestbook() {
   const queryClient = useQueryClient()
   const { isLoaded, isSignedIn, user } = useUser()
-  console.log('user', user)
   const deleteMutation = trpc.guestbook.deleteAll.useMutation({})
   const {
     register,
@@ -46,6 +45,9 @@ export default function Guestbook() {
   })
 
   const deleteAll = () => deleteMutation.mutate()
+
+  console.log('messages', messages)
+  console.log('user', user)
   return (
     <>
       <Head>
@@ -89,10 +91,7 @@ export default function Guestbook() {
         )}
         <div>Messages</div>
         {messages.data?.messages.map((message) => (
-          <div key={message.id}>
-            {message.user.username} - {message.message} -{' '}
-            {format(message.createdAt, 'dd.MM.yyyy')}
-          </div>
+          <MessageCard key={message.id} msg={message} />
         ))}
       </SimpleLayout>
     </>

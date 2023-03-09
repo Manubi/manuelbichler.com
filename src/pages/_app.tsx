@@ -10,7 +10,7 @@ import {
 import type { AppProps } from 'next/app'
 
 import { Footer } from '@/components/Footer'
-import { Header } from '@/components/Header'
+import { Header } from '@/components/header'
 import '@/styles/tailwind.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Analytics } from '@vercel/analytics/react'

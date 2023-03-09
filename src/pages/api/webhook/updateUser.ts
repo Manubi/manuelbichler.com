@@ -35,9 +35,13 @@ export default async function handler(req, res) {
     // update create case
     await prisma.user.upsert({
       where: { id: msg.data.id },
-      update: { username: msg.data.username },
+      update: {
+        username: msg.data.username,
+        profileImageUrl: msg.data.profile_image_url,
+      },
       create: {
         id: msg.data.id,
+        profileImageUrl: msg.data.profile_image_url,
         username: msg.data.username,
       },
     })

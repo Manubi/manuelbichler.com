@@ -1,65 +1,14 @@
-import clsx from 'clsx'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { Container } from '@/components/Container'
+import { EthereumIcon } from '@/components/icons/EthereumIcon'
+import { MailSolidIcon } from '@/components/icons/MailIcon'
 import { GitHubIcon, TwitterIcon } from '@/components/SocialIcons'
+import { SocialLink } from '@/components/SocialLink'
 import portraitImage from '@/images/portrait.jpg'
 import { routes } from '@/utils/routes'
-
-type TSocialLinkProps = {
-  href: string
-  className?: string
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-  children: React.ReactNode
-}
-
-function SocialLink({
-  className,
-  href,
-  children,
-  icon: Icon,
-}: TSocialLinkProps) {
-  return (
-    <li className={clsx(className, 'flex')}>
-      <Link
-        href={href}
-        className="flex text-sm font-medium transition group text-zinc-800 hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
-      >
-        <Icon className="flex-none w-6 h-6 transition fill-zinc-500 group-hover:fill-teal-500" />
-        <span className="ml-4">{children}</span>
-      </Link>
-    </li>
-  )
-}
-
-function MailIcon(props) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        fillRule="evenodd"
-        d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
-      />
-    </svg>
-  )
-}
-
-function EthereumIcon(props) {
-  return (
-    <svg
-      width="24px"
-      height="24px"
-      viewBox="0 0 24 24"
-      role="img"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <title>{'Ethereum icon'}</title>
-      <path d="M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z" />
-    </svg>
-  )
-}
 
 export default function About() {
   return (
@@ -171,7 +120,7 @@ export default function About() {
 
               <SocialLink
                 href={`mailto:${routes.contacts.email}`}
-                icon={MailIcon}
+                icon={MailSolidIcon}
                 className="pt-8 mt-8 border-t border-zinc-100 dark:border-zinc-700/40"
               >
                 {routes.contacts.email}

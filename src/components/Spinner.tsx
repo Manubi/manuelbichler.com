@@ -1,4 +1,4 @@
-import { classNames } from '@/utils/classNames'
+import { cn } from '@/utils/cn'
 
 const sizes = {
   sm: 'h-4 w-4',
@@ -25,7 +25,7 @@ export const Spinner = ({
   return (
     <>
       <svg
-        className={classNames(
+        className={cn(
           'animate-spin',
           sizes[size],
           variants[variant],

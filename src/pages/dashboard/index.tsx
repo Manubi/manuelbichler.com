@@ -9,7 +9,7 @@ import { SimpleLayout } from '@/components/SimpleLayout'
 import { Stat } from '@/components/Stat'
 import { getOuraDailyActivities } from '@/lib/oura'
 import { getWakaStats } from '@/lib/waka'
-import { classNames } from '@/utils/classNames'
+import { cn } from '@/utils/cn'
 import { routes } from '@/utils/routes'
 import { XCircleIcon } from '@heroicons/react/24/outline'
 import { ArrowUpIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
@@ -186,7 +186,7 @@ export default function Dashboard({ oura, waka }: TProps) {
                     />
                   </div>
                   <div
-                    className={classNames(
+                    className={cn(
                       // item.changeType === 'increase' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800',
                       'inline-flex items-baseline rounded-full px-2.5 py-0.5 text-sm font-medium md:mt-2 lg:mt-0'
                     )}

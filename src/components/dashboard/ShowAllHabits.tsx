@@ -1,4 +1,4 @@
-import { classNames } from '@/utils/classNames'
+import { cn } from '@/utils/cn'
 import { trpc } from '@/utils/trpc'
 import { useQueryClient } from '@tanstack/react-query'
 import { format } from 'date-fns'
@@ -80,7 +80,7 @@ export function ShowAllHabits() {
 
   const { data } = habitsQuery
   return (
-    <div className="-mx-6 mt-10 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
+    <div className="mt-10 -mx-6 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
       <table className="min-w-full divide-y divide-gray-300">
         <thead>
           <tr>
@@ -105,7 +105,7 @@ export function ShowAllHabits() {
           {organiseHabitsByDate(data.habits).map((habit, habitIdx) => (
             <tr key={habit.date}>
               <td
-                className={classNames(
+                className={cn(
                   habitIdx === 0 ? '' : 'border-t border-transparent',
                   'relative py-4 pl-6 pr-3 text-sm'
                 )}
@@ -114,11 +114,11 @@ export function ShowAllHabits() {
                   {new Date(habit.date).toLocaleDateString('de-DE')}
                 </div>
                 {habitIdx !== 0 ? (
-                  <div className="absolute right-0 left-6 -top-px h-px bg-zinc-200" />
+                  <div className="absolute right-0 h-px left-6 -top-px bg-zinc-200" />
                 ) : null}
               </td>
               <td
-                className={classNames(
+                className={cn(
                   habitIdx === 0 ? '' : ' border-t border-gray-200',
                   'hidden px-3 py-3.5 text-sm text-zinc-700 dark:text-zinc-400 lg:table-cell '
                 )}
@@ -133,14 +133,14 @@ export function ShowAllHabits() {
               </td>
 
               <td
-                className={classNames(
+                className={cn(
                   habitIdx === 0 ? '' : 'border-t border-transparent',
                   'relative py-3.5 pl-3 pr-6 text-right text-sm font-medium'
                 )}
               >
                 <Button onClick={() => deleteByDate(habit.date)}>Delete</Button>
                 {habitIdx !== 0 ? (
-                  <div className="absolute left-0 right-6 -top-px h-px bg-zinc-200" />
+                  <div className="absolute left-0 h-px right-6 -top-px bg-zinc-200" />
                 ) : null}
                 {/* todo manuel add edit button */}
               </td>
