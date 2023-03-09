@@ -39,6 +39,7 @@
     "@trpc/next": "^10.13.2",
     "@trpc/react-query": "^10.13.2",
     "@trpc/server": "^10.13.2",
+    "@vercel/analytics": "^0.1.11",
     "autoprefixer": "^10.4.12",
     "boring-avatars": "^1.7.0",
     "clsx": "^1.2.1",

@@ -13,6 +13,7 @@ import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import '@/styles/tailwind.css'
 import { ClerkProvider } from '@clerk/nextjs'
+import { Analytics } from '@vercel/analytics/react'
 import 'focus-visible'
 import { Toaster } from 'react-hot-toast'
 import { trpc } from '../utils/trpc'
@@ -61,6 +62,7 @@ function MyApp({
             </main>
             <Footer />
             <Toaster />
+            <Analytics />
           </div>
         </Hydrate>
         <ReactQueryDevtools initialIsOpen={false} />
