@@ -37,11 +37,15 @@ export default async function handler(req, res) {
       where: { id: msg.data.id },
       update: {
         username: msg.data.username,
-        profileImageUrl: msg.data.profile_image_url,
+        profileImageUrl: msg.data.profile_image_url.includes('gravatar')
+          ? null
+          : msg.data.profile_image_url,
       },
       create: {
         id: msg.data.id,
-        profileImageUrl: msg.data.profile_image_url,
+        profileImageUrl: msg.data.profile_image_url.includes('gravatar')
+          ? null
+          : msg.data.profile_image_url,
         username: msg.data.username,
       },
     })
