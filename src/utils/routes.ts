@@ -18,10 +18,12 @@ export const routes = {
     // both paths for signin signup are just there for the middleware
     signIn: { label: 'Sign In', path: '/sign-in/*' },
     signUp: { label: 'Sign Up', path: '/sign-up/*' },
+    thankYou: { label: 'Thank You', path: '/thank-you' },
   },
   protected: {
     dashboard: { add: { label: 'Add habit', path: '/dashboard/add' } },
     flashcard: { add: { label: 'Add flashcard', path: '/flashcards/add' } },
+    profile: { add: { label: 'Profile', path: '/profile' } },
   },
   external: {
     work: {

@@ -2,6 +2,7 @@ import Head from 'next/head'
 
 import { Card } from '@/components/Card'
 import { OuraDashboard } from '@/components/dashboard/OuraDashboard'
+import Stats from '@/components/dashboard/Stats'
 import { WakaTime } from '@/components/dashboard/WakatTime'
 import { Prose } from '@/components/Prose'
 import { Section } from '@/components/Section'
@@ -97,17 +98,18 @@ export default function Dashboard({ oura, waka }: TProps) {
             </blockquote>
             {/* todo manuel add link to living up to your potential */}
             <p>
-              I recently wrote about my{' '}
+              I recently wrote about{' '}
               <Link href={routes.public.article.midlifeCrisis}>
                 midlife crisis
               </Link>{' '}
               which made me realize I want to change something. To create
               change, action is necessary. While setting goals is important, I
               find it more effective to have a system. Meaning this here is less
-              about tracking stuff and becoming obsessed by it, but more about
-              getting back into a state of action. Like a snowball rolling down
-              the mountain.
+              about tracking stuff and NOT becoming obsessed by it, but more
+              about getting back into a state of action. Like a snowball rolling
+              down the mountain.
             </p>
+            <Stats />
             <p>
               I hesitated to make this public as it kind of makes me feel
               uncomfortable. It kinda gives the impression I am a cheap version

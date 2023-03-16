@@ -1,5 +1,6 @@
 import { Button } from '@/components/Button'
 import { MessageCard } from '@/components/guetsbook/MessageCard'
+import { Input } from '@/components/Input'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { trpc } from '@/utils/trpc'
 import { SignUpButton, useUser } from '@clerk/nextjs'
@@ -11,8 +12,7 @@ import { toast } from 'react-hot-toast'
 
 export default function Guestbook() {
   const queryClient = useQueryClient()
-  const { isLoaded, isSignedIn, user } = useUser()
-  const deleteMutation = trpc.guestbook.deleteAll.useMutation({})
+  const { isSignedIn, user } = useUser()
   const {
     register,
     handleSubmit,
@@ -44,10 +44,6 @@ export default function Guestbook() {
     reset()
   })
 
-  const deleteAll = () => deleteMutation.mutate()
-
-  console.log('messages', messages)
-  console.log('user', user)
   return (
     <>
       <Head>
@@ -58,7 +54,6 @@ export default function Guestbook() {
         title="Guestbook"
         intro="Say hi! I'd love to hear from you."
       >
-        <Button onClick={deleteAll}>Delete all</Button>
         {!isSignedIn ? (
           <SignUpButton mode="modal">
             <Button className="px-6">Sign up to leave a message</Button>
@@ -75,12 +70,11 @@ export default function Guestbook() {
                 <span className="ml-3">Leave a message</span>
               </h2>
               <div className="flex gap-3 ">
-                <input
+                <Input
                   {...register('message')}
                   type="text"
                   placeholder="Your message..."
                   required
-                  className="my-4  min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
                 />
                 <Button type="submit" className="my-4">
                   Send message
@@ -89,10 +83,11 @@ export default function Guestbook() {
             </form>
           </>
         )}
-        <div>Messages</div>
-        {messages.data?.messages.map((message) => (
-          <MessageCard key={message.id} msg={message} />
-        ))}
+        <div className="my-8">
+          {messages.data?.messages.map((message) => (
+            <MessageCard key={message.id} msg={message} />
+          ))}
+        </div>
       </SimpleLayout>
     </>
   )

@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/cn'
 import NextLink from 'next/link'
 
 type TCardProps = {
@@ -31,7 +31,7 @@ function ChevronRightIcon(props) {
 function CardRoot({ as: Component = 'div', className, children }: TCardProps) {
   return (
     <Component
-      className={clsx(className, 'group relative flex flex-col items-start')}
+      className={cn(className, 'group relative flex flex-col items-start')}
     >
       {children}
     </Component>
@@ -91,7 +91,7 @@ function Eyebrow({
 }: TCardProps & { decorate?: boolean }) {
   return (
     <Component
-      className={clsx(
+      className={cn(
         className,
         'relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500',
         decorate && 'pl-3.5'

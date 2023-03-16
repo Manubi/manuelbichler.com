@@ -1,5 +1,6 @@
 import { Button } from '@/components/Button'
 import { ShowAllHabits } from '@/components/dashboard/ShowAllHabits'
+import { Input } from '@/components/Input'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getEnumValues } from '@/utils/getEnumValues'
@@ -73,12 +74,11 @@ export default function AddHabit() {
             </h2>
             <div className="flex flex-col gap-6 ">
               <fieldset>
-                <input
+                <Input
                   {...register('date', {
                     required: true,
                   })}
                   type="date"
-                  className="my-4 min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
                 />
                 <div className="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200">
                   {getEnumValues(Activity)
@@ -97,7 +97,7 @@ export default function AddHabit() {
                           </label>
                         </div>
                         <div className="flex items-center h-5 ml-3">
-                          <input
+                          <Input
                             id={`${activity}`}
                             {...register(`${activity}` as any)}
                             name={`${activity}`}

@@ -5,7 +5,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 export function MessageCard({ msg }) {
   console.log('MessageCard', msg)
   return (
-    <div className="px-4 py-5 bg-white sm:px-6" key={msg.id}>
+    <div
+      className="px-4 py-5 hover:bg-zinc-50 hover:opacity-100 dark:hover:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl sm:px-6"
+      key={msg.id}
+    >
       <div className="flex space-x-3">
         <div className="flex-shrink-0">
           <Avatar>
@@ -27,16 +30,16 @@ export function MessageCard({ msg }) {
           </Avatar>
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-semibold text-gray-900">
+          <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
             {msg.user.username}
-          </p>
-          <p className="text-sm text-gray-500">
+          </h2>
+          <p className="text-sm text-gray-500 dark:text-zinc-400">
             {format(msg.createdAt, 'dd.MM.yyyy')}
           </p>
         </div>
       </div>
       <div>
-        <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">
           {msg.message}
         </p>
       </div>

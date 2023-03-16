@@ -1,6 +1,7 @@
 import { Button } from '@/components/Button'
 import { AddCategory } from '@/components/flashcards/AddCategory'
 import { AddDeck } from '@/components/flashcards/AddDeck'
+import { Input } from '@/components/Input'
 import { ListboxSelect } from '@/components/Listbox'
 import { MilkdownEditor } from '@/components/MarkdownEditor'
 
@@ -128,7 +129,7 @@ export default function AddFlashcard() {
                       </label>
                     </div>
                     <div className="flex items-center h-5 ml-3">
-                      <input
+                      <Input
                         {...register('checkboxes')}
                         name="checkboxes"
                         type="checkbox"

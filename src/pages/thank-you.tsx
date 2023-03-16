@@ -13,7 +13,7 @@ export default function ThankYou() {
       </Head>
       <SimpleLayout
         title="Thanks for subscribing."
-        intro="I'll send you an email any time I publish a new blog post, release a new project, or have anything interesting to share that I think you'd want to hear about. You can unsubscribe at any time, no hard feelings."
+        intro="Please check your email and confirm it, to end up on my list (hi@manuelbichler.com). I'll send you an email any time I publish a new blog post, release a new project, or have anything interesting to share that I think you'd want to hear about. You can unsubscribe at any time, no hard feelings."
       />
     </>
   )

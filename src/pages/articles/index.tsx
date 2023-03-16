@@ -25,7 +25,7 @@ function Article({ article }) {
       <Card.Eyebrow
         as="time"
         dateTime={article.date}
-        className="mt-1 hidden md:block"
+        className="hidden mt-1 md:block"
       >
         {formatDate(article.date)}
       </Card.Eyebrow>
@@ -45,21 +45,30 @@ export default function ArticlesIndex({ articles }) {
       </Head>
       <SimpleLayout
         title="Ramblings about my own stupidity, endless cycle of facepalms and self-deprecation that follows. "
-        intro="What's my hope with this? To improve my thinking. To keep a personal notebook. To send a message to my younger self."
+        intro="What's my hope with this? To improve my thinking. To keep a personal notebook. To send a message to my younger self. What will it be about? A lot of tech. Some biology. And basically everything else that my mind decides to deal with. I never was able to get into writing. Therefor your expectations should be rather low."
       >
-        <p>
-          What will it be about? A lot of tech. Some biology. And basically
-          everything else that my mind decides to deal with. I never was able to
-          get into writing. Therefor my expectations are lower than low. &quot;
-          <span className="italic">
-            Expectations are like mosquitoes in a nudist colony: you&apos;re
-            never quite sure what&apos;s going to happen, but you know it&apos;s
-            going to be annoying.&quot;{' '}
-          </span>
-          (unkown) - Let&apos;s see what happens.
-        </p>
+        <blockquote className="mb-20 -mt-8 text-xl italic font-semibold text-zinc-600 dark:text-zinc-400">
+          <svg
+            aria-hidden="true"
+            className="w-10 h-10 text-gray-400 dark:text-gray-600"
+            viewBox="0 0 24 27"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z"
+              fill="currentColor"
+            />
+          </svg>
+          <p className="text-zinc-800 dark:text-zinc-200">
+            &quot;Expectations are like mosquitoes in a nudist colony:
+            you&apos;re never quite sure what&apos;s going to happen, but you
+            know it&apos;s going to be annoying.&quot; - unknown
+          </p>
+        </blockquote>
+
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-          <div className="flex max-w-3xl flex-col space-y-16">
+          <div className="flex flex-col max-w-3xl space-y-16">
             {articles.map((article) => (
               <Article key={article.slug} article={article} />
             ))}

@@ -1,38 +1,17 @@
-import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
-import { ArrowDownIcon } from '@/components/icons/ArrowDownIcon'
-import { BriefcaseIcon } from '@/components/icons/BriefcaseIcon'
-import { MailOutlineIcon } from '@/components/icons/MailIcon'
+import { Newsletter } from '@/components/home/Newsletter'
+import { Photos } from '@/components/home/Photos'
+import { Resume } from '@/components/home/Resume'
+import { SocialLink } from '@/components/home/SocialLink'
 import { Prose } from '@/components/Prose'
 import { GitHubIcon, TwitterIcon } from '@/components/SocialIcons'
-import logoAAA from '@/images/logos/aaa.png'
-import logoCemm from '@/images/logos/cemm.png'
-import logoWhooop from '@/images/logos/whooop.png'
-import logoXBionic from '@/images/logos/xbionic.png'
-import image1 from '@/images/photos/image-1.jpg'
-import image2 from '@/images/photos/image-2.jpg'
-import image3 from '@/images/photos/image-3.jpg'
-import image4 from '@/images/photos/image-4.jpg'
-import image5 from '@/images/photos/image-5.jpg'
 import { formatDate } from '@/lib/formatDate'
 import { generateRssFeed } from '@/lib/generateRssFeed'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { routes } from '@/utils/routes'
 import { SpeakerWaveIcon } from '@heroicons/react/24/outline'
-import clsx from 'clsx'
 import Head from 'next/head'
-import Image, { StaticImageData } from 'next/image'
-import Link from 'next/link'
-
-type TResume = {
-  company: string
-  title: string
-  url?: string
-  logo: StaticImageData
-  start: string
-  end: string
-}
 
 function Article({ article }) {
   return (
@@ -46,165 +25,6 @@ function Article({ article }) {
       <Card.Description>{article.description}</Card.Description>
       <Card.Cta>Read article</Card.Cta>
     </Card>
-  )
-}
-
-function SocialLink({ icon: Icon, href, ...props }) {
-  return (
-    <Link className="p-1 -m-1 group" href={href} {...props}>
-      <Icon className="w-6 h-6 transition fill-zinc-500 group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-    </Link>
-  )
-}
-
-function Newsletter() {
-  return (
-    <form
-      action="/thank-you"
-      className="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40"
-    >
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <MailOutlineIcon className="flex-none w-6 h-6" />
-        <span className="ml-3">Stay up to date</span>
-      </h2>
-      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-        Get notified when I publish something new, and unsubscribe at any time.
-      </p>
-      <div className="flex mt-6">
-        <input
-          type="email"
-          placeholder="Email address"
-          aria-label="Email address"
-          required
-          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
-        />
-        <Button type="submit" className="flex-none ml-4">
-          Join
-        </Button>
-      </div>
-    </form>
-  )
-}
-
-function Resume() {
-  let resume: TResume[] = [
-    {
-      company: routes.external.work.CeMM.label,
-      title: 'Software Engineer',
-      url: routes.external.work.CeMM.url,
-      logo: logoCemm,
-      start: '2020',
-      end: 'Present',
-    },
-    {
-      company: routes.external.work.AllAboutApps.label,
-      title: 'Junior Fullstack Developer',
-      url: routes.external.work.AllAboutApps.url,
-      logo: logoAAA,
-      start: '2019',
-      end: '2019',
-    },
-    {
-      company: 'whooop',
-      title: 'Co-founder',
-      logo: logoWhooop,
-      start: '2016',
-      end: '2018',
-    },
-    {
-      company: routes.external.work.Xbionic.label,
-      title: 'Marketing & PR',
-      url: routes.external.work.Xbionic.url,
-      logo: logoXBionic,
-      start: '2014',
-      end: '2015',
-    },
-  ]
-
-  return (
-    <div className="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40">
-      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <BriefcaseIcon className="flex-none w-6 h-6" />
-        <span className="ml-3">Work</span>
-      </h2>
-      <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
-          <li key={roleIndex} className="flex gap-4">
-            <div className="relative flex items-center justify-center flex-none w-10 h-10 mt-1 rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <Image
-                src={role.logo}
-                alt=""
-                className="rounded-full h-7 w-7"
-                unoptimized
-              />
-            </div>
-            <dl className="flex flex-wrap flex-auto gap-x-2">
-              <dt className="sr-only">Company</dt>
-              {role.url ? (
-                <Link href={role.url} className="flex-none w-full ">
-                  <dd className="text-sm font-medium text-zinc-900 hover:text-teal-500 dark:text-zinc-100 dark:hover:text-teal-400">
-                    {role.company}
-                  </dd>
-                </Link>
-              ) : (
-                <dd className="flex-none w-full text-sm font-medium text-zinc-900 dark:text-zinc-100">
-                  {role.company}
-                </dd>
-              )}
-              <dt className="sr-only">Role</dt>
-              <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-                {role.title}
-              </dd>
-              <dt className="sr-only">Date</dt>
-              <dd
-                className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${role.start} until ${role.end}`}
-              >
-                <time dateTime={role.start}>{role.start}</time>{' '}
-                <span aria-hidden="true">—</span>{' '}
-                <time dateTime={role.end}>{role.end}</time>
-              </dd>
-            </dl>
-          </li>
-        ))}
-      </ol>
-      <Button
-        href={routes.contacts.CV}
-        variant="secondary"
-        className="w-full mt-6 group"
-      >
-        Download CV
-        <ArrowDownIcon className="w-4 h-4 transition stroke-zinc-400 group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
-    </div>
-  )
-}
-
-function Photos() {
-  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
-  // image with espresso machine, image skiing, image climbing, image yoga, image with dog,
-  // image keyboard and mouse and monitor
-  return (
-    <div className="mt-16 sm:mt-20">
-      <div className="flex justify-center gap-5 py-4 -my-4 overflow-hidden sm:gap-8">
-        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
-          <div
-            key={image.src}
-            className={clsx(
-              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-              rotations[imageIndex % rotations.length]
-            )}
-          >
-            <Image
-              src={image}
-              alt=""
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 object-cover w-full h-full"
-            />
-          </div>
-        ))}
-      </div>
-    </div>
   )
 }
 
@@ -235,7 +55,7 @@ export default function Home({ articles }) {
                 onClick={saySess}
                 className="flex ml-3 -my-8 peer hover:cursor-pointer sm:text-lg "
               >
-                /sɛs/
+                cccccccccc
                 <SpeakerWaveIcon className="mt-1 ml-1 h-[12px] w-[12px] text-zinc-500 dark:text-zinc-400" />
               </a>
               <p className="invisible ml-3 text-base text-zinc-600 peer-hover:visible dark:text-zinc-400">
@@ -262,10 +82,10 @@ export default function Home({ articles }) {
                 knowledgebase of SLCs.
               </a>{' '}
               Sometimes I play around with blockchains, the Rust programming
-              language and AI. I only recently started writing about things I do
-              in order to understand things better. So forgive me if my texts
-              are bad, but as we all know it&rsquo;s the AI that&rsquo;s really
-              to blame. <br />
+              language and AI. I only recently started writing about things I
+              do, in order to understand things better. So forgive me if my
+              texts are bad, but as we all know it&rsquo;s the AI that&rsquo;s
+              really to blame. <br />
               I also started making flashcards to learn new things. Both can be
               seen here.
               <br /> Anyway, thanks for stopping by!

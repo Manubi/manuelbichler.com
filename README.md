@@ -1,4 +1,8 @@
-# Spotlight
+# manuelbichler.com
+
+This is my digital garden where I try new stuff. It doesn't follow DRY principles as I sometimes have multiple things added that basically do the same stuff but differently. So if you find something that you don't like you can write a PR. If you have a question you can reach me via twitter @manuelbichler or bichler@gmail.com
+
+## Spotlight
 
 Spotlight is a [Tailwind UI](https://tailwindui.com) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
 

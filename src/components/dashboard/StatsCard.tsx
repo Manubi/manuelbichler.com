@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/cn'
 
 type TCardProps = {
   as?: React.ElementType
@@ -15,7 +15,7 @@ export function StatsCard({
 }: TCardProps) {
   return (
     <Component
-      className={clsx(className, 'group relative flex flex-col items-start')}
+      className={cn(className, 'group relative flex flex-col items-start')}
     >
       {children}
     </Component>

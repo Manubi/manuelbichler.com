@@ -51,10 +51,9 @@ export default function Uses() {
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="16” MacBook Pro, 2,6 GHz 6-Core Intel Core i7, 32GB RAM (2019)">
-              As the fans are turning on quiet often I am thinking about
-              changing to the next generation of MacBook Pro with the M2 chip.
-              They are supposed to be out early 2023.
+            <Tool title="14” MacBook Pro, M2 Max, 2023">
+              Just recently switched to a new MacBook Pro M2Max. Have to say
+              it's gooood.
             </Tool>
             <Tool title="2 x Dell U2415 Monitors">Simple enough.</Tool>
             <Tool title="Kinesis Advantage360 Pro">
@@ -62,8 +61,8 @@ export default function Uses() {
               tend to hurt if I use a traditional keyboard for to long.
             </Tool>
             <Tool title="Apple Magic Mouse">
-              I know, the mouse has some slight issues, and I wouldn&apos;t buy
-              it again.
+              I know, the mouse has some issues, and I wouldn&apos;t buy it
+              again.
             </Tool>
             <Tool title="Apple Airpod Pros 2">
               Most of the time it&apos;s easier to get into the zone with some
@@ -71,26 +70,32 @@ export default function Uses() {
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
-            <Tool title="NeoVim">
-              I was a long time VSCode user but I&apos;ve recently switched to
-              NeoVim. I believe it is the best editor for me. Mainly because it
-              is fast.
+            <Tool title="VSCode">
+              I also tried NeoVim, but I still enjoy VScode more. I use it with
+              the Vim plugin. I believe it is the best editor for me. I also
+              think with all the AI and cloud computing advancements VSCode will
+              adopt quicker.
             </Tool>
             <Tool title="iTerm2">
               I&apos;ve added some plugins for autocomplete, syntax highlighting
               and a few other things. I also use it with tmux, zsh and Fig. I
               also tried warp but don&apos;t like it.
             </Tool>
-            <Tool title="Github Copilot">
-              I like it and it will just become bettet and better.
+            <Tool title="Github Copilot & other AI tools">
+              I like most of them. Makes my day to day easier.
             </Tool>
             <Tool title="Postico">Simple database client for postgres.</Tool>
           </ToolsSection>
           <ToolsSection title="Programming Languages">
             <Tool title="Typescript">My go to language.</Tool>
+            <Tool title="Python">
+              I started playing around with Python in 2022. Mainly because of
+              Data stuff. Use it more nowadays because of the AI stuff.
+            </Tool>
             <Tool title="Rust">
               Recently started looking into Rust. I like it so far. If people
-              are not too lazy, I believe it will become the next big thing.
+              are not too lazy, I believe it will become the next big thing. AI
+              will help a lot with writing Rust.
             </Tool>
             <Tool title="TailwindCSS">
               Simple tool for blocking distracting websites when I need to just
@@ -108,14 +113,19 @@ export default function Uses() {
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
-            <Tool title="Alfred">
-              It’s not the newest kid on the block but it’s still the fastest.
+            <Tool title="Raycast">
+              Changed from Aflred to Raycast. Not a hundred percent sure yet.
+              But it added a lot of smaller tools as plugins which I like.
             </Tool>
             <Tool title="Notes">
-              I came full circle and now use it as basically for everything.
+              I came full circle (roam, notion) now and use it basically for
+              everything.
             </Tool>
             <Tool title="SpaceLauncher">
-              Simple shortcut app that can do things for you.
+              Simple shortcut app that allows you to mainly open apps.
+            </Tool>
+            <Tool title="Cleanshot">
+              Need it all the time to take awesome screenshots.
             </Tool>
           </ToolsSection>
         </div>

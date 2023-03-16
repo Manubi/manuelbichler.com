@@ -5,26 +5,25 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { routes } from '@/utils/routes'
 import { useClerk, useUser } from '@clerk/nextjs'
 import AvatarMarble from 'boring-avatars'
-import { Keyboard, LifeBuoy, LogOut, User } from 'lucide-react'
+import { LifeBuoy, LogOut, User } from 'lucide-react'
+import Link from 'next/link'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 
 export function ProfileButton() {
   const { isSignedIn, user, isLoaded } = useUser()
   const { signOut, openSignIn } = useClerk()
 
-  console.log('user', user?.profileImageUrl)
-
   return (
     <>
       {isSignedIn ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="relative h-10 w-10 rounded-full">
+            <button className="relative w-10 h-10 rounded-full">
               <span className="sr-only">Open user menu</span>
               <Avatar>
                 {user?.profileImageUrl.includes('gravatar') ? (
@@ -49,30 +48,26 @@ export function ProfileButton() {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem className="cursor-pointer">
-                <User className="mr-2 h-4 w-4" />
-                <span>Profile</span>
-                <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-              </DropdownMenuItem>
-
-              <DropdownMenuItem className="cursor-pointer">
-                <Keyboard className="mr-2 h-4 w-4" />
-                <span>Keyboard shortcuts</span>
-                <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer">
-                <LifeBuoy className="mr-2 h-4 w-4" />
-                <span>Support</span>
-              </DropdownMenuItem>
+              <Link href={routes.protected.profile.add.path}>
+                <DropdownMenuItem className="cursor-pointer">
+                  <User className="w-4 h-4 mr-2" />
+                  <span>{routes.protected.profile.add.label}</span>
+                </DropdownMenuItem>
+              </Link>
+              <a href={`mailto:${routes.contacts.email}`} target="_blank">
+                <DropdownMenuItem className="cursor-pointer">
+                  <LifeBuoy className="w-4 h-4 mr-2" />
+                  <span>Support</span>
+                </DropdownMenuItem>
+              </a>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() => signOut()}
               className="cursor-pointer"
             >
-              <LogOut className="mr-2 h-4 w-4" />
+              <LogOut className="w-4 h-4 mr-2" />
               <span>Log out</span>
-              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

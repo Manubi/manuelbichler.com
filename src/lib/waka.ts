@@ -3,7 +3,7 @@ import { avoidRateLimit } from './avoidRateLimit'
 const API_KEY = process.env.WAKA_API_KEY
 const WAKA_LANGUAGES_ENDPOINT = `https://wakatime.com/api/v1/users/manubi/stats/last_7_days`
 const WAKA_TIME_ENDPOINT = `https://wakatime.com/api/v1/users/current/all_time_since_today`
-
+// manuel todo add waka endpoint to /api routes to keep it secret
 export const getWakaStats = async () => {
   const apiKey = btoa(API_KEY as string)
   await avoidRateLimit()

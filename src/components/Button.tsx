@@ -1,12 +1,14 @@
-import clsx from 'clsx'
+import { cn } from '@/utils/cn'
 import Link from 'next/link'
 
 type TButtonProps = {
   variant?: 'primary' | 'secondary'
   className?: string
+  style?: React.CSSProperties
   href?: string
   children: React.ReactNode
   type?: 'submit'
+  disabled?: boolean
   onClick?: () => void
 }
 
@@ -21,10 +23,12 @@ export function Button({
   variant = 'primary',
   className,
   href,
+  style,
   type,
+  disabled,
   ...props
 }: TButtonProps) {
-  className = clsx(
+  className = cn(
     'inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none',
     variantStyles[variant],
     className
@@ -33,6 +37,14 @@ export function Button({
   return href ? (
     <Link href={href} className={className} {...props} />
   ) : (
-    <button className={className} type={type || 'button'} {...props} />
+    <button
+      disabled={disabled}
+      style={style}
+      className={className}
+      type={type || 'button'}
+      {...props}
+    />
   )
 }
+
+Button.displayName = 'Button'
