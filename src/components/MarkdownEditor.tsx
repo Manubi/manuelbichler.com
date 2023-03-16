@@ -5,9 +5,11 @@ import {
   rootCtx,
 } from '@milkdown/core'
 
+import { emoji } from '@milkdown/plugin-emoji'
 import { history } from '@milkdown/plugin-history'
 import { listener, listenerCtx } from '@milkdown/plugin-listener'
 import { prism } from '@milkdown/plugin-prism'
+import { upload } from '@milkdown/plugin-upload'
 import { commonmark } from '@milkdown/preset-commonmark'
 import { Milkdown, useEditor } from '@milkdown/react'
 import { nord } from '@milkdown/theme-nord'
@@ -18,6 +20,10 @@ type TProps = {
   markdown: string
   setMarkdown: (markdown: string) => void
 }
+
+// the image upload transforms images to base64 and ignores other file types.
+// it just stays in the markdown string and is uploaded and saved like this in the database.
+
 export function MilkdownEditor({ setMarkdown, markdown }: TProps) {
   useEditor((root) => {
     return Editor.make()
@@ -39,6 +45,8 @@ export function MilkdownEditor({ setMarkdown, markdown }: TProps) {
         }))
       })
       .config(nord)
+      .use(emoji)
+      .use(upload)
       .use(commonmark)
       .use(history)
       .use(listener)
