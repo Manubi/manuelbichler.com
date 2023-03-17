@@ -4,6 +4,7 @@ import { AddDeck } from '@/components/flashcards/AddDeck'
 import { Input } from '@/components/Input'
 import { ListboxSelect } from '@/components/Listbox'
 import { MilkdownEditor } from '@/components/MarkdownEditor'
+import { Notification } from '@/components/Notification'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { trpc } from '@/utils/trpc'
@@ -38,14 +39,24 @@ export default function AddFlashcard() {
 
   const { isLoading, mutate: addFlashcard } = trpc.flashcard.add.useMutation({
     onSuccess(data) {
-      toast.success('Flashcard successfully added.', {
-        position: 'top-right',
-      })
+      toast.custom((t) => (
+        <Notification
+          title="All good!"
+          subtitle={`Flashcard added successfully.`}
+          type="success"
+          t={t}
+        />
+      ))
     },
     onError(error) {
-      toast.error(error.message, {
-        position: 'top-right',
-      })
+      toast.custom((t) => (
+        <Notification
+          title="Ohhh nooo!"
+          subtitle={`Error: ${error.message}`}
+          type="error"
+          t={t}
+        />
+      ))
     },
   })
 

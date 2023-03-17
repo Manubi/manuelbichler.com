@@ -5,30 +5,39 @@ import { format } from 'date-fns'
 import NextError from 'next/error'
 import { toast } from 'react-hot-toast'
 import { Button } from '../Button'
+import { Notification } from '../Notification'
 import { Spinner } from '../Spinner'
 
 export function ShowAllHabits() {
   const queryClient = useQueryClient()
   const habitsQuery = trpc.habit.list.useQuery()
 
-  const { isLoading, mutate: deleteHabitByDate } =
-    trpc.habit.deleteByDate.useMutation({
-      onSuccess: (data) => {
-        queryClient.invalidateQueries({ queryKey: [['habit', 'list']] })
-        toast.success(
-          `Deleted habits with date ${format(
+  const { mutate: deleteHabitByDate } = trpc.habit.deleteByDate.useMutation({
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: [['habit', 'list']] })
+      toast.custom((t) => (
+        <Notification
+          title="All good!"
+          subtitle={`Deleted habits with date ${format(
             new Date(data.date),
             'dd.MM.yyyy'
-          )} successfully.`,
-          {
-            position: 'top-right',
-          }
-        )
-      },
-      onError(error) {
-        toast.error(`Error: ${error.message}`)
-      },
-    })
+          )} successfully.`}
+          type="success"
+          t={t}
+        />
+      ))
+    },
+    onError(error) {
+      toast.custom((t) => (
+        <Notification
+          title="Ohhh nooo!"
+          subtitle={`Error: ${error.message}`}
+          type="error"
+          t={t}
+        />
+      ))
+    },
+  })
 
   if (habitsQuery.error) {
     return (

@@ -107,7 +107,10 @@ export default function Dashboard({ oura, waka }: TProps) {
               find it more effective to have a system. Meaning this here is less
               about tracking stuff and NOT becoming obsessed by it, but more
               about getting back into a state of action. Like a snowball rolling
-              down the mountain.
+              down the mountain. "Self care takes effort. It doesn’t just
+              happen. The body and mind need to be maintained. Similar to a
+              garden, without effort, weeds will pop up and overtake everything.
+              With a bit of consistent pruning, the results can be beautiful.
             </p>
             <Stats />
             <p>

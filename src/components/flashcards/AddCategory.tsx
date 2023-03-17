@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 import { Button } from '../Button'
 import { Input } from '../Input'
+import { Notification } from '../Notification'
 
 export function AddCategory({
   setShowAddCategory,
@@ -20,12 +21,24 @@ export function AddCategory({
       queryClient.invalidateQueries({
         queryKey: [['category', 'list']],
       })
-      toast.success('Category added successfully.', {
-        position: 'top-right',
-      })
+      toast.custom((t) => (
+        <Notification
+          title="All good!"
+          subtitle="Category added successfully."
+          type="success"
+          t={t}
+        />
+      ))
     },
     onError(error) {
-      toast.error(`Error: ${error.message}`)
+      toast.custom((t) => (
+        <Notification
+          title="Ohhh nooo!"
+          subtitle={`Error: ${error.message}`}
+          type="error"
+          t={t}
+        />
+      ))
     },
   })
 

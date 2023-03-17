@@ -42,18 +42,18 @@ export default function Uses() {
         <title>Uses - Manuel Bichler</title>
         <meta
           name="description"
-          content="Software I use, gadgets I love, and other things I recommend."
+          content="Software I use, gadgets I love, and other tools I recommend."
         />
       </Head>
       <SimpleLayout
-        title="Software I use, gadgets I love, and other things I recommend."
-        intro="I get asked a lot about the things I use to build software, stay productive, or buy to fool myself into thinking I’m being productive when I’m really just procrastinating. Here’s a big list of all of my favorite stuff."
+        title="My Tools and Workflows"
+        intro="I enjoy learning about the tools and workflows used by other engineers. To that end, I've compiled a comprehensive list of my personal favorites."
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="14” MacBook Pro, M2 Max, 2023">
-              Just recently switched to a new MacBook Pro M2Max. Have to say
-              it's gooood.
+            <Tool title="16” MacBook Pro, 2,6 GHz 6-Core Intel Core i7, 32GB RAM (2019)">
+              As the fans are turning on quiet often I am thinking about
+              changing to the next generation of MacBook Pro with the M2 chip.
             </Tool>
             <Tool title="2 x Dell U2415 Monitors">Simple enough.</Tool>
             <Tool title="Kinesis Advantage360 Pro">
@@ -87,39 +87,36 @@ export default function Uses() {
             <Tool title="Postico">Simple database client for postgres.</Tool>
           </ToolsSection>
           <ToolsSection title="Programming Languages">
-            <Tool title="Typescript">My go to language.</Tool>
+            <Tool title="TypeScript">My go to language.</Tool>
+            <Tool title="TailwindCSS">
+              I am a heavy user of the tailwind ecosystem.
+            </Tool>
             <Tool title="Python">
               I started playing around with Python in 2022. Mainly because of
               Data stuff. Use it more nowadays because of the AI stuff.
             </Tool>
             <Tool title="Rust">
-              Recently started looking into Rust. I like it so far. If people
-              are not too lazy, I believe it will become the next big thing. AI
-              will help a lot with writing Rust.
-            </Tool>
-            <Tool title="TailwindCSS">
-              Simple tool for blocking distracting websites when I need to just
-              do the work and get some momentum going.
-            </Tool>
-            <Tool title="NextJS">
-              Simple tool for blocking distracting websites when I need to just
-              do the work and get some momentum going.
+              Started looking into Rust. I like it but the developer velocity is
+              still quiet low compared to other languages.But, if it needs to be
+              fast and safe, Rust it is. If people are not too lazy, I believe
+              it will become the next big thing. AI will help a lot with writing
+              Rust.
             </Tool>
             <Tool title="&Others">
               Just to give you an impression. I also use/d React, React Native,
               Vue, Express, Fastify, GraphQL, Apollo, Prisma, NodeJS, Docker,
-              AWS, GCP, Azure, Vercel, MongoDB, Postgres, Redis, MySQL, and a
-              few others.
+              AWS, GCP, Azure, Vercel, MongoDB, Postgres, Redis, MySQL and a few
+              others.
             </Tool>
           </ToolsSection>
           <ToolsSection title="Productivity">
             <Tool title="Raycast">
               Changed from Aflred to Raycast. Not a hundred percent sure yet.
-              But it added a lot of smaller tools as plugins which I like.
+              But it added a lot of smaller tools via plugins which I like.
             </Tool>
             <Tool title="Notes">
-              I came full circle (roam, notion) now and use it basically for
-              everything.
+              I came full circle (roam, notion, obsidian) now and use it
+              basically for everything.
             </Tool>
             <Tool title="SpaceLauncher">
               Simple shortcut app that allows you to mainly open apps.

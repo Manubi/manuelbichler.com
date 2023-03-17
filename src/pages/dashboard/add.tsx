@@ -1,6 +1,7 @@
 import { Button } from '@/components/Button'
 import { ShowAllHabits } from '@/components/dashboard/ShowAllHabits'
 import { Input } from '@/components/Input'
+import { Notification } from '@/components/Notification'
 
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { getEnumValues } from '@/utils/getEnumValues'
@@ -32,13 +33,26 @@ export default function AddHabit() {
   const { isLoading, mutate: addHabit } = trpc.habit.add.useMutation({
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [['habit', 'list']] })
-      toast.success(`Habit ${data.activity} added successfully.`, {
-        position: 'top-right',
-      })
+      toast.custom((t) => (
+        <Notification
+          title="All good!"
+          subtitle={`Habit added successfully.`}
+          type="success"
+          t={t}
+        />
+      ))
+
       reset()
     },
     onError(error) {
-      toast.error(`Error: ${error.message}`)
+      toast.custom((t) => (
+        <Notification
+          title="Ohhh nooo!"
+          subtitle={`Error: ${error.message}`}
+          type="error"
+          t={t}
+        />
+      ))
     },
   })
 
