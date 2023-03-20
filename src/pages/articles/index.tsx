@@ -45,7 +45,7 @@ export default function ArticlesIndex({ articles }) {
       </Head>
       <SimpleLayout
         title="Ramblings about my own stupidity, endless cycle of facepalms and self-deprecation that follows. "
-        intro="What's my hope with this? To improve my thinking. To keep a personal notebook. To send a message to my younger self. What will it be about? A lot of tech. Some biology. And basically everything else that my mind decides to deal with. I never was able to get into writing. Therefor your expectations should be rather low."
+        intro="What's my hope with this? To improve my thinking. To keep a personal notebook. To send a message to my younger self. What will it be about? A lot of tech. Some biology - I hope. And basically everything else that my mind decides to deal with. As my primary target audience is a cohort of one - myself, please don't expect anything significant from it."
       >
         <blockquote className="mb-20 -mt-8 text-xl italic font-semibold text-zinc-600 dark:text-zinc-400">
           <svg

@@ -24,10 +24,10 @@ const isAuthed = t.middleware(({ next, ctx }) => {
     },
   })
 })
-// todo manuel add admin ID
-// check if the user is admin, otherwise through a UNAUTHORIZED CODE
+
+// check if the user is manuel, otherwise through a UNAUTHORIZED CODE
 const isAdmin = t.middleware(({ next, ctx }) => {
-  if (!ctx.auth.userId && ctx.auth.userId !== 'manuelsId') {
+  if (ctx.auth.userId !== 'user_2N0aup1gzqOY2sdjaBbSbmBjugt') {
     throw new TRPCError({ code: 'UNAUTHORIZED' })
   }
   return next({

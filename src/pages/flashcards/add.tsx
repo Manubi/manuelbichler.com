@@ -82,10 +82,6 @@ export default function AddFlashcard() {
 
   return (
     <SimpleLayout title="Add flashcard" intro="">
-      <div>
-        Hello, {userId} your current active session is {sessionId}
-      </div>
-      ;
       <div className="mt-8 space-y-20">
         {showAddDeck && <AddDeck setShowAddDeck={setShowAddDeck} />}
         {showAddCategory && (
@@ -94,10 +90,10 @@ export default function AddFlashcard() {
         <div>
           <form
             onSubmit={onSubmit}
-            className="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40"
+            className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
           >
             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-              <BoltIcon className="flex-none w-6 h-6" />
+              <BoltIcon className="h-6 w-6 flex-none" />
               <span className="ml-3">Add new flashcard</span>
             </h2>
             <div className="flex flex-col gap-3 ">
@@ -131,21 +127,21 @@ export default function AddFlashcard() {
                     key={categoryIdx + category.name}
                     className="relative flex items-start py-2"
                   >
-                    <div className="flex-1 min-w-0 text-sm">
+                    <div className="min-w-0 flex-1 text-sm">
                       <label
                         htmlFor={`category-${category.name}`}
-                        className="font-medium select-none text-zinc-600 dark:text-zinc-400"
+                        className="select-none font-medium text-zinc-600 dark:text-zinc-400"
                       >
                         {category.name}
                       </label>
                     </div>
-                    <div className="flex items-center h-5 ml-3">
+                    <div className="ml-3 flex h-5 items-center">
                       <Input
                         {...register('checkboxes')}
                         name="checkboxes"
                         type="checkbox"
                         value={category.id}
-                        className="w-4 h-4 text-teal-500 border-gray-300 rounded focus:ring-teal-500 "
+                        className="h-4 w-4 rounded border-gray-300 text-teal-500 focus:ring-teal-500 "
                       />
                     </div>
                   </div>

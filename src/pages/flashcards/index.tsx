@@ -7,7 +7,8 @@ import { trpc } from '@/utils/trpc'
 
 function Deck({ deck }) {
   return (
-    <article className="md:grid md:grid-cols-4 md:items-baseline">
+    <article className="flex max-w-3xl flex-col space-y-16">
+      {/* <article className="md:grid md:grid-cols-4 md:items-baseline"> */}
       <Card className="md:col-span-3">
         <Card.Title href={`/flashcards/${deck.id}`}>{deck.name}</Card.Title>
         <Card.Eyebrow as="time" dateTime={deck.updatedAt} className="" decorate>
@@ -30,15 +31,16 @@ export default function flashCardIndex({ decks }) {
         <title>Flashcard decks- Manuel Bichler</title>
         <meta
           name="description"
-          content="Some flashcard decks that I use to read threw and learn from."
+          content="Some flashcard decks that I use to read threw."
         />
       </Head>
       <SimpleLayout
         title="Decks"
-        intro="As with many fields you need to know the language. Here I collect some flashcard decks that I use to read threw and learn from."
+        intro="As with many fields you need to know the language. Here I collect some flashcard decks that I use to read threw."
       >
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-          <div className="flex flex-col max-w-3xl space-y-16">
+          {/* <div className="flex flex-col max-w-3xl space-y-16"> */}{' '}
+          <div className="flex max-w-3xl flex-col space-y-16">
             {data?.decks.map((deck) => (
               <Deck key={deck.id} deck={deck} />
             ))}

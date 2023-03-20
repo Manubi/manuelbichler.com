@@ -19,17 +19,13 @@ export default function Flashcard() {
         <meta
           name={data?.name ?? 'Flashcards'}
           content={
-            data?.description ??
-            'Some flashcards that I use to read threw and learn from.'
+            data?.description ?? 'Some flashcards that I use to read threw.'
           }
         />
       </Head>
       <SimpleLayout
         title={data?.name ?? 'Flashcards'}
-        intro={
-          data?.description ??
-          'Some flashcards that I use to read threw and learn from.'
-        }
+        intro={data?.description ?? 'Some flashcards that I use to read threw.'}
       >
         <div className="flex flex-col space-y-16">
           {data?.flashcard ? (

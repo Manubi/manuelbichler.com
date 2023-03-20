@@ -1,6 +1,11 @@
 import { z } from 'zod'
 import { prisma } from '../prisma'
-import { protectedProcedure, publicProcedure, router } from '../trcp'
+import {
+  adminProcedure,
+  protectedProcedure,
+  publicProcedure,
+  router,
+} from '../trcp'
 
 export const guestbookRouter = router({
   list: publicProcedure.query(async () => {
@@ -21,7 +26,7 @@ export const guestbookRouter = router({
       messages,
     }
   }),
-  deleteAll: publicProcedure.mutation(async () => {
+  deleteAll: adminProcedure.mutation(async () => {
     const messages = await prisma.guestbook.deleteMany({})
     console.log('messagesDEL', messages)
     return messages

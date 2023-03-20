@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import { EthereumIcon } from '@/components/icons/EthereumIcon'
@@ -42,62 +41,36 @@ export default function About() {
                 <p>
                   You might be interested to know that I do not have any formal
                   technical education. I completed a BA & MA in business
-                  administration, and I didn&apos;t have great grades. I was
-                  much more interested in being outside. Mostly in the
-                  mountains. But, after a couple of detours I found my way into
-                  the tech industry. I&apos;m currently working as a software
-                  engineer at the Center for Molecular Medicine (CeMM) in
-                  Vienna, where I support scientists in building a comprehensive
-                  knowledgebase of SLCs. From time to time I get excited about
-                  things. Right now thats blockchains, AI, the Rust programming
-                  language and biotech. Why?
+                  administration, and my grades weren&apos;t exactly stellar. My
+                  passion for the outdoors, especially the mountains, always
+                  seemed to take priority. However, through a series of twists
+                  and turns, I found my calling in the tech industry. Now, I
+                  work as a software engineer at the{' '}
+                  <a
+                    href={routes.external.work.CeMM.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Center for Molecular Medicine (CeMM)/Vienna
+                  </a>{' '}
+                  in Vienna, helping scientists build a comprehensive{' '}
+                  <a
+                    href={routes.external.work.Resolute.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    knowledgebase of SLCs.
+                  </a>{' '}
+                  My interests are diverse and ever-evolving, currently
+                  including blockchains, AI, Rust programming language, and
+                  biotech.
                 </p>
-                <ul>
-                  <li>
-                    Why I think{' '}
-                    <Link href={routes.public.article.blockchainsStay}>
-                      &quot;Blockchains are here to stay&quot;
-                    </Link>
-                  </li>
-                  <li>
-                    Why I think{' '}
-                    <Link href={routes.public.article.aiGreatestWorst}>
-                      &quot;AI will be the greatest and worst thing that happens
-                      to us&quot;
-                    </Link>
-                  </li>
-                  <li>
-                    Why I think{' '}
-                    <Link href={routes.public.article.rustEverywhere}>
-                      &quot;Rust will be used everywhere&quot;
-                    </Link>
-                  </li>
-                  <li>
-                    Why I think{' '}
-                    <Link href={routes.public.article.biotechNextNextBigThing}>
-                      &quot;Biotech will be the next next big thing&quot;
-                    </Link>
-                  </li>
-                </ul>
               </div>
               <p>
-                So basically I am interested in technical stuff. Maybe one day I
-                will add robotics, even if I shouldn&apos;t. So if you want to
-                talk about anything of the above or something else like
-              </p>
-              <ul>
-                <li>how to drop out of a PhD twice</li>
-                <li>how to become a generalist</li>
-                <li>how to get masters degree without any A-levels</li>
-                <li>how to sink a startup slowly and painfully</li>
-              </ul>
-              <p>
-                I still enjoy being in the mountains. Be it skiing, climbing,
-                hiking or just being outside. I also do like the ocean. My main
-                goal for the next couple years is to build a bridge between the
-                different fields that I am interested in. I want to be able to
-                talk to people from all of them and understand what they are
-                doing. So my focus will be on AI, blockchain and biology.{' '}
+                Beyond my technical interests, I remain an avid outdoor
+                enthusiast who loves skiing, climbing, hiking, or simply
+                breathing in the fresh mountain air. I&apos;m also fond of the
+                ocean. If you want to talk, feel free to reach out.
               </p>
             </div>
           </div>

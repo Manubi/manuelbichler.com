@@ -52,7 +52,7 @@ export default function Uses() {
         <div className="space-y-20">
           <ToolsSection title="Workstation">
             <Tool title="16” MacBook Pro, 2,6 GHz 6-Core Intel Core i7, 32GB RAM (2019)">
-              As the fans are turning on quiet often I am thinking about
+              As the fans are turning on quiet often. I am thinking about
               changing to the next generation of MacBook Pro with the M2 chip.
             </Tool>
             <Tool title="2 x Dell U2415 Monitors">Simple enough.</Tool>
@@ -86,7 +86,7 @@ export default function Uses() {
             </Tool>
             <Tool title="Postico">Simple database client for postgres.</Tool>
           </ToolsSection>
-          <ToolsSection title="Programming Languages">
+          <ToolsSection title="Programming">
             <Tool title="TypeScript">My go to language.</Tool>
             <Tool title="TailwindCSS">
               I am a heavy user of the tailwind ecosystem.

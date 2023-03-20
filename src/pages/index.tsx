@@ -12,6 +12,7 @@ import { getAllArticles } from '@/lib/getAllArticles'
 import { routes } from '@/utils/routes'
 import { SpeakerWaveIcon } from '@heroicons/react/24/outline'
 import Head from 'next/head'
+import Link from 'next/link'
 
 function Article({ article }) {
   return (
@@ -59,7 +60,7 @@ export default function Home({ articles }) {
                 <SpeakerWaveIcon className="mt-1 ml-1 h-[12px] w-[12px] text-zinc-500 dark:text-zinc-400" />
               </a>
               <p className="invisible ml-3 text-base text-zinc-600 peer-hover:visible dark:text-zinc-400">
-                Saying &quot;Hi&quot; in my home town Matrei i.O.
+                Saying &quot;Hey&quot; in my home town Matrei i.O.
               </p>
             </div>
           </div>
@@ -81,14 +82,15 @@ export default function Home({ articles }) {
               >
                 knowledgebase of SLCs.
               </a>{' '}
-              Sometimes I play around with blockchains, the Rust programming
-              language and AI. I only recently started writing about things I
-              do, in order to understand things better. So forgive me if my
-              texts are bad, but as we all know it&rsquo;s the AI that&rsquo;s
-              really to blame. <br />
-              I also started making flashcards to learn new things. Both can be
-              seen here.
-              <br /> Anyway, thanks for stopping by!
+              Sometimes I enjoy tinkering with blockchains, the Rust programming
+              language and AI. I&rsquo;ve recently started writing about my
+              experiences and the things I learn to better understand them.
+              Although my writing may be bad, I believe that the journey of
+              writing itself is valuable, and ultimately, I write primarily for
+              myself. If you still feel like having a look you can find it{' '}
+              <Link href={routes.public.articles.path}>here</Link>. <br />
+              <br />
+              Anyway, thanks for stopping by!
             </p>
           </Prose>
           <div className="flex gap-6 mt-6">

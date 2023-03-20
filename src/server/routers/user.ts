@@ -6,7 +6,7 @@ import { Prisma } from '@prisma/client'
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
 import { prisma } from '../prisma'
-import { publicProcedure, router } from '../trcp'
+import { adminProcedure, publicProcedure, router } from '../trcp'
 
 /**
  * Default selector for Post.
@@ -50,17 +50,17 @@ export const userRouter = router({
       }
       return user
     }),
-  // deleteById: publicProcedure
-  //   .input(
-  //     z.object({
-  //       id: z.string(),
-  //     })
-  //   )
-  //   .mutation(async ({ input }) => {
-  //     const { id } = input
-  //     const user = await prisma.user.delete({
-  //       where: { id },
-  //     })
-  //     return user
-  //   }),
+  deleteById: adminProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      const { id } = input
+      const user = await prisma.user.delete({
+        where: { id },
+      })
+      return user
+    }),
 })
