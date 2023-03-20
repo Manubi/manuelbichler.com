@@ -2,7 +2,7 @@ import Head from 'next/head'
 
 import { Card } from '@/components/Card'
 import { OuraDashboard } from '@/components/dashboard/OuraDashboard'
-import Stats from '@/components/dashboard/Stats'
+import { Stats } from '@/components/dashboard/Stats'
 import { WakaTime } from '@/components/dashboard/WakatTime'
 import { Prose } from '@/components/Prose'
 import { Section } from '@/components/Section'
@@ -107,10 +107,11 @@ export default function Dashboard({ oura, waka }: TProps) {
               find it more effective to have a system. Meaning this here is less
               about tracking stuff and NOT becoming obsessed by it, but more
               about getting back into a state of action. Like a snowball rolling
-              down the mountain. "Self care takes effort. It doesn’t just
-              happen. The body and mind need to be maintained. Similar to a
+              down the mountain. &quot;Self care takes effort. It doesn&quot;t
+              just happen. The body and mind need to be maintained. Similar to a
               garden, without effort, weeds will pop up and overtake everything.
-              With a bit of consistent pruning, the results can be beautiful.
+              With a bit of consistent pruning, the results can be
+              beautiful.&quot;
             </p>
             <Stats />
             <p>

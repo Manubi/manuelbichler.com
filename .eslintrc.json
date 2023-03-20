@@ -3,5 +3,7 @@
   "settings": {
     "mdx/code-blocks": true
   },
-  "react/display-name": false
+  "rules": {
+    "react/display-name": "off"
+  }
 }
