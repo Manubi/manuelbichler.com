@@ -20,9 +20,17 @@ export const deckRouter = router({
      */
 
     const decks = await prisma.deck.findMany({
-      select: defaultDeckSelect,
-      // get an extra item at the end which we'll use as next cursor
+      select: {
+        ...defaultDeckSelect,
+        flashcard: {
+          select: {
+            id: true,
+            _count: true,
+          },
+        },
+      },
 
+      // get an extra item at the end which we'll use as next cursor
       where: {},
       orderBy: {
         createdAt: 'desc',
