@@ -41,7 +41,7 @@ export function SimpleFlashcard({ flashcards }) {
   return (
     <div className="flex w-full">
       <button className="md:mr-6" onClick={handlePrev}>
-        <ChevronLeftIcon className="w-10 h-10 font-bold text-zinc-400" />
+        <ChevronLeftIcon className="h-10 w-10 font-bold text-zinc-400" />
       </button>
       <AnimatePresence>
         <motion.div
@@ -53,7 +53,7 @@ export function SimpleFlashcard({ flashcards }) {
           variants={variants}
           transition={{ duration: 0.5 }}
         >
-          <div className="relative flex min-h-[300px] w-full justify-between rounded-2xl border border-zinc-200 p-3 dark:border-zinc-700/40 md:p-6 ">
+          <div className="relative flex min-h-[300px] w-full justify-between rounded-2xl border border-zinc-200 p-3 dark:border-zinc-700/40  dark:bg-zinc-800 md:p-6 ">
             <div
               className={`absolute top-0 right-2 text-xs font-semibold tracking-wider text-zinc-400 md:top-4 md:right-4 md:text-sm ${
                 isFlipped && 'origin-top scale-x-[-1] transform'
@@ -61,7 +61,7 @@ export function SimpleFlashcard({ flashcards }) {
             >
               {index + 1}/{flashcards.length}
             </div>
-            <div className="w-full my-auto text-center cursor-pointer">
+            <div className="my-auto w-full cursor-pointer text-center">
               {!isFlipped ? (
                 <Card.Title>{flashcards[index].question}</Card.Title>
               ) : (
@@ -76,7 +76,7 @@ export function SimpleFlashcard({ flashcards }) {
         </motion.div>
       </AnimatePresence>
       <button className="md:ml-6" onClick={handleNext}>
-        <ChevronRightIcon className="w-10 h-10 font-bold text-zinc-400" />
+        <ChevronRightIcon className="h-10 w-10 font-bold text-zinc-400" />
       </button>
     </div>
   )
