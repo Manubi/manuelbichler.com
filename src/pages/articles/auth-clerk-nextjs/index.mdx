@@ -34,7 +34,7 @@ The basic workflow is.
 2. Add AuthProvider with public and protected pages
 3. Add Sign-in and Sign-out buttons/components
 4. Add middleware to use auth in trcp
-5. Add add auth to trpc
+5. Add auth to trpc
 6. Protect your routers/procedures with auth
 7. Add another field to JWT token
 8. Add a webhook to update your database when user details change
@@ -65,8 +65,134 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp
 ```
 
-This gives you access to the Clerk context in all your components. But you still need to add the sign-in and sign-out buttons/pages. And you need to tell Clerk which pages are public and which are protected. For this you have two possibilities.
-The first one is the following, where you check in your `_app` Component if the page is public or not. This is recommended if you're not using nexts `/pages/api` routes as a backend.
+This gives you access to the Clerk context in all your components. But you still need to add the sign-in and sign-out buttons/pages. So let's do that first.
+
+## 3. Add Sign-in and Sign-out buttons/components
+
+Here we add a simple sign-in modal on the `/sign-in` page and a sign-out button on the Profiledropdownmenu in the second step.
+
+```typescript
+// src/pages/signin/[[...index]].tsx
+import { SignIn } from '@clerk/nextjs'
+
+const SignInPage = () => (
+  <div className="relative my-20 flex justify-center">
+    <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+  </div>
+)
+
+export default SignInPage
+```
+
+In Next.js, the ... notation within the file name (specifically `[[...index]].tsx` in this case) represents a catch-all route. Catch-all routes allow you to match and handle multiple dynamic segments (route parameters) in a single file.
+
+For instance, in the `/pages/signin/[[...index]].tsx` file, the `[[...index]]` part means that this file will handle any number of dynamic segments after `/signin/` in the URL.
+
+Some examples of URL patterns that this catch-all route will match:
+
+`/signin`,
+`/signin/user`,
+`/signin/user/123`,
+`/signin/user/123/edit`,...
+In the `[[...index]].tsx` file, you can access these dynamic segments using the `useRouter` hook from the `next/router` module:
+
+The profile button for the logout looks something like this.
+
+```typescript
+//src/header/ProfileButton.tsx
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import { routes } from '@/utils/routes'
+import { useClerk, useUser } from '@clerk/nextjs'
+import AvatarMarble from 'boring-avatars'
+import { LifeBuoy, LogOut, User } from 'lucide-react'
+import Link from 'next/link'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+
+export function ProfileButton() {
+  const { isSignedIn, user, isLoaded } = useUser()
+  // get the signOut function and openSignIn modal function from clerk
+  const { signOut, openSignIn } = useClerk()
+
+  return (
+    <>
+      {isSignedIn ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="relative h-10 w-10 rounded-full">
+              <span className="sr-only">Open user menu</span>
+              <Avatar>
+                {user?.profileImageUrl.includes('gravatar') ? (
+                  <AvatarFallback>
+                    <AvatarMarble
+                      size={34}
+                      name="Maria Mitchell"
+                      variant="marble"
+                      colors={['#2E9E94', '#2E709E', '#3AC5B9', '#A1A1AA']}
+                    />
+                  </AvatarFallback>
+                ) : (
+                  <AvatarImage
+                    src={user?.profileImageUrl}
+                    alt={user?.username ?? 'username'}
+                  />
+                )}
+              </Avatar>
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56" align="end" forceMount>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <Link href={routes.protected.profile.add.path}>
+                <DropdownMenuItem className="cursor-pointer">
+                  <User className="mr-2 h-4 w-4" />
+                  <span>{routes.protected.profile.add.label}</span>
+                </DropdownMenuItem>
+              </Link>
+              <a href={`mailto:${routes.contacts.email}`} target="_blank">
+                <DropdownMenuItem className="cursor-pointer">
+                  <LifeBuoy className="mr-2 h-4 w-4" />
+                  <span>Support</span>
+                </DropdownMenuItem>
+              </a>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            // add the singout function to the dropdown menu
+            <DropdownMenuItem
+              onClick={() => signOut()}
+              className="cursor-pointer"
+            >
+              <LogOut className="mr-2 h-4 w-4" />
+              <span>Log out</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ) : (
+        <>
+          // if the user is not signed in open the sign in modal
+          <button
+            className="relative text-sm font-semibold leading-6 text-zinc-800 hover:text-teal-500 dark:divide-zinc-100/5 dark:text-zinc-300 dark:hover:text-teal-400"
+            onClick={() => openSignIn()}
+          >
+            Log in <span aria-hidden="true">&rarr;</span>
+          </button>
+        </>
+      )}
+    </>
+  )
+}
+```
+
+The next step is to let the app in the frontend check to what routes the unauthenticated user has access and for witch routes a user must be signed in. There are two possible solutions.
+The first solution is you can check in the `_app.tsx` if the user is signed in and if the page is public or not. This is recommended if you're not using nexts `/pages/api` routes as a backend.
 
 ```typescript
 // src/pages/_app.ts
@@ -124,6 +250,8 @@ function MyApp({ Component, pageProps }) {
 export default MyApp
 ```
 
+## 4. Add middleware to use auth in trcp
+
 If youre like me and you're using trpc, it's easier to just add a middleware and check if a requested route is public or not.
 Also I changed from checking for public routes to private routes as I have only two private routes.
 
@@ -167,7 +295,7 @@ export const config = {
     /*
      * Match all request paths except for the ones starting with:
      * - _next
-     * - static (static files)
+     * - static (static filespath)
      * - favicon.ico (favicon file)
      * - image (image files)
      */
@@ -261,7 +389,7 @@ export const guestbookRouter = router({
       messages,
     }
   }),
-  // the added middleware `protectedProcedure` will check if the user is signed in if not it will throw an error.
+  // the added middleware `protectedProcedure` will check if the user is signed in if not it will throw an error of 'UNAUTHORIZED'.
   add: protectedProcedure
     .input(
       z.object({
@@ -295,6 +423,85 @@ Then add the url to your backend. In our case it is `https://api.yourdomain.com/
 Because webhooks can be easily missused we add a library caled svix for verifying the webhook. You can read more on their [documentation](https://docs.svix.com/).
 For local debugging I also recommend to install their [CLI](https://docs.svix.com/tutorials/cli).
 
+First we need to add the endpoint to our api routes. Basically create the file `src/pages/api/webhooks/updateUser.ts` and then go to the Clerk dashbaord. Look for the Webhooks section and click `Add Endpoint`. The endpoint is your api route `http://yourDomain.com/api/webhook/updateUser`.
+Give it a description if you want and add the message event filters you want. In my case I only care about the user events. Then click `create`. This will create a webhook that sends data to your endpoint everytime something changes in clerks database.
+In our case it filters out only the events of the user `user.created`, `user.deleted`, `user.updated`.
+
+<Image src={webhook} alt="clerk update user webhook" />
+
+The part on the clerk side is done. Now we need to add the webhook to our backend. First we need to add the svix and micro library to our project.
+
+```bash
+npm install svix micro
+```
+
+Now let's write the handler.
+
+```typescript
+//src/pages/api/webhooks/updateUser.ts
+import { prisma } from '@/server/prisma'
+import { buffer } from 'micro'
+
+import { Webhook } from 'svix'
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
+// clerk secret from the webhook above
+const secret = process.env.CLERK_WEBHOOK_SECRET ?? ''
+
+export default async function handler(req, res) {
+  //collect the stream and parse it to a string
+  const payload = (await buffer(req)).toString()
+  const headers = req.headers
+  // create a new webhook instance
+  const wh = new Webhook(secret)
+  let msg
+  try {
+    // verify the webhook and get the message
+    msg = wh.verify(payload, headers)
+  } catch (error) {
+    return res.status(400).send(error.message)
+  }
+
+  const { id, username, profile_image_url: profileImageUrl } = msg.data
+
+  const shouldIgnoreGravatar = profileImageUrl.includes('gravatar')
+  // I don't want to use the gravatar image so I set it to null
+  const sanitizedProfileImageUrl = shouldIgnoreGravatar ? null : profileImageUrl
+
+  try {
+    // delete case  (also deletes all the guestbook entries as it cascades)
+    if (msg.data.deleted) {
+      await prisma.user.delete({
+        where: { id: msg.data.id },
+      })
+    }
+    // update create case
+    await prisma.user.upsert({
+      where: { id: msg.data.id },
+      update: {
+        username,
+        profileImageUrl: sanitizedProfileImageUrl,
+      },
+      create: {
+        id,
+        username,
+        profileImageUrl: sanitizedProfileImageUrl,
+      },
+    })
+    res.status(200).json()
+  } catch (error) {
+    console.error(error)
+    res.status(error.requestResult.statusCode).send(error.message)
+  }
+}
+```
+
+Now everytime a user is created, updated or deleted in clerk it will also be updated in our database.
+
 Second thing is we will update the JWT token details to include not only the `userId` but in our case also the `email`, `firstName`, `lastName` and `web3Wallets`.
 These are called claims. You also can add such claims for other third party services like stripe or github if you want to interact with those.
 Just go to your clerk dashboard and click on the `JWT Templates` link. Add the details as in the image or read up on the stuff in the right bottom corner.
@@ -309,17 +516,13 @@ export default function Index() {
   const { isLoaded, isSignedIn, user } = useUser()
   console.log('user', user)
   //todo manuel add the return of the user
-
-
-
-
+}
 ```
 
 Same for the backend. You need to update the session to include the claims and can access them with the `getAuth` function or via the context.
-// todo manuel add the web3wallets and add the image of the sessions in the clerk dashbaord
 
-````typescript
-ctx {
+```typescript
+const ctx = {
   actor: undefined,
   sessionClaims: {
     azp: 'http://localhost:3000',
@@ -334,7 +537,7 @@ ctx {
     sid: 'sess_2MjB3LIcLMDC464laFoIkrRZiTu',
     sub: 'user_2Mj8pdXGjEPXYNNBXPI1gXDjxT3',
     userId: 'user_2Mj8pdXGjEPXYNNBXPI1gXDjxT3',
-    web3Wallets: '{{user.web3Wallets}}'
+    web3Wallets: '{{user.web3Wallets}}',
   },
   sessionId: 'sess_2MjB3LIcLMDC464laFoIkrRZiTu',
   session: undefined,
@@ -344,8 +547,7 @@ ctx {
   orgRole: undefined,
   orgSlug: undefined,
   organization: undefined,
-  getToken: [AsyncFunction (anonymous)],
-  debug: [Function (anonymous)]
-}```
-
-````
+  getToken: [AsyncFunction(anonymous)],
+  debug: [Function(anosymous)],
+}
+```

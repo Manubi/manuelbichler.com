@@ -5,7 +5,6 @@ import { OuraDashboard } from '@/components/dashboard/OuraDashboard'
 import { Stats } from '@/components/dashboard/Stats'
 import { WakaTime } from '@/components/dashboard/WakatTime'
 import { Prose } from '@/components/Prose'
-import { Section } from '@/components/Section'
 import { SimpleLayout } from '@/components/SimpleLayout'
 import { Stat } from '@/components/Stat'
 import { getOuraDailyActivities } from '@/lib/oura'
@@ -16,27 +15,6 @@ import { XCircleIcon } from '@heroicons/react/24/outline'
 import { ArrowUpIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
 import { trpc } from '../../utils/trpc'
-
-function SpeakingSection({ children, ...props }) {
-  return (
-    <Section {...props}>
-      <div className="space-y-16">{children}</div>
-    </Section>
-  )
-}
-
-function Appearance({ title, description, event, cta, href }) {
-  return (
-    <Card as="article">
-      <Card.Title as="h3" href={href}>
-        {title}
-      </Card.Title>
-      <Card.Eyebrow decorate>{event}</Card.Eyebrow>
-      <Card.Description>{description}</Card.Description>
-      <Card.Cta>{cta}</Card.Cta>
-    </Card>
-  )
-}
 
 export type Cursor = {
   count: number
@@ -67,21 +45,15 @@ export default function Dashboard({ oura, waka }: TProps) {
     <>
       <Head>
         <title>Dashboard - Manuel Bichler</title>
-        <meta
-          name="Manuel's Dashboard"
-          content="Keeping Track of My Life: One Hot Mess at a Time"
-        />
+        <meta name="Manuel's Dashboard" content="My dashboard" />
       </Head>
-      <SimpleLayout
-        title="Keeping Track of My Life: One Hot Mess at a Time"
-        intro=""
-      >
+      <SimpleLayout title="My Dashboard" intro="">
         <Prose>
           <div className="space-y-20">
-            <blockquote className="text-xl italic font-semibold text-zinc-600 dark:text-zinc-400">
+            <blockquote className="text-xl font-semibold italic text-zinc-600 dark:text-zinc-400">
               <svg
                 aria-hidden="true"
-                className="w-10 h-10 text-gray-400 dark:text-gray-600"
+                className="h-10 w-10 text-gray-400 dark:text-gray-600"
                 viewBox="0 0 24 27"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -106,12 +78,9 @@ export default function Dashboard({ oura, waka }: TProps) {
               change, action is necessary. While setting goals is important, I
               find it more effective to have a system. Meaning this here is less
               about tracking stuff and NOT becoming obsessed by it, but more
-              about getting back into a state of action. Like a snowball rolling
-              down the mountain. &quot;Self care takes effort. It doesn&quot;t
-              just happen. The body and mind need to be maintained. Similar to a
-              garden, without effort, weeds will pop up and overtake everything.
-              With a bit of consistent pruning, the results can be
-              beautiful.&quot;
+              about getting back into a state of action. Similar to a garden,
+              without effort, weeds will pop up and overtake everything. With a
+              bit of consistent pruning, the results can be beautiful.
             </p>
             <Stats />
             <p>
@@ -160,34 +129,34 @@ export default function Dashboard({ oura, waka }: TProps) {
                   Meditation
                 </dt>
                 <Card.Description>5 times a week</Card.Description>
-                <dd className="flex flex-row items-baseline justify-between mt-1 md:block lg:flex">
+                <dd className="mt-1 flex flex-row items-baseline justify-between md:block lg:flex">
                   <div>
                     <CheckCircleIcon
-                      className="w-6 h-6 text-gray-300 "
+                      className="h-6 w-6 text-gray-300 "
                       aria-hidden="true"
                     />
                   </div>
                   <div>
                     <CheckCircleIcon
-                      className="w-6 h-6 text-gray-300 "
+                      className="h-6 w-6 text-gray-300 "
                       aria-hidden="true"
                     />
                   </div>
                   <div>
                     <CheckCircleIcon
-                      className="w-6 h-6 text-gray-300 "
+                      className="h-6 w-6 text-gray-300 "
                       aria-hidden="true"
                     />
                   </div>
                   <div>
                     <XCircleIcon
-                      className="w-6 h-6 text-gray-500"
+                      className="h-6 w-6 text-gray-500"
                       aria-hidden="true"
                     />
                   </div>
                   <div>
                     <XCircleIcon
-                      className="w-6 h-6 text-gray-500"
+                      className="h-6 w-6 text-gray-500"
                       aria-hidden="true"
                     />
                   </div>
@@ -215,45 +184,6 @@ export default function Dashboard({ oura, waka }: TProps) {
             </Stat>
             <OuraDashboard oura={oura} />
             <WakaTime waka={waka} />
-            <SpeakingSection title="Conferences">
-              <Appearance
-                href="#"
-                title="In space, no one can watch you stream — until now"
-                description="A technical deep-dive into HelioStream, the real-time streaming library I wrote for transmitting live video back to Earth."
-                event="SysConf 2021"
-                cta="Watch video"
-              />
-              <Appearance
-                href="#"
-                title="Lessons learned from our first product recall"
-                description="They say that if you’re not embarassed by your first version, you’re doing it wrong. Well when you’re selling DIY space shuttle kits it turns out it’s a bit more complicated."
-                event="Business of Startups 2020"
-                cta="Watch video"
-              />
-            </SpeakingSection>
-            <SpeakingSection title="Podcasts">
-              <Appearance
-                href="#"
-                title="Using design as a competitive advantage"
-                description="How we used world-class visual design to attract a great team, win over customers, and get more press for Planetaria."
-                event="Encoding Design, July 2022"
-                cta="Listen to podcast"
-              />
-              <Appearance
-                href="#"
-                title="Bootstrapping an aerospace company to $17M ARR"
-                description="The story of how we built one of the most promising space startups in the world without taking any capital from investors."
-                event="The Escape Velocity Show, March 2022"
-                cta="Listen to podcast"
-              />
-              <Appearance
-                href="#"
-                title="Programming your company operating system"
-                description="On the importance of creating systems and processes for running your business so that everyone on the team knows how to make the right decision no matter the situation."
-                event="How They Work Radio, September 2021"
-                cta="Listen to podcast"
-              />
-            </SpeakingSection>
           </div>
         </Prose>
       </SimpleLayout>

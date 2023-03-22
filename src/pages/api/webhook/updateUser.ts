@@ -8,20 +8,28 @@ export const config = {
     bodyParser: false,
   },
 }
-
+// clerk secret from the webhook above
 const secret = process.env.CLERK_WEBHOOK_SECRET ?? ''
 
 export default async function handler(req, res) {
+  //collect the stream and parse it to a string
   const payload = (await buffer(req)).toString()
   const headers = req.headers
-
+  // create a new webhook instance
   const wh = new Webhook(secret)
   let msg
   try {
+    // verify the webhook and get the message
     msg = wh.verify(payload, headers)
   } catch (error) {
-    res.status(400).send(error.message)
+    return res.status(400).send(error.message)
   }
+
+  const { id, username, profile_image_url: profileImageUrl } = msg.data
+
+  const shouldIgnoreGravatar = profileImageUrl.includes('gravatar')
+  // I don't want to use the gravatar image so I set it to null if the user doesn't have a profile image
+  const sanitizedProfileImageUrl = shouldIgnoreGravatar ? null : profileImageUrl
 
   try {
     // delete case  (also deletes all the guestbook entries as it cascades)
@@ -29,24 +37,18 @@ export default async function handler(req, res) {
       await prisma.user.delete({
         where: { id: msg.data.id },
       })
-      res.status(200).json()
-      return
     }
     // update create case
     await prisma.user.upsert({
       where: { id: msg.data.id },
       update: {
-        username: msg.data.username,
-        profileImageUrl: msg.data.profile_image_url.includes('gravatar')
-          ? null
-          : msg.data.profile_image_url,
+        username,
+        profileImageUrl: sanitizedProfileImageUrl,
       },
       create: {
-        id: msg.data.id,
-        profileImageUrl: msg.data.profile_image_url.includes('gravatar')
-          ? null
-          : msg.data.profile_image_url,
-        username: msg.data.username,
+        id,
+        username,
+        profileImageUrl: sanitizedProfileImageUrl,
       },
     })
     res.status(200).json()
@@ -54,6 +56,4 @@ export default async function handler(req, res) {
     console.error(error)
     res.status(error.requestResult.statusCode).send(error.message)
   }
-
-  return
 }
