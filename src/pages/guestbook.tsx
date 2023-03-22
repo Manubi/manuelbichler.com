@@ -54,7 +54,7 @@ export default function Guestbook() {
     addGuestbook(formData)
     reset()
   })
-
+  console.log('user', user)
   return (
     <>
       <Head>
@@ -73,11 +73,11 @@ export default function Guestbook() {
           <>
             <form
               onSubmit={onSubmit}
-              className="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40"
+              className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
             >
               {' '}
               <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                <ChatBubbleLeftEllipsisIcon className="flex-none w-6 h-6" />
+                <ChatBubbleLeftEllipsisIcon className="h-6 w-6 flex-none" />
                 <span className="ml-3">Leave a message</span>
               </h2>
               <div className="flex gap-3 ">

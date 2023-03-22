@@ -25,7 +25,7 @@ function Article({ article }) {
       <Card.Eyebrow
         as="time"
         dateTime={article.date}
-        className="hidden mt-1 md:block"
+        className="mt-1 hidden md:block"
       >
         {formatDate(article.date)}
       </Card.Eyebrow>
@@ -47,10 +47,10 @@ export default function ArticlesIndex({ articles }) {
         title="Ramblings about my own stupidity, endless cycle of facepalms and self-deprecation that follows. "
         intro="What's my hope with this? To improve my thinking. To keep a personal notebook. To send a message to my younger self. What will it be about? A lot of tech. Some biology - I hope. And basically everything else that my mind decides to deal with. As my primary target audience is a cohort of one - myself, please don't expect anything significant from it."
       >
-        <blockquote className="mb-20 -mt-8 text-xl italic font-semibold text-zinc-600 dark:text-zinc-400">
+        <blockquote className="mb-20 -mt-8 text-xl font-semibold italic text-zinc-600 dark:text-zinc-400">
           <svg
             aria-hidden="true"
-            className="w-10 h-10 text-gray-400 dark:text-gray-600"
+            className="h-10 w-10 text-gray-400 dark:text-gray-600"
             viewBox="0 0 24 27"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@ export default function ArticlesIndex({ articles }) {
         </blockquote>
 
         <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-          <div className="flex flex-col max-w-3xl space-y-16">
+          <div className="flex max-w-3xl flex-col space-y-16">
             {articles.map((article) => (
               <Article key={article.slug} article={article} />
             ))}

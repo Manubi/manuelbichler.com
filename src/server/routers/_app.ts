@@ -1,4 +1,4 @@
-import { publicProcedure, router } from '../trcp'
+import { publicProcedure, router } from '../trpc'
 import { categoryRouter } from './category'
 import { deckRouter } from './deck'
 import { flashcardRouter } from './flashcard'

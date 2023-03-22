@@ -5,7 +5,7 @@ import {
   protectedProcedure,
   publicProcedure,
   router,
-} from '../trcp'
+} from '../trpc'
 
 export const guestbookRouter = router({
   list: publicProcedure.query(async () => {
@@ -28,7 +28,6 @@ export const guestbookRouter = router({
   }),
   deleteAll: adminProcedure.mutation(async () => {
     const messages = await prisma.guestbook.deleteMany({})
-    console.log('messagesDEL', messages)
     return messages
   }),
   add: protectedProcedure
@@ -38,7 +37,6 @@ export const guestbookRouter = router({
       })
     )
     .mutation(async ({ input, ctx }) => {
-      console.log('ctx', ctx.auth)
       const newInput = {
         userId: ctx.auth.userId,
         message: input.message,

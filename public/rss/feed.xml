@@ -4,7 +4,7 @@
         <title>Manuel Bichler</title>
         <link>http://localhost:3000</link>
         <description>Your blog description</description>
-        <lastBuildDate>Mon, 20 Mar 2023 14:14:30 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 22 Mar 2023 14:49:42 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,41 +14,42 @@
         </image>
         <copyright>All rights reserved 2023</copyright>
         <item>
-            <title><![CDATA[Authentication in Next.js with Clerk.dev and trcp.io]]></title>
+            <title><![CDATA[Authentication in Next.js with Clerk.com and trpc.io]]></title>
             <link>http://localhost:3000/articles/auth-clerk-nextjs</link>
             <guid>http://localhost:3000/articles/auth-clerk-nextjs</guid>
             <pubDate>Sun, 05 Mar 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[Painless Next.js authentication. With Clerk.dev and trcp.io, we can now build a secure authentication system in a day.]]></description>
+            <description><![CDATA[Painless Next.js authentication. With Clerk.com and trpc.io, we can now build a secure authentication system in a day.]]></description>
             <content:encoded><![CDATA[<p>When I started out as a dev, authentication always felt a little bit intimidating. So many new concepts to learn, so many new libraries to install, so many new things to configure. And there is the angst of implementing an unsecure system. Just to finally end up with a system that allows users to login. It was a pain.</p>
 <p>Don&#x27;t get me wrong, struggling is good. It&#x27;s how we learn. And there is definitely a benefit if you&#x27;ve implemented authentication a couple of times from scratch.
-But roling your own authentication comes with a downside. You have to maintain it. And if you&#x27;re like me, you&#x27;ll probably have more interesting problems to solve then keeping your authentication system up to date.
-So as I said, if you&#x27;re interested how stuff works, do it yourself. But trust me, it will become a pain in the ass, especially if you&#x27;re working on more projects.
-Anyway, let&#x27;s dive in. By the way, all the code can be found <a href="https://github.com/Manubi/manuelbichler">here</a>. It&#x27;s this page.</p>
+But roling our own authentication comes with a downside. You have to maintain it. And if you&#x27;re like me, you&#x27;ll probably have more interesting problems to solve then keeping our authentication system up to date.
+So as I said, if you&#x27;re interested in how stuff works, do it yourself. But trust me, it will become a pain in the ass, especially if you&#x27;re working on more projects.
+Anyway, let&#x27;s dive in. By the way, all the code can be found <a href="https://github.com/Manubi/manuelbichler">here</a>. It&#x27;s this page - manuelbichler.com</p>
 <h2>Tech stack</h2>
 <ul>
 <li>Next.js</li>
-<li>trcp.io</li>
-<li>Clerk.dev</li>
+<li>trpc.io</li>
+<li>Clerk.com</li>
 </ul>
 <h2>Setting things up</h2>
-<p>Im not gonna write about setting up Next.js nor trcp. This is only about adding authentication with Clerk.dev.
+<p>Im not gonna write about setting up Next.js nor trpc. This is only about adding authentication with Clerk.com.
 The basic workflow is.</p>
 <ol>
-<li>Register at Clerk.dev and install <code>npm i @clerk/nextjs</code></li>
-<li>Add AuthProvider with public and protected pages</li>
+<li>Register at Clerk.com and install <code>npm i @clerk/nextjs</code></li>
+<li>Add AuthProvider for public and protected pages</li>
 <li>Add Sign-in and Sign-out buttons/components</li>
-<li>Add middleware to use auth in trcp</li>
-<li>Add add auth to trpc</li>
-<li>Protect your routers/procedures with auth</li>
-<li>Add another field to JWT token</li>
-<li>Add a webhook to update your database when user details change</li>
+<li>Add middleware to use auth in trpc</li>
+<li>Add auth to trpc context</li>
+<li>Protect our routers/procedures with auth/authorization</li>
+<li>Add a webhook to update our database when user details change in clerk.com</li>
+<li>Add another field to our JWT token</li>
+<li>Add social connection provider for productio - Google</li>
 <li>Time to be &#x27;Happy, peppy and cheerful&#x27; 🎉</li>
 </ol>
-<h2>1. Register at Clerk.dev and install package</h2>
-<p>Go to Clerk.dev/register, install the package <code>npm i @clerk/nextjs</code> and copy your api keys in your <code>.env.local</code> file.</p>
+<h2>1. Register at Clerk.com and install package</h2>
+<p>Go to Clerk.com/register, install the package <code>npm i @clerk/nextjs</code> and copy our api keys in our <code>.env.local</code> file.</p>
 <h2>2. Add AuthProvider with public and protected routes</h2>
-<p>As with almost everything in React that you&#x27;ll need in your whole app, needs to be a context provider.
-It&#x27;s basically your parent giving information to all children which are your Components. First I&#x27;ll give you the basic version of the <code>_app.tsx</code>. The second version will be a little more realistic.</p>
+<p>As with almost everything in React that you&#x27;ll need in our whole app, needs to be a context provider.
+It&#x27;s basically our parent giving information to all children which are our Components. First I&#x27;ll give you the basic version of the <code>_app.tsx</code>. Further downn you&#x27;ll see a more realistic version.</p>
 <pre class="language-typescript"><code class="language-typescript"><span class="token comment">// src/pages/_app.tsx</span>
 <span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">ClerkProvider</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;@clerk/nextjs&#x27;</span>
 <span class="token keyword module">import</span> <span class="token keyword">type</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">AppProps</span> <span class="token punctuation">}</span> <span class="token keyword module">from</span> <span class="token string">&#x27;next/app&#x27;</span>
@@ -63,8 +64,133 @@ It&#x27;s basically your parent giving information to all children which are you
 
 <span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token maybe-class-name">MyApp</span>
 </code></pre>
-<p>This gives you access to the Clerk context in all your components. But you still need to add the sign-in and sign-out buttons/pages. And you need to tell Clerk which pages are public and which are protected. For this you have two possibilities.
-The first one is the following, where you check in your <code>_app</code> Component if the page is public or not. This is recommended if you&#x27;re not using nexts <code>/pages/api</code> routes as a backend.</p>
+<p>This gives you access to the Clerk context in all our components. But you still need to add the sign-in and sign-out buttons/pages. So let&#x27;s do that first.</p>
+<h2>3. Add Sign-in and Sign-out buttons/components</h2>
+<p>Here we add a simple sign-up modal on the <code>/sign-up</code> page and a sign-out button on the Profiledropdownmenu in the second step.</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">SignUp</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;@clerk/nextjs&#x27;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function"><span class="token maybe-class-name">SignUpPage</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">(</span>
+  <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">&quot;relative my-20 flex justify-center&quot;</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token maybe-class-name">SignUp</span> path<span class="token operator">=</span><span class="token string">&quot;/sign-up&quot;</span> routing<span class="token operator">=</span><span class="token string">&quot;path&quot;</span> signInUrl<span class="token operator">=</span><span class="token string">&quot;/sign-in&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token punctuation">)</span>
+<span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token maybe-class-name">SignUpPage</span>
+</code></pre>
+<p>The <code>path</code> tells clerk when/where it should mount the component. In our case when the user is on the /sign-up page. The <code>routing</code> prop tells clerk how to handle the routing. We are using path routing. Default would be
+hash based routing. The <code>signInUrl</code> is just the link for the correct singInUrl in yor app. The link at the bottom of the component. The SignIn is basically the same.</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// src/pages/signin/[[...index]].tsx</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">SignIn</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;@clerk/nextjs&#x27;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function"><span class="token maybe-class-name">SignInPage</span></span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">(</span>
+  <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">&quot;relative my-20 flex justify-center&quot;</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token maybe-class-name">SignIn</span> path<span class="token operator">=</span><span class="token string">&quot;/sign-in&quot;</span> routing<span class="token operator">=</span><span class="token string">&quot;path&quot;</span> signUpUrl<span class="token operator">=</span><span class="token string">&quot;/sign-up&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token maybe-class-name">SignInPage</span>
+</code></pre>
+<p>In Next.js, the <code>...</code> notation within the file name (specifically <code>[[...index]].tsx</code> in this case) represents a catch-all route. Catch-all routes allow you to match and handle multiple dynamic segments (route parameters) in a single file.</p>
+<p>For instance, in the <code>/pages/signin/[[...index]].tsx</code> file, the <code>[[...index]]</code> part means that this file will handle any number of dynamic segments after <code>/signin/</code> in the URL.</p>
+<p>Some examples of URL patterns that this catch-all route will match:
+<code>/signin</code>,
+<code>/signin/user</code>,
+<code>/signin/user/123</code>,
+<code>/signin/user/123/edit</code>,...</p>
+<p>In the <code>[[...index]].tsx</code> file, you can access these dynamic segments using the <code>useRouter</code> hook from the <code>next/router</code> module.</p>
+<p>Let&#x27;s continue with the logout functionality. We add a profile button for the logout that looks something like this.</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">//src/header/ProfileButton.tsx</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span>
+  <span class="token maybe-class-name">DropdownMenu</span><span class="token punctuation">,</span>
+  <span class="token maybe-class-name">DropdownMenuContent</span><span class="token punctuation">,</span>
+  <span class="token maybe-class-name">DropdownMenuGroup</span><span class="token punctuation">,</span>
+  <span class="token maybe-class-name">DropdownMenuItem</span><span class="token punctuation">,</span>
+  <span class="token maybe-class-name">DropdownMenuLabel</span><span class="token punctuation">,</span>
+  <span class="token maybe-class-name">DropdownMenuSeparator</span><span class="token punctuation">,</span>
+  <span class="token maybe-class-name">DropdownMenuTrigger</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;@/components/ui/dropdown-menu&#x27;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> routes <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;@/utils/routes&#x27;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> useClerk<span class="token punctuation">,</span> useUser <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;@clerk/nextjs&#x27;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token maybe-class-name">AvatarMarble</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;boring-avatars&#x27;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">LifeBuoy</span><span class="token punctuation">,</span> <span class="token maybe-class-name">LogOut</span><span class="token punctuation">,</span> <span class="token maybe-class-name">User</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;lucide-react&#x27;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token maybe-class-name">Link</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;next/link&#x27;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">Avatar</span><span class="token punctuation">,</span> <span class="token maybe-class-name">AvatarFallback</span><span class="token punctuation">,</span> <span class="token maybe-class-name">AvatarImage</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;../ui/avatar&#x27;</span>
+
+<span class="token keyword module">export</span> <span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">ProfileButton</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> isSignedIn<span class="token punctuation">,</span> user<span class="token punctuation">,</span> isLoaded <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// get the signOut function and openSignIn modal function from clerk</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> signOut<span class="token punctuation">,</span> openSignIn <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useClerk</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  <span class="token keyword control-flow">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span><span class="token operator">&gt;</span>
+      <span class="token punctuation">{</span>isSignedIn <span class="token operator">?</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span><span class="token maybe-class-name">DropdownMenu</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token maybe-class-name">DropdownMenuTrigger</span> asChild<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span>button className<span class="token operator">=</span><span class="token string">&quot;relative h-10 w-10 rounded-full&quot;</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>span className<span class="token operator">=</span><span class="token string">&quot;sr-only&quot;</span><span class="token operator">&gt;</span><span class="token maybe-class-name">Open</span> user menu<span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token maybe-class-name">Avatar</span><span class="token operator">&gt;</span>
+                <span class="token punctuation">{</span>user<span class="token operator">?.</span>profileImageUrl<span class="token punctuation">.</span><span class="token method function property-access">includes</span><span class="token punctuation">(</span><span class="token string">&#x27;gravatar&#x27;</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token punctuation">(</span>
+                  <span class="token operator">&lt;</span><span class="token maybe-class-name">AvatarFallback</span><span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span><span class="token maybe-class-name">AvatarMarble</span>
+                      size<span class="token operator">=</span><span class="token punctuation">{</span><span class="token number">34</span><span class="token punctuation">}</span>
+                      name<span class="token operator">=</span><span class="token string">&quot;Maria Mitchell&quot;</span>
+                      variant<span class="token operator">=</span><span class="token string">&quot;marble&quot;</span>
+                      colors<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">[</span><span class="token string">&#x27;#2E9E94&#x27;</span><span class="token punctuation">,</span> <span class="token string">&#x27;#2E709E&#x27;</span><span class="token punctuation">,</span> <span class="token string">&#x27;#3AC5B9&#x27;</span><span class="token punctuation">,</span> <span class="token string">&#x27;#A1A1AA&#x27;</span><span class="token punctuation">]</span><span class="token punctuation">}</span>
+                    <span class="token operator">/</span><span class="token operator">&gt;</span>
+                  <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">AvatarFallback</span><span class="token operator">&gt;</span>
+                <span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token punctuation">(</span>
+                  <span class="token operator">&lt;</span><span class="token maybe-class-name">AvatarImage</span>
+                    src<span class="token operator">=</span><span class="token punctuation">{</span>user<span class="token operator">?.</span>profileImageUrl<span class="token punctuation">}</span>
+                    alt<span class="token operator">=</span><span class="token punctuation">{</span>user<span class="token operator">?.</span>username <span class="token operator">??</span> <span class="token string">&#x27;username&#x27;</span><span class="token punctuation">}</span>
+                  <span class="token operator">/</span><span class="token operator">&gt;</span>
+                <span class="token punctuation">)</span><span class="token punctuation">}</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">Avatar</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">DropdownMenuTrigger</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token maybe-class-name">DropdownMenuContent</span> className<span class="token operator">=</span><span class="token string">&quot;w-56&quot;</span> align<span class="token operator">=</span><span class="token string">&quot;end&quot;</span> forceMount<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token maybe-class-name">DropdownMenuLabel</span><span class="token operator">&gt;</span><span class="token maybe-class-name">My</span> <span class="token maybe-class-name">Account</span><span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">DropdownMenuLabel</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token maybe-class-name">DropdownMenuSeparator</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token maybe-class-name">DropdownMenuGroup</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token maybe-class-name">Link</span> href<span class="token operator">=</span><span class="token punctuation">{</span>routes<span class="token punctuation">.</span><span class="token property-access">protected</span><span class="token punctuation">.</span><span class="token property-access">profile</span><span class="token punctuation">.</span><span class="token property-access">add</span><span class="token punctuation">.</span><span class="token property-access">path</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token maybe-class-name">DropdownMenuItem</span> className<span class="token operator">=</span><span class="token string">&quot;cursor-pointer&quot;</span><span class="token operator">&gt;</span>
+                  <span class="token operator">&lt;</span><span class="token maybe-class-name">User</span> className<span class="token operator">=</span><span class="token string">&quot;mr-2 h-4 w-4&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                  <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span><span class="token punctuation">{</span>routes<span class="token punctuation">.</span><span class="token property-access">protected</span><span class="token punctuation">.</span><span class="token property-access">profile</span><span class="token punctuation">.</span><span class="token property-access">add</span><span class="token punctuation">.</span><span class="token property-access">label</span><span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">DropdownMenuItem</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">Link</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token punctuation">{</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">mailto:</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>routes<span class="token punctuation">.</span><span class="token property-access">contacts</span><span class="token punctuation">.</span><span class="token property-access">email</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span> target<span class="token operator">=</span><span class="token string">&quot;_blank&quot;</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token maybe-class-name">DropdownMenuItem</span> className<span class="token operator">=</span><span class="token string">&quot;cursor-pointer&quot;</span><span class="token operator">&gt;</span>
+                  <span class="token operator">&lt;</span><span class="token maybe-class-name">LifeBuoy</span> className<span class="token operator">=</span><span class="token string">&quot;mr-2 h-4 w-4&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                  <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span><span class="token maybe-class-name">Support</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">DropdownMenuItem</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">DropdownMenuGroup</span><span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token maybe-class-name">DropdownMenuSeparator</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+            <span class="token comment">// add the signOut function to the dropdown menu</span>
+            <span class="token operator">&lt;</span><span class="token maybe-class-name">DropdownMenuItem</span>
+              onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token function">signOut</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+              className<span class="token operator">=</span><span class="token string">&quot;cursor-pointer&quot;</span>
+            <span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span><span class="token maybe-class-name">LogOut</span> className<span class="token operator">=</span><span class="token string">&quot;mr-2 h-4 w-4&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+              <span class="token operator">&lt;</span>span<span class="token operator">&gt;</span><span class="token maybe-class-name">Log</span> out<span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">DropdownMenuItem</span><span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">DropdownMenuContent</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token maybe-class-name">DropdownMenu</span><span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span><span class="token operator">&gt;</span>
+          <span class="token comment">// if the user is not signed in open the signIn modal</span>
+          <span class="token operator">&lt;</span>button
+            className<span class="token operator">=</span><span class="token string">&quot;relative text-sm font-semibold leading-6 text-zinc-800 hover:text-teal-500 dark:divide-zinc-100/5 dark:text-zinc-300 dark:hover:text-teal-400&quot;</span>
+            onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token function">openSignIn</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+          <span class="token operator">&gt;</span>
+            <span class="token maybe-class-name">Log</span> <span class="token keyword">in</span> <span class="token operator">&lt;</span>span aria<span class="token operator">-</span>hidden<span class="token operator">=</span><span class="token string">&quot;true&quot;</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span>rarr<span class="token punctuation">;</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+          <span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>The next step is to let the app in the frontend check to what routes the unauthenticated user has access and for witch routes a user must be signed in. There are two possible solutions.
+The first solution is you can check in the <code>_app.tsx</code> if the user is signed in and if the page is public or not. This is recommended if you&#x27;re not using nexts <code>/pages/api</code> routes as a backend.</p>
 <pre class="language-typescript"><code class="language-typescript"><span class="token comment">// src/pages/_app.ts</span>
 <span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span>
   <span class="token maybe-class-name">ClerkProvider</span><span class="token punctuation">,</span>
@@ -119,6 +245,7 @@ The first one is the following, where you check in your <code>_app</code> Compon
 
 <span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token maybe-class-name">MyApp</span>
 </code></pre>
+<h2>4. Add middleware to use auth in trpc</h2>
 <p>If youre like me and you&#x27;re using trpc, it&#x27;s easier to just add a middleware and check if a requested route is public or not.
 Also I changed from checking for public routes to private routes as I have only two private routes.</p>
 <pre class="language-typescript"><code class="language-typescript"><span class="token comment">// src/middleware.ts</span>
@@ -160,7 +287,7 @@ Also I changed from checking for public routes to private routes as I have only 
     <span class="token comment">/*
      * Match all request paths except for the ones starting with:
      * - _next
-     * - static (static files)
+     * - static (static filespath)
      * - favicon.ico (favicon file)
      * - image (image files)
      */</span>
@@ -168,7 +295,8 @@ Also I changed from checking for public routes to private routes as I have only 
   <span class="token punctuation">]</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Now that you have the middleware checking the routes that should be protected, we can continue with adding protection to our trcp handlers.
+<h2>5. Add auth to trpc context</h2>
+<p>Now that you have the middleware checking the routes that should be protected, we can continue with adding protection to our trpc handlers.
 Let&#x27;s add auth to our context so we can easily access it in our endpoints.</p>
 <pre class="language-typescript"><code class="language-typescript"><span class="token comment">// src/server/context.ts</span>
 <span class="token keyword module">import</span> <span class="token keyword">type</span> <span class="token punctuation">{</span>
@@ -205,7 +333,7 @@ Let&#x27;s add auth to our context so we can easily access it in our endpoints.<
   <span class="token keyword control-flow">return</span> <span class="token keyword control-flow">await</span> <span class="token function">createContextInner</span><span class="token punctuation">(</span><span class="token punctuation">{</span> auth<span class="token operator">:</span> <span class="token function">getAuth</span><span class="token punctuation">(</span>opts<span class="token punctuation">.</span><span class="token property-access">req</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>As we have now access to our context, we can add add middleware to our trcp endpoints. Here we will check if the user is signed in and if not we will throw an error.</p>
+<p>As we have now access to our context, we can add add middleware to our trpc endpoints. Here we will check if the user is signed in and if not we will throw an error.</p>
 <pre class="language-typescript"><code class="language-typescript"><span class="token comment">// src/server/trpc.ts</span>
 <span class="token comment">// check if the user is signed in, otherwise through a UNAUTHORIZED CODE</span>
 <span class="token keyword">const</span> isAuthed <span class="token operator">=</span> t<span class="token punctuation">.</span><span class="token method function property-access">middleware</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">{</span> next<span class="token punctuation">,</span> ctx <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
@@ -221,10 +349,17 @@ Let&#x27;s add auth to our context so we can easily access it in our endpoints.<
 
 <span class="token keyword module">export</span> <span class="token keyword">const</span> protectedProcedure <span class="token operator">=</span> t<span class="token punctuation">.</span><span class="token property-access">procedure</span><span class="token punctuation">.</span><span class="token method function property-access">use</span><span class="token punctuation">(</span>isAuthed<span class="token punctuation">)</span>
 </code></pre>
-<p>What this allows us is to just use the new added middleware/procedure in our endpoint.</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> z <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;zod&#x27;</span>
+<h2>6. Protect our routers/procedures with auth/authorization</h2>
+<p>What this allows us is to just use the new added middleware/procedure in our endpoint. Meaning only a logged in user can write a message to the guestbook.</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">// src/server/routers/guestbook.ts</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> z <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;zod&#x27;</span>
 <span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> prisma <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;../prisma&#x27;</span>
-<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> protectedProcedure<span class="token punctuation">,</span> publicProcedure<span class="token punctuation">,</span> router <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;../trcp&#x27;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span>
+  adminProcedure<span class="token punctuation">,</span>
+  protectedProcedure<span class="token punctuation">,</span>
+  publicProcedure<span class="token punctuation">,</span>
+  router<span class="token punctuation">,</span>
+<span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;../trpc&#x27;</span>
 
 <span class="token keyword module">export</span> <span class="token keyword">const</span> guestbookRouter <span class="token operator">=</span> <span class="token function">router</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
   list<span class="token operator">:</span> publicProcedure<span class="token punctuation">.</span><span class="token method function property-access">query</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
@@ -245,20 +380,21 @@ Let&#x27;s add auth to our context so we can easily access it in our endpoints.<
       messages<span class="token punctuation">,</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-  <span class="token comment">// the added middleware `protectedProcedure` will check if the user is signed in if not it will throw an error.</span>
+  deleteAll<span class="token operator">:</span> adminProcedure<span class="token punctuation">.</span><span class="token method function property-access">mutation</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> messages <span class="token operator">=</span> <span class="token keyword control-flow">await</span> prisma<span class="token punctuation">.</span><span class="token property-access">guestbook</span><span class="token punctuation">.</span><span class="token method function property-access">deleteMany</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">&#x27;messagesDEL&#x27;</span><span class="token punctuation">,</span> messages<span class="token punctuation">)</span>
+    <span class="token keyword control-flow">return</span> messages
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   add<span class="token operator">:</span> protectedProcedure
     <span class="token punctuation">.</span><span class="token method function property-access">input</span><span class="token punctuation">(</span>
       z<span class="token punctuation">.</span><span class="token method function property-access">object</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-        email<span class="token operator">:</span> z<span class="token punctuation">.</span><span class="token method function property-access">string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">email</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        name<span class="token operator">:</span> z<span class="token punctuation">.</span><span class="token method function property-access">string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">min</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
         message<span class="token operator">:</span> z<span class="token punctuation">.</span><span class="token method function property-access">string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">min</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
       <span class="token punctuation">}</span><span class="token punctuation">)</span>
     <span class="token punctuation">)</span>
     <span class="token punctuation">.</span><span class="token method function property-access">mutation</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">{</span> input<span class="token punctuation">,</span> ctx <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">&#x27;ctx&#x27;</span><span class="token punctuation">,</span> ctx<span class="token punctuation">.</span><span class="token property-access">auth</span><span class="token punctuation">)</span>
       <span class="token keyword">const</span> newInput <span class="token operator">=</span> <span class="token punctuation">{</span>
         userId<span class="token operator">:</span> ctx<span class="token punctuation">.</span><span class="token property-access">auth</span><span class="token punctuation">.</span><span class="token property-access">userId</span><span class="token punctuation">,</span>
-        email<span class="token operator">:</span> input<span class="token punctuation">.</span><span class="token property-access">email</span><span class="token punctuation">,</span>
-        name<span class="token operator">:</span> input<span class="token punctuation">.</span><span class="token property-access">name</span><span class="token punctuation">,</span>
         message<span class="token operator">:</span> input<span class="token punctuation">.</span><span class="token property-access">message</span><span class="token punctuation">,</span>
       <span class="token punctuation">}</span>
       <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token keyword control-flow">await</span> prisma<span class="token punctuation">.</span><span class="token property-access">guestbook</span><span class="token punctuation">.</span><span class="token method function property-access">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
@@ -268,31 +404,99 @@ Let&#x27;s add auth to our context so we can easily access it in our endpoints.<
     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
+<h2>7. Add a webhook to keep our database in sync</h2>
 <p>Now we have kind of a working authentication system running. For convenience reasons we will add two things. First, add a webhook to keep clerk and our database in sync.
 Webhooks are how services notify each other of events. Basically just ah <code>POST</code> request with some payload that goes to an pre-determined endpoint.
 Second update the JWT and session claims to add fields to our auth/session tokens.</p>
 <p>For adding a webhook go to the Clark dashboard and click on the <code>Webhooks</code> link. Add a new webhook and select the <code>User Signed In</code> event.
-Then add the url to your backend. In our case it is <code>https://api.yourdomain.com/api/webhooks/clerk/user-signed-in</code>.</p>
+Then add the url to our backend. In our case it is <code>https://api.yourdomain.com/api/webhooks/clerk/user-signed-in</code>.</p>
 <p>Because webhooks can be easily missused we add a library caled svix for verifying the webhook. You can read more on their <a href="https://docs.svix.com/">documentation</a>.
 For local debugging I also recommend to install their <a href="https://docs.svix.com/tutorials/cli">CLI</a>.</p>
+<p>First we need to add the endpoint to our api routes. Basically create the file <code>src/pages/api/webhooks/updateUser.ts</code> and then go to the Clerk dashbaord. Look for the Webhooks section and click <code>Add Endpoint</code>. The endpoint is our api route <code>http://ourDomain.com/api/webhook/updateUser</code>.
+Give it a description if you want and add the message event filters you want. In my case I only care about the user events. Then click <code>create</code>. This will create a webhook that sends data to our endpoint everytime something changes in clerks database.
+In our case it filters out only the events of the user <code>user.created</code>, <code>user.deleted</code>, <code>user.updated</code>.</p>
+<img alt="clerk update user webhook" loading="lazy" width="1030" height="864" decoding="async" data-nimg="1" style="color:transparent" srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fwebhook.320d3414.png&amp;w=1080&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fwebhook.320d3414.png&amp;w=3840&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fwebhook.320d3414.png&amp;w=3840&amp;q=75"/>
+<p>The part on the clerk side is done. Now we need to add the webhook to our backend. First we need to add the svix and micro library to our project.</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> svix micro
+</code></pre>
+<p>Now let&#x27;s write the handler.</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">//src/pages/api/webhooks/updateUser.ts</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> prisma <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;@/server/prisma&#x27;</span>
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> buffer <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;micro&#x27;</span>
+
+<span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> <span class="token maybe-class-name">Webhook</span> <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;svix&#x27;</span>
+
+<span class="token keyword module">export</span> <span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
+  api<span class="token operator">:</span> <span class="token punctuation">{</span>
+    bodyParser<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// clerk secret from the webhook above</span>
+<span class="token keyword">const</span> secret <span class="token operator">=</span> process<span class="token punctuation">.</span><span class="token property-access">env</span><span class="token punctuation">.</span><span class="token constant">CLERK_WEBHOOK_SECRET</span> <span class="token operator">??</span> <span class="token string">&#x27;&#x27;</span>
+
+<span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">handler</span><span class="token punctuation">(</span>req<span class="token punctuation">,</span> res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//collect the stream and parse it to a string</span>
+  <span class="token keyword">const</span> payload <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword control-flow">await</span> <span class="token function">buffer</span><span class="token punctuation">(</span>req<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> headers <span class="token operator">=</span> req<span class="token punctuation">.</span><span class="token property-access">headers</span>
+  <span class="token comment">// create a new webhook instance</span>
+  <span class="token keyword">const</span> wh <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token maybe-class-name">Webhook</span></span><span class="token punctuation">(</span>secret<span class="token punctuation">)</span>
+  <span class="token keyword">let</span> msg
+  <span class="token keyword control-flow">try</span> <span class="token punctuation">{</span>
+    <span class="token comment">// verify the webhook and get the message</span>
+    msg <span class="token operator">=</span> wh<span class="token punctuation">.</span><span class="token method function property-access">verify</span><span class="token punctuation">(</span>payload<span class="token punctuation">,</span> headers<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword control-flow">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword control-flow">return</span> res<span class="token punctuation">.</span><span class="token method function property-access">status</span><span class="token punctuation">(</span><span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">send</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span><span class="token property-access">message</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> id<span class="token punctuation">,</span> username<span class="token punctuation">,</span> profile_image_url<span class="token operator">:</span> profileImageUrl <span class="token punctuation">}</span> <span class="token operator">=</span> msg<span class="token punctuation">.</span><span class="token property-access">data</span>
+
+  <span class="token keyword">const</span> shouldIgnoreGravatar <span class="token operator">=</span> profileImageUrl<span class="token punctuation">.</span><span class="token method function property-access">includes</span><span class="token punctuation">(</span><span class="token string">&#x27;gravatar&#x27;</span><span class="token punctuation">)</span>
+  <span class="token comment">// I don&#x27;t want to use the gravatar image so I set it to null</span>
+  <span class="token keyword">const</span> sanitizedProfileImageUrl <span class="token operator">=</span> shouldIgnoreGravatar <span class="token operator">?</span> <span class="token keyword null nil">null</span> <span class="token operator">:</span> profileImageUrl
+
+  <span class="token keyword control-flow">try</span> <span class="token punctuation">{</span>
+    <span class="token comment">// delete case  (also deletes all the guestbook entries as it cascades)</span>
+    <span class="token keyword control-flow">if</span> <span class="token punctuation">(</span>msg<span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">.</span><span class="token property-access">deleted</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword control-flow">await</span> prisma<span class="token punctuation">.</span><span class="token property-access">user</span><span class="token punctuation">.</span><span class="token method function property-access">delete</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        where<span class="token operator">:</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> msg<span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">.</span><span class="token property-access">id</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// update create case</span>
+    <span class="token keyword control-flow">await</span> prisma<span class="token punctuation">.</span><span class="token property-access">user</span><span class="token punctuation">.</span><span class="token method function property-access">upsert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      where<span class="token operator">:</span> <span class="token punctuation">{</span> id<span class="token operator">:</span> msg<span class="token punctuation">.</span><span class="token property-access">data</span><span class="token punctuation">.</span><span class="token property-access">id</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      update<span class="token operator">:</span> <span class="token punctuation">{</span>
+        username<span class="token punctuation">,</span>
+        profileImageUrl<span class="token operator">:</span> sanitizedProfileImageUrl<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      create<span class="token operator">:</span> <span class="token punctuation">{</span>
+        id<span class="token punctuation">,</span>
+        username<span class="token punctuation">,</span>
+        profileImageUrl<span class="token operator">:</span> sanitizedProfileImageUrl<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    res<span class="token punctuation">.</span><span class="token method function property-access">status</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword control-flow">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">error</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+    res<span class="token punctuation">.</span><span class="token method function property-access">status</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span><span class="token property-access">requestResult</span><span class="token punctuation">.</span><span class="token property-access">statusCode</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token method function property-access">send</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span><span class="token property-access">message</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Now everytime a user is created, updated or deleted in clerk it will also be updated in our database.</p>
+<h2>8. Update the JWT and session claims</h2>
 <p>Second thing is we will update the JWT token details to include not only the <code>userId</code> but in our case also the <code>email</code>, <code>firstName</code>, <code>lastName</code> and <code>web3Wallets</code>.
 These are called claims. You also can add such claims for other third party services like stripe or github if you want to interact with those.
-Just go to your clerk dashboard and click on the <code>JWT Templates</code> link. Add the details as in the image or read up on the stuff in the right bottom corner.</p>
+Just go to our clerk dashboard and click on the <code>JWT Templates</code> link. Add the details as in the image or read up on the stuff in the right bottom corner.</p>
 <img alt="clerk custom jwt" loading="lazy" width="1397" height="891" decoding="async" data-nimg="1" style="color:transparent" srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fjwt.63531906.png&amp;w=1920&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fjwt.63531906.png&amp;w=3840&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fjwt.63531906.png&amp;w=3840&amp;q=75"/>
-<p>Now the email, firstName,... are added to your JWT. And can be easily accessed via your <code>useUser</code> hook.</p>
+<p>Now the email, firstName,... are added to our JWT. And can be easily accessed via our <code>useUser</code> hook.</p>
 <pre class="language-typescript"><code class="language-typescript"><span class="token keyword module">import</span> <span class="token imports"><span class="token punctuation">{</span> useUser <span class="token punctuation">}</span></span> <span class="token keyword module">from</span> <span class="token string">&#x27;@clerk/nextjs&#x27;</span>
 <span class="token keyword module">export</span> <span class="token keyword module">default</span> <span class="token keyword">function</span> <span class="token function"><span class="token maybe-class-name">Index</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">const</span> <span class="token punctuation">{</span> isLoaded<span class="token punctuation">,</span> isSignedIn<span class="token punctuation">,</span> user <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">useUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
   <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span><span class="token string">&#x27;user&#x27;</span><span class="token punctuation">,</span> user<span class="token punctuation">)</span>
   <span class="token comment">//todo manuel add the return of the user</span>
-
-
-
-
+<span class="token punctuation">}</span>
 </code></pre>
-<p>Same for the backend. You need to update the session to include the claims and can access them with the <code>getAuth</code> function or via the context.
-// todo manuel add the web3wallets and add the image of the sessions in the clerk dashbaord</p>
-<pre class="language-typescript"><code class="language-typescript">ctx <span class="token punctuation">{</span>
+<p>Same for the backend. You need to update the session to include the claims and can access them with the <code>getAuth</code> function or via the context.</p>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">const</span> ctx <span class="token operator">=</span> <span class="token punctuation">{</span>
   actor<span class="token operator">:</span> <span class="token keyword nil">undefined</span><span class="token punctuation">,</span>
   sessionClaims<span class="token operator">:</span> <span class="token punctuation">{</span>
     azp<span class="token operator">:</span> <span class="token string">&#x27;http://localhost:3000&#x27;</span><span class="token punctuation">,</span>
@@ -307,7 +511,7 @@ Just go to your clerk dashboard and click on the <code>JWT Templates</code> link
     sid<span class="token operator">:</span> <span class="token string">&#x27;sess_2MjB3LIcLMDC464laFoIkrRZiTu&#x27;</span><span class="token punctuation">,</span>
     sub<span class="token operator">:</span> <span class="token string">&#x27;user_2Mj8pdXGjEPXYNNBXPI1gXDjxT3&#x27;</span><span class="token punctuation">,</span>
     userId<span class="token operator">:</span> <span class="token string">&#x27;user_2Mj8pdXGjEPXYNNBXPI1gXDjxT3&#x27;</span><span class="token punctuation">,</span>
-    web3Wallets<span class="token operator">:</span> <span class="token string">&#x27;{{user.web3Wallets}}&#x27;</span>
+    web3Wallets<span class="token operator">:</span> <span class="token string">&#x27;{{user.web3Wallets}}&#x27;</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span><span class="token punctuation">,</span>
   sessionId<span class="token operator">:</span> <span class="token string">&#x27;sess_2MjB3LIcLMDC464laFoIkrRZiTu&#x27;</span><span class="token punctuation">,</span>
   session<span class="token operator">:</span> <span class="token keyword nil">undefined</span><span class="token punctuation">,</span>
@@ -317,11 +521,17 @@ Just go to your clerk dashboard and click on the <code>JWT Templates</code> link
   orgRole<span class="token operator">:</span> <span class="token keyword nil">undefined</span><span class="token punctuation">,</span>
   orgSlug<span class="token operator">:</span> <span class="token keyword nil">undefined</span><span class="token punctuation">,</span>
   organization<span class="token operator">:</span> <span class="token keyword nil">undefined</span><span class="token punctuation">,</span>
-  getToken<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function"><span class="token maybe-class-name">AsyncFunction</span></span> <span class="token punctuation">(</span>anonymous<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  debug<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token known-class-name class-name">Function</span> <span class="token punctuation">(</span>anonymous<span class="token punctuation">)</span><span class="token punctuation">]</span>
-<span class="token punctuation">}</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token template-punctuation string">`</span></span>`
-
-</code></pre>]]></content:encoded>
+  getToken<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function"><span class="token maybe-class-name">AsyncFunction</span></span><span class="token punctuation">(</span>anonymous<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  debug<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token known-class-name class-name">Function</span><span class="token punctuation">(</span>anosymous<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2>9. Add the Social Connection Provider - Google</h2>
+<p>In order to go to production with our choosen social sign in method of google we need to add the google provider to our clerk dashboard.
+It&#x27;s to get rid of this url in the sign in process.</p>
+<img alt="social signin google" loading="lazy" width="518" height="611" decoding="async" data-nimg="1" style="color:transparent" srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsignin.37bc74e5.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsignin.37bc74e5.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsignin.37bc74e5.png&amp;w=1080&amp;q=75"/>
+<p>I am not going to go threw the steps as it depends on the social login solutions you want to use. Just got to Clerks <a href="https://clerk.com/docs/authentication/social-connection-with-google">documentation</a> and follow the steps.</p>
+<h2>10. Yeahhh we did it! We did it! 🎉</h2>
+<p>If you have any questions feel free to contact me! I am happy to help.</p>]]></content:encoded>
             <author>bichler@gmail.com (Manuel Bichler)</author>
         </item>
         <item>
@@ -330,7 +540,17 @@ Just go to your clerk dashboard and click on the <code>JWT Templates</code> link
             <guid>http://localhost:3000/articles/midlife-crisis</guid>
             <pubDate>Thu, 12 Jan 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[We hop hop hop. From crisis to crisis.]]></description>
-            <content:encoded><![CDATA[<h1>A spoiled brats crisis</h1>
+            <content:encoded><![CDATA[<h2>A Spoiled Brat&#x27;s Crisis in the Acidic Age</h2>
+<p>Here I am, hurtling through my late 30s, baptized in the fire of a midlife crisis riddled with a viral pandemic, a war between Ukraine and Russia, and a slew of personal catastrophes—loved ones enduring strokes, divorce, breakups, and petty brawls. The cosmic joke is on me, exposing the delicate thread that is life, and all the things you can lose in a blink of an eye. It&#x27;s a sinister revelation, the lack of control you have, just as you&#x27;re starting to feel like an adult. You know, when the only mail you receive are bills, your company&#x27;s coffee tastes like rat piss, and hangovers have become a cruel and unusual punishment. This is adulthood, and it&#x27;s a goddamn hellscape.</p>
+<p>Ah, the good old days. &quot;Everything was better back then,&quot; they say. It&#x27;s the sweet memories of your prime, unburdened by the weight of adult responsibilities. There was no bureaucratic bullshit back then, just freedom and mischief.</p>
+<p>The latest TikTok filter transported you back to the salad days of late teens and early twenties, leaving people in tears. As a young person, you couldn&#x27;t possibly fathom the sensation of getting old, but the hourglass has spoken, and now, for the first time, I feel ancient. With age comes expectations: a plan, a respectable job, marriage, children—the societal checklist that haunts us all. But that&#x27;s not what truly gnaws at me.</p>
+<p>What&#x27;s eating me alive are the expectations I have for myself—becoming a founder, ditching the booze, getting fit, starting a family, planting trees, and settling into a house. Time was once a bottomless pit of opportunity, but now the sand is slipping through my fingers. Mother Nature has a way of sowing seeds of desire into your heart, your mind, or wherever these feelings take root.</p>
+<p>This new phase of life is upon me, and I know there are more to come. Remember the transition from teen to young adult? A blast, wasn&#x27;t it? Hell no. But I&#x27;m ready for the next chapter because with each crisis comes a fresh start, new opportunities.</p>
+<p>I&#x27;m grateful for the luxury of still being able to pursue these dreams, or at least those within my control. But time is running out, a feeling that&#x27;s entirely foreign to me, and I&#x27;m not fond of it. I&#x27;m compelled to consider working on age-related solutions, trying to cure the &quot;aging disease.&quot; Sure, it might solve some problems and create new ones, but that&#x27;s a tale for another time.</p>
+<p>And then, you hit 40—single, clueless, and feeling left behind. In today&#x27;s world of social media, where everyone&#x27;s seemingly more attractive, intelligent, wealthy, and successful, it&#x27;s a challenge not to feel inadequate.</p>
+<p>But beneath the superficial veneer, we all grapple with similar struggles, facing challenges that can&#x27;t be remedied by money, followers, or likes. It&#x27;s true that what doesn&#x27;t kill you makes you stronger, and without the lows, the highs would lose their allure. The best things in life are worth the wait.</p>
+<p>So, as we embark on this wild ride, let&#x27;s embrace the struggle, revel in the chaos, and remember that love will find us in the end.</p>
+<h2>A spoiled brats crisis (version without AI)</h2>
 <p>I am in my late 30s. I&#x27;ve spend my midlife crisis with corona. A war between ukraine and russia. And then there are the personal things like a stroke of a loved one. A divorce. A break up. Some useless fights.
 This all sucks. It plainly shows you how fragile life is. How much you can lose in a short amount of time. It somehow makes you feel like you are not in control. Even though you only
 just began feeling like an adult. You know, complaining about that the only letters you get are invoices. How bad the coffee in your company kitchen is. How bad hangovers became. But I imagine this is what it feels like to be an adult. And it fucking sucks.
@@ -381,6 +601,16 @@ I think in todays world with all this social media crap, where everyone is prett
 <p>EXPOSE 8080</p>
 <p>CMD [ &quot;node&quot;, &quot;server.js&quot; ]</p>
 <p>This Dockerfile defines an application that uses Node.js 10 as its base image. It then copies the package.json file from your project directory into the Docker image and runs npm install to install the dependencies of your application. It also copies the rest of your project into the Docker image and sets the working directory to /usr/src/app . Finally, it exposes port 8080 and runs the node server.js command to start your application.</p>]]></content:encoded>
+            <author>bichler@gmail.com (Manuel Bichler)</author>
+        </item>
+        <item>
+            <title><![CDATA[AI workflow]]></title>
+            <link>http://localhost:3000/articles/workflow</link>
+            <guid>http://localhost:3000/articles/workflow</guid>
+            <pubDate>Thu, 12 Jan 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[My current workflow with the help of AI.]]></description>
+            <content:encoded><![CDATA[<h2>A Spoiled Brat&#x27;s Crisis in the Acidic Age</h2>
+<p>Here I am, hurtling through my late 30s, baptized in the fire of a midlife crisis riddled with a viral pandemic, a war between Ukraine and Russia, and a slew of personal catastrophes—loved ones enduring strokes, divorce, breakups, and petty brawls. The cosmic joke is on me, exposing the delicate thread that is life, and all the things you can lose in a blink of an eye. It&#x27;s a sinister revelation, the lack of control you have, just as you&#x27;re starting to feel like an adult. You know, when the only mail you receive are bills, your company&#x27;s coffee tastes like rat piss, and hangovers have become a cruel and unusual punishment. This is adulthood, and it&#x27;s a goddamn hellscape.</p>]]></content:encoded>
             <author>bichler@gmail.com (Manuel Bichler)</author>
         </item>
         <item>

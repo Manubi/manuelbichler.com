@@ -3,7 +3,7 @@ import { TRPCError } from '@trpc/server'
 import { format } from 'date-fns'
 import { z } from 'zod'
 import { prisma } from '../prisma'
-import { adminProcedure, publicProcedure, router } from '../trcp'
+import { adminProcedure, publicProcedure, router } from '../trpc'
 
 const defaultHabitSelect = Prisma.validator<Prisma.HabitSelect>()({
   id: true,

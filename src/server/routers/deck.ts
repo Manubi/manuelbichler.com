@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client'
 import { z } from 'zod'
 import { prisma } from '../prisma'
-import { adminProcedure, publicProcedure, router } from '../trcp'
+import { adminProcedure, publicProcedure, router } from '../trpc'
 
 const defaultDeckSelect = Prisma.validator<Prisma.DeckSelect>()({
   id: true,
