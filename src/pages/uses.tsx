@@ -51,9 +51,8 @@ export default function Uses() {
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="16” MacBook Pro, 2,6 GHz 6-Core Intel Core i7, 32GB RAM (2019)">
-              As the fans are turning on quiet often. I am thinking about
-              changing to the next generation of MacBook Pro with the M2 chip.
+            <Tool title="14” MacBook Pro, Apple M2 Max, 96GB RAM (2023)">
+              I like it.
             </Tool>
             <Tool title="2 x Dell U2415 Monitors">Simple enough.</Tool>
             <Tool title="Kinesis Advantage360 Pro">
@@ -76,12 +75,12 @@ export default function Uses() {
               think with all the AI and cloud computing advancements VSCode will
               adopt quicker.
             </Tool>
-            <Tool title="iTerm2">
-              I&apos;ve added some plugins for autocomplete, syntax highlighting
-              and a few other things. I also use it with tmux, zsh and Fig. I
-              also tried warp but don&apos;t like it.
+            <Tool title="Wharp">
+              Gave it another try and I quiet like now except the vim support is
+              missing. It just innovates faster than iTerm2 and it als is faster
+              as its written in Rust.
             </Tool>
-            <Tool title="Github Copilot & other AI tools">
+            <Tool title="Github Copilot, ChatGPT other AI tools">
               I like most of them. Makes my day to day easier.
             </Tool>
             <Tool title="Postico">Simple database client for postgres.</Tool>

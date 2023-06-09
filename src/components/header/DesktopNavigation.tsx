@@ -40,12 +40,12 @@ export function DesktopNavigation(props) {
         <NavItem href={routes.public.projects.path}>
           {routes.public.projects.label}
         </NavItem>
-        <NavItem href={routes.public.dashboard.path}>
+        {/* <NavItem href={routes.public.dashboard.path}>
           {routes.public.dashboard.label}
         </NavItem>
         <NavItem href={routes.public.flashCards.path}>
           {routes.public.flashCards.label}
-        </NavItem>
+        </NavItem> */}
         <NavItem href={routes.public.uses.path}>
           {routes.public.uses.label}
         </NavItem>

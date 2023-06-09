@@ -67,12 +67,12 @@ export function MobileNavigation(props) {
                 <MobileNavItem href={routes.public.projects.path}>
                   {routes.public.projects.label}
                 </MobileNavItem>
-                <MobileNavItem href={routes.public.dashboard.path}>
+                {/* <MobileNavItem href={routes.public.dashboard.path}>
                   {routes.public.dashboard.label}
                 </MobileNavItem>
                 <MobileNavItem href={routes.public.flashCards.path}>
                   {routes.public.flashCards.label}
-                </MobileNavItem>
+                </MobileNavItem> */}
                 <MobileNavItem href={routes.public.uses.path}>
                   {routes.public.uses.label}
                 </MobileNavItem>
