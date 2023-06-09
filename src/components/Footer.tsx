@@ -38,12 +38,12 @@ export function Footer() {
                 <NavLink href={routes.public.projects.path}>
                   {routes.public.projects.label}
                 </NavLink>
-                <NavLink href={routes.public.dashboard.path}>
+                {/* <NavLink href={routes.public.dashboard.path}>
                   {routes.public.dashboard.label}
                 </NavLink>
                 <NavLink href={routes.public.flashCards.path}>
                   {routes.public.flashCards.label}
-                </NavLink>
+                </NavLink> */}
                 <NavLink href={routes.public.uses.path}>
                   {routes.public.uses.label}
                 </NavLink>
