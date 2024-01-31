@@ -44,10 +44,10 @@ export default function ArticlesIndex({ articles }) {
         />
       </Head>
       <SimpleLayout
-        title="Ramblings about my own stupidity, endless cycle of facepalms and self-deprecation that follows. "
+        title="I write without a goal."
         intro="What's my hope with this? To improve my thinking. To keep a personal notebook. To send a message to my younger self. What will it be about? A lot of tech. Some biology - I hope. And basically everything else that my mind decides to deal with. As my primary target audience is a cohort of one - myself, please don't expect anything significant from it."
       >
-        <blockquote className="mb-20 -mt-8 text-xl font-semibold italic text-zinc-600 dark:text-zinc-400">
+        <blockquote className="-mt-8 mb-20 text-xl font-semibold italic text-zinc-600 dark:text-zinc-400">
           <svg
             aria-hidden="true"
             className="h-10 w-10 text-gray-400 dark:text-gray-600"

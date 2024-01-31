@@ -50,14 +50,14 @@ export default function Home({ articles }) {
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
               Sess!{' '}
             </h1>
-            <div className="flex items-baseline prose">
+            <div className="prose flex items-baseline">
               <a
                 href="#"
                 onClick={saySess}
-                className="flex ml-3 -my-8 peer hover:cursor-pointer sm:text-lg "
+                className="peer -my-8 ml-3 flex hover:cursor-pointer sm:text-lg "
               >
                 /sɛs/
-                <SpeakerWaveIcon className="mt-1 ml-1 h-[12px] w-[12px] text-zinc-500 dark:text-zinc-400" />
+                <SpeakerWaveIcon className="ml-1 mt-1 h-[12px] w-[12px] text-zinc-500 dark:text-zinc-400" />
               </a>
               <p className="invisible ml-3 text-base text-zinc-600 peer-hover:visible dark:text-zinc-400">
                 Saying &quot;Hey&quot; in my home town Matrei i.O.
@@ -66,7 +66,7 @@ export default function Home({ articles }) {
           </div>
           <Prose>
             <p className="text-base text-zinc-600 dark:text-zinc-400">
-              I&rsquo;m Manuel, a software engineer at the{' '}
+              I&rsquo;m Manuel, formerly a software engineer at the{' '}
               <a
                 href={routes.external.work.CeMM.url}
                 target="_blank"
@@ -74,7 +74,7 @@ export default function Home({ articles }) {
               >
                 Center for Molecular Medicine (CeMM)/Vienna
               </a>{' '}
-              where I support scientists in building a comprehensive{' '}
+              where I supported scientists in building a comprehensive{' '}
               <a
                 href={routes.external.work.Resolute.url}
                 target="_blank"
@@ -82,18 +82,19 @@ export default function Home({ articles }) {
               >
                 knowledgebase of SLCs.
               </a>{' '}
-              Sometimes I enjoy tinkering with blockchains, the Rust programming
-              language and AI. I&rsquo;ve recently started writing about my
-              experiences and the things I learn to better understand them.
-              Although my writing may be bad, I believe that the journey of
-              writing itself is valuable, and ultimately, I write primarily for
-              myself. If you still feel like having a look you can find it{' '}
+              Currently, I'm on a sabbatical, actively exploring new
+              opportunities and enjoy tinkering with blockchains, the Rust
+              programming language and AI. I&rsquo;ve recently started writing
+              about my experiences and the things I learn to better understand
+              them. Although my writing may be bad, I believe that the journey
+              of writing itself is valuable, and ultimately, I write primarily
+              for myself. If you still feel like having a look you can find it{' '}
               <Link href={routes.public.articles.path}>here</Link>. <br />
               <br />
               Anyway, thanks for stopping by!
             </p>
           </Prose>
-          <div className="flex gap-6 mt-6">
+          <div className="mt-6 flex gap-6">
             <SocialLink
               href={routes.external.socials.twitter.url}
               aria-label="Follow on Twitter"
@@ -107,9 +108,9 @@ export default function Home({ articles }) {
           </div>
         </div>
       </Container>
-      <Photos />
+      {/* <Photos /> */}
       <Container className="mt-24 md:mt-28">
-        <div className="grid max-w-xl grid-cols-1 mx-auto gap-y-20 lg:max-w-none lg:grid-cols-2">
+        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
             {articles.map((article) => (
               <Article key={article.slug} article={article} />
