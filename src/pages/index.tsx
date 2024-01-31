@@ -82,7 +82,7 @@ export default function Home({ articles }) {
               >
                 knowledgebase of SLCs.
               </a>{' '}
-              Currently, I'm on a sabbatical, actively exploring new
+              Currently, I&rsquo;m on a sabbatical, actively exploring new
               opportunities and enjoy tinkering with blockchains, the Rust
               programming language and AI. I&rsquo;ve recently started writing
               about my experiences and the things I learn to better understand
