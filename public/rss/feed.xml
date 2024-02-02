@@ -4,7 +4,7 @@
         <title>Manuel Bichler</title>
         <link>http://localhost:3000</link>
         <description>Your blog description</description>
-        <lastBuildDate>Wed, 22 Mar 2023 14:49:42 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 02 Feb 2024 12:53:14 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -12,12 +12,26 @@
             <url>http://localhost:3000/favicon.ico</url>
             <link>http://localhost:3000</link>
         </image>
-        <copyright>All rights reserved 2023</copyright>
+        <copyright>All rights reserved 2024</copyright>
+        <item>
+            <title><![CDATA[The year of inconvenience]]></title>
+            <link>http://localhost:3000/articles/year-of-inconvenience</link>
+            <guid>http://localhost:3000/articles/year-of-inconvenience</guid>
+            <pubDate>Fri, 02 Feb 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Already thinking about a description of the following text seems very inconvenient.]]></description>
+            <content:encoded><![CDATA[<p>In today&#x27;s world, we&#x27;re often sold the idea that instant gratification is synonymous with success. However, my experience tells a different story. Much of what I&#x27;ve learned as an adult resulted from enduring challenges and tackling concepts that initially seemed insurmountable. Like how water shapes stones over time, the human mind, too, adapts and learns, gradually overcoming obstacles. Consistent, day-by-day effort eventually demystifies new interests. Indeed, it appears that truly understanding something worthwhile takes about a year.</p>
+<h2>Slow is smooth and smooth is fast</h2>
+<p>Adult learning is a test of perseverance. Unlike in our younger years, when progress seemed more direct, acquiring new skills now requires patience and sustained effort. The journey involves daily dedication, often extending over months or even years. The easy pickings are gone; what&#x27;s left demands more of us, challenging us to dig deeper.</p>
+<h2>Commitment is all it takes</h2>
+<p>Reflecting on my own journey, the pivotal moment came in 2017 when I decided to learn programming. That year was transformative. It was filled with days dedicated to understanding the workings of computers. Sure, there were moments of frustration, like when a day was lost searching for a misplaced semicolon, leading me to question my choices. Yet, that year reshaped my career and me profoundly. It proved I could master almost anything independently, without seeking validation for my intelligence.</p>
+<p>2024 promises to be another challenging year. It&#x27;ll be slow and sometimes arduous, but I anticipate finding joy in the challenge and emerging more fulfilled. After all, the highs wouldn&#x27;t feel as sweet without the lows.</p>]]></content:encoded>
+            <author>bichler@gmail.com (Manuel Bichler)</author>
+        </item>
         <item>
             <title><![CDATA[Authentication in Next.js with Clerk.com and trpc.io]]></title>
             <link>http://localhost:3000/articles/auth-clerk-nextjs</link>
             <guid>http://localhost:3000/articles/auth-clerk-nextjs</guid>
-            <pubDate>Sun, 05 Mar 2023 00:00:00 GMT</pubDate>
+            <pubDate>Thu, 01 Feb 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Painless Next.js authentication. With Clerk.com and trpc.io, we can now build a secure authentication system in a day.]]></description>
             <content:encoded><![CDATA[<p>When I started out as a dev, authentication always felt a little bit intimidating. So many new concepts to learn, so many new libraries to install, so many new things to configure. And there is the angst of implementing an unsecure system. Just to finally end up with a system that allows users to login. It was a pain.</p>
 <p>Don&#x27;t get me wrong, struggling is good. It&#x27;s how we learn. And there is definitely a benefit if you&#x27;ve implemented authentication a couple of times from scratch.
@@ -529,155 +543,9 @@ Just go to our clerk dashboard and click on the <code>JWT Templates</code> link.
 <p>In order to go to production with our choosen social sign in method of google we need to add the google provider to our clerk dashboard.
 It&#x27;s to get rid of this url in the sign in process.</p>
 <img alt="social signin google" loading="lazy" width="518" height="611" decoding="async" data-nimg="1" style="color:transparent" srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsignin.37bc74e5.png&amp;w=640&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsignin.37bc74e5.png&amp;w=1080&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsignin.37bc74e5.png&amp;w=1080&amp;q=75"/>
-<p>I am not going to go threw the steps as it depends on the social login solutions you want to use. Just got to Clerks <a href="https://clerk.com/docs/authentication/social-connection-with-google">documentation</a> and follow the steps.</p>
+<p>I am not going to go threw the steps as it depends on the social login solutions you want to use. Just got to Clerks <a href="https://clerk.com/docs/authentication/social-connections-oauth">documentation</a> and follow the steps.</p>
 <h2>10. Yeahhh we did it! We did it! 🎉</h2>
 <p>If you have any questions feel free to contact me! I am happy to help.</p>]]></content:encoded>
-            <author>bichler@gmail.com (Manuel Bichler)</author>
-        </item>
-        <item>
-            <title><![CDATA[The midlife crisis begins]]></title>
-            <link>http://localhost:3000/articles/midlife-crisis</link>
-            <guid>http://localhost:3000/articles/midlife-crisis</guid>
-            <pubDate>Thu, 12 Jan 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[We hop hop hop. From crisis to crisis.]]></description>
-            <content:encoded><![CDATA[<h2>A Spoiled Brat&#x27;s Crisis in the Acidic Age</h2>
-<p>Here I am, hurtling through my late 30s, baptized in the fire of a midlife crisis riddled with a viral pandemic, a war between Ukraine and Russia, and a slew of personal catastrophes—loved ones enduring strokes, divorce, breakups, and petty brawls. The cosmic joke is on me, exposing the delicate thread that is life, and all the things you can lose in a blink of an eye. It&#x27;s a sinister revelation, the lack of control you have, just as you&#x27;re starting to feel like an adult. You know, when the only mail you receive are bills, your company&#x27;s coffee tastes like rat piss, and hangovers have become a cruel and unusual punishment. This is adulthood, and it&#x27;s a goddamn hellscape.</p>
-<p>Ah, the good old days. &quot;Everything was better back then,&quot; they say. It&#x27;s the sweet memories of your prime, unburdened by the weight of adult responsibilities. There was no bureaucratic bullshit back then, just freedom and mischief.</p>
-<p>The latest TikTok filter transported you back to the salad days of late teens and early twenties, leaving people in tears. As a young person, you couldn&#x27;t possibly fathom the sensation of getting old, but the hourglass has spoken, and now, for the first time, I feel ancient. With age comes expectations: a plan, a respectable job, marriage, children—the societal checklist that haunts us all. But that&#x27;s not what truly gnaws at me.</p>
-<p>What&#x27;s eating me alive are the expectations I have for myself—becoming a founder, ditching the booze, getting fit, starting a family, planting trees, and settling into a house. Time was once a bottomless pit of opportunity, but now the sand is slipping through my fingers. Mother Nature has a way of sowing seeds of desire into your heart, your mind, or wherever these feelings take root.</p>
-<p>This new phase of life is upon me, and I know there are more to come. Remember the transition from teen to young adult? A blast, wasn&#x27;t it? Hell no. But I&#x27;m ready for the next chapter because with each crisis comes a fresh start, new opportunities.</p>
-<p>I&#x27;m grateful for the luxury of still being able to pursue these dreams, or at least those within my control. But time is running out, a feeling that&#x27;s entirely foreign to me, and I&#x27;m not fond of it. I&#x27;m compelled to consider working on age-related solutions, trying to cure the &quot;aging disease.&quot; Sure, it might solve some problems and create new ones, but that&#x27;s a tale for another time.</p>
-<p>And then, you hit 40—single, clueless, and feeling left behind. In today&#x27;s world of social media, where everyone&#x27;s seemingly more attractive, intelligent, wealthy, and successful, it&#x27;s a challenge not to feel inadequate.</p>
-<p>But beneath the superficial veneer, we all grapple with similar struggles, facing challenges that can&#x27;t be remedied by money, followers, or likes. It&#x27;s true that what doesn&#x27;t kill you makes you stronger, and without the lows, the highs would lose their allure. The best things in life are worth the wait.</p>
-<p>So, as we embark on this wild ride, let&#x27;s embrace the struggle, revel in the chaos, and remember that love will find us in the end.</p>
-<h2>A spoiled brats crisis (version without AI)</h2>
-<p>I am in my late 30s. I&#x27;ve spend my midlife crisis with corona. A war between ukraine and russia. And then there are the personal things like a stroke of a loved one. A divorce. A break up. Some useless fights.
-This all sucks. It plainly shows you how fragile life is. How much you can lose in a short amount of time. It somehow makes you feel like you are not in control. Even though you only
-just began feeling like an adult. You know, complaining about that the only letters you get are invoices. How bad the coffee in your company kitchen is. How bad hangovers became. But I imagine this is what it feels like to be an adult. And it fucking sucks.
-I guess I finally know what they mean with &quot;In the old days everything was better.&quot; It&#x27;s the memories of yourself in the so called - prime of your life - that makes you feel that way. There was no adult bullshit.</p>
-<p>The latest tiktok filter beamed you back to your late teens/early twenties. People started crying. I guess as a fairly young person you don&#x27;t know the feeling of being old. At least I didn&#x27;t. But it&#x27;s here now. I, for the first time in my life feel old.
-And this comes hand in hand with expectations. You need to have a plan. You need to have a job that is valued by society. You need to have blablabla. You know, all the stuff that people expect from you.
-You should be married. You should have kids. You should... should... should. But that&#x27;s not the thing that bothers me that much.</p>
-<p>The thing that bothers me, is the stuff that I expect from myself. Things such as becoming a founder.
-Quitting alcohol. Becoming fit again. Or starting a family. Plant a tree. Move in a house. You know that kind of stuff...
-It always seemed there is so much time to fuck around. But time becomes more precious day by day.
-You finally want stuff that was a couple years ago far far away. I guess mother nature finds it&#x27;s way and plants the seeds in your heart, mind or wherever you think this stuff shows up.</p>
-<p>Sounds and feels like a new life phase to me. And as we all know we have a couple of them. I mean rember your transition from teenager to early adulthood. Was that fun? No.
-But I am looking forward to my next phase. Because with every crisis there comes new opporunities.</p>
-<p>I feel blessed that I have the luxury to still have the possibility to do all these things. At least those that are in my control. But I also feel like I am running out of time. Which is a weird feeling.
-A feeling I had never before in my life. And I don&#x27;t like it. But I will learn to deal with it. Makes me think about working in ageing and help solving the &quot;aging disease&quot;.
-Some of the problems would be surley solved by that. Some new ones would arise. But that&#x27;s for another time.</p>
-<p>And then you are 40 and you are still single. Have no clue what to do with your life. And you feel like the world moved on without you.
-I think in todays world with all this social media crap, where everyone is prettier, smarter, richer, more successful, more whatever... it&#x27;s hard to feel like you are good enough.</p>
-<p>But I think everyone knows that this is bullshit. We finally have to struggle with similar things. Things that can&#x27;t be fixed with $. Or followers. Or likes.</p>
-<p>I believe, what doesn&#x27;t kill you makes you stronger. Without downs there aren&#x27;t any ups. And the good stuff is worth the wait.</p>
-<p>So keep struggling and enjoy the fuckin ride. There will be stories to tell. Love will find you!</p>]]></content:encoded>
-            <author>bichler@gmail.com (Manuel Bichler)</author>
-        </item>
-        <item>
-            <title><![CDATA[Rust will be used everywhere]]></title>
-            <link>http://localhost:3000/articles/rust-everywhere</link>
-            <guid>http://localhost:3000/articles/rust-everywhere</guid>
-            <pubDate>Thu, 12 Jan 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[Setting up Docker for your project can be a pain. This article will help you to get started with Docker and Docker Compose.]]></description>
-            <content:encoded><![CDATA[<h1>Introduction to Docker</h1>
-<h2>What is Docker?</h2>
-<p>Docker is a platform that lets you easily build, deploy, and run apps in containers, making your development and production environments more consistent and streamlined.</p>
-<h2>What problems does Docker solve?</h2>
-<p>Docker solves the problem of &quot;it works on my machine&quot; by allowing developers to package their application and its dependencies into a self-contained unit called a container. The container can run consistently across different environments, making it easier to move from development to production and reducing the risk of compatibility issues. This helps to improve collaboration between teams and increase the speed and efficiency of the development process.</p>
-<h3>Let&#x27;s start with a simple example</h3>
-<p>Let&#x27;s say you have a simple Node.js application that you want to run on your local machine. You can install Node.js and all the dependencies of your application on your machine, but this can be a pain. You can also use a virtual machine to run your application, but this is also a pain. Docker solves this problem by allowing you to package your application and its dependencies into a container. The container can run consistently across different environments, making it easier to move from development to production and reducing the risk of compatibility issues. This helps to improve collaboration between teams and increase the speed and efficiency of the development process.</p>
-<p>What you often end up with is a Dockerfile that looks like this:</p>
-<p>FROM node:10</p>
-<h1>Create app directory</h1>
-<p>WORKDIR /usr/src/app</p>
-<h1>Install app dependencies</h1>
-<p>COPY package*.json ./</p>
-<p>RUN npm install</p>
-<h1>If you are building your code for production</h1>
-<h1>RUN npm ci --only=production</h1>
-<h1>Bundle app source</h1>
-<p>COPY . .</p>
-<p>EXPOSE 8080</p>
-<p>CMD [ &quot;node&quot;, &quot;server.js&quot; ]</p>
-<p>This Dockerfile defines an application that uses Node.js 10 as its base image. It then copies the package.json file from your project directory into the Docker image and runs npm install to install the dependencies of your application. It also copies the rest of your project into the Docker image and sets the working directory to /usr/src/app . Finally, it exposes port 8080 and runs the node server.js command to start your application.</p>]]></content:encoded>
-            <author>bichler@gmail.com (Manuel Bichler)</author>
-        </item>
-        <item>
-            <title><![CDATA[AI workflow]]></title>
-            <link>http://localhost:3000/articles/workflow</link>
-            <guid>http://localhost:3000/articles/workflow</guid>
-            <pubDate>Thu, 12 Jan 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[My current workflow with the help of AI.]]></description>
-            <content:encoded><![CDATA[<h2>A Spoiled Brat&#x27;s Crisis in the Acidic Age</h2>
-<p>Here I am, hurtling through my late 30s, baptized in the fire of a midlife crisis riddled with a viral pandemic, a war between Ukraine and Russia, and a slew of personal catastrophes—loved ones enduring strokes, divorce, breakups, and petty brawls. The cosmic joke is on me, exposing the delicate thread that is life, and all the things you can lose in a blink of an eye. It&#x27;s a sinister revelation, the lack of control you have, just as you&#x27;re starting to feel like an adult. You know, when the only mail you receive are bills, your company&#x27;s coffee tastes like rat piss, and hangovers have become a cruel and unusual punishment. This is adulthood, and it&#x27;s a goddamn hellscape.</p>]]></content:encoded>
-            <author>bichler@gmail.com (Manuel Bichler)</author>
-        </item>
-        <item>
-            <title><![CDATA[Crafting a design system for a multiplanetary future]]></title>
-            <link>http://localhost:3000/articles/crafting-a-design-system-for-a-multiplanetary-future</link>
-            <guid>http://localhost:3000/articles/crafting-a-design-system-for-a-multiplanetary-future</guid>
-            <pubDate>Mon, 05 Sep 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[Most companies try to stay ahead of the curve when it comes to visual design, but for Planetaria we needed to create a brand that would still inspire us 100 years from now when humanity has spread across our entire solar system.]]></description>
-            <content:encoded><![CDATA[<p>Most companies try to stay ahead of the curve when it comes to visual design, but for Planetaria we needed to create a brand that would still inspire us 100 years from now when humanity has spread across our entire solar system.</p>
-<img alt="" loading="lazy" width="1310" height="872" decoding="async" data-nimg="1" style="color:transparent" srcSet="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fplanetaria-design-system.d4cfce90.png&amp;w=1920&amp;q=75 1x, /_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fplanetaria-design-system.d4cfce90.png&amp;w=3840&amp;q=75 2x" src="/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fplanetaria-design-system.d4cfce90.png&amp;w=3840&amp;q=75"/>
-<p>I knew that to get it right I was going to have to replicate the viewing conditions of someone from the future, so I grabbed my space helmet from the closet, created a new Figma document, and got to work.</p>
-<h2>Sermone fata</h2>
-<p>Lorem markdownum, bracchia in redibam! Terque unda puppi nec, linguae posterior
-in utraque respicere candidus Mimasque formae; quae conantem cervice. Parcite
-variatus, redolentia adeunt. Tyrioque dies, naufraga sua adit partibus celanda
-torquere temptata, erit maneat et ramos, <a href="#">iam</a> ait dominari
-potitus! Tibi litora matremque fumantia condi radicibus opusque.</p>
-<p>Deus feram verumque, fecit, ira tamen, terras per alienae victum. Mutantur
-levitate quas ubi arcum ripas oculos abest. Adest <a href="#">commissaque
-victae</a> in gemitus nectareis ire diva
-dotibus ora, et findi huic invenit; fatis? Fractaque dare superinposita
-nimiumque simulatoremque sanguine, at voce aestibus diu! Quid veterum hausit tu
-nil utinam paternos ima, commentaque.</p>
-<pre class="language-c"><code class="language-c">exbibyte_wins <span class="token operator">=</span> <span class="token function">gigahertz</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-grayscaleUtilityClient <span class="token operator">=</span> control_uat<span class="token punctuation">;</span>
-pcmciaHibernate <span class="token operator">=</span> <span class="token function">oop_virus_console</span><span class="token punctuation">(</span>text_mountain<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span>stateWaisFirewire <span class="token operator">&gt;=</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    jfs <span class="token operator">=</span> <span class="token number">647065</span> <span class="token operator">/</span> <span class="token function">ldapVrml</span><span class="token punctuation">(</span>tutorialRestore<span class="token punctuation">,</span> <span class="token number">85</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    metal_runtime_parse <span class="token operator">=</span> roomComputingResolution <span class="token operator">-</span> toolbarUpload <span class="token operator">+</span>
-            ipx_nvram_open<span class="token punctuation">;</span>
-<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    maximizeSidebar <span class="token operator">*=</span> <span class="token function">suffix_url</span><span class="token punctuation">(</span>flatbed <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">,</span> requirements_encoding_node <span class="token operator">+</span>
-            only_qbe_media<span class="token punctuation">,</span> minicomputer<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>Aere repetiti cognataque natus. Habebat vela solutis saepe munus nondum adhuc
-oscula nomina pignora corpus deserat.</p>
-<h2>Lethaei Pindumve me quae dinumerat Pavor</h2>
-<p>Idem se saxa fata pollentibus geminos; quos pedibus. Est urnis Herses omnes nec
-divite: et ille illa furit sim verbis Cyllenius.</p>
-<ol>
-<li>Captus inpleverunt collo</li>
-<li>Nec nam placebant</li>
-<li>Siquos vulgus</li>
-<li>Dictis carissime fugae</li>
-<li>A tacitos nulla viginti</li>
-</ol>
-<p>Ungues fistula annoso, ille addit linoque motatque uberior verso
-<a href="#">rubuerunt</a> confine desuetaque. <em>Sanguine</em> anteit
-emerguntque expugnacior est pennas iniqui ecce <strong>haeret</strong> genus: peiora imagine
-fossas Cephisos formosa! Refugitque amata <a href="#">refelli</a>
-supplex. Summa brevis vetuere tenebas, hostes vetantis, suppressit, arreptum
-regna. Postquam conpescit iuvenis habet corpus, et erratica, perdere, tot mota
-ars talis.</p>
-<pre class="language-c"><code class="language-c">digital<span class="token punctuation">.</span>webcam_dual_frequency <span class="token operator">=</span> webmasterMms<span class="token punctuation">;</span>
-<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">+</span> language_standalone_google<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    cc_inbox_layout <span class="token operator">*=</span> file_character<span class="token punctuation">;</span>
-    task <span class="token operator">+=</span> p<span class="token punctuation">;</span>
-    lockUnicode <span class="token operator">+=</span> <span class="token function">enterprise_monochrome</span><span class="token punctuation">(</span>tokenFunctionPersonal<span class="token punctuation">,</span> keyVirtual<span class="token punctuation">,</span>
-            adf<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token function">windows_binary_esports</span><span class="token punctuation">(</span><span class="token number">87734</span><span class="token punctuation">,</span> <span class="token function">array</span><span class="token punctuation">(</span>restoreRomTopology<span class="token punctuation">,</span> <span class="token function">adRaw</span><span class="token punctuation">(</span><span class="token number">407314</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-        dongleBashThumbnail<span class="token punctuation">)</span><span class="token punctuation">,</span> interpreter<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<p>Sit volat naturam; motu Cancri. Erat pro simul quae valuit quoque timorem quam
-proelia: illo patrio <em>esse summus</em>, enim sua serpentibus, Hyleusque. Est coniuge
-recuso; refert Coroniden ignotos manat, adfectu.</p>]]></content:encoded>
             <author>bichler@gmail.com (Manuel Bichler)</author>
         </item>
     </channel>
