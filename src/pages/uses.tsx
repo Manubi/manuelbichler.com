@@ -47,21 +47,20 @@ export default function Uses() {
       </Head>
       <SimpleLayout
         title="My Tools and Workflows"
-        intro="I enjoy learning about the tools and workflows used by other engineers. To that end, I've compiled a comprehensive list of my personal favorites."
+        intro="I enjoy learning about the tools and workflows used by other engineers. To that end, I've compiled a short list of my personal favorites."
       >
         <div className="space-y-20">
           <ToolsSection title="Workstation">
-            <Tool title="14” MacBook Pro, Apple M2 Max, 96GB RAM (2023)">
-              I like it.
+            <Tool title="16” MacBook Pro, Intel 2,6 Ghz, 32GB RAM (2019)">
+              I like it. But will switch soon to the M2 Max.
             </Tool>
             <Tool title="2 x Dell U2415 Monitors">Simple enough.</Tool>
             <Tool title="Kinesis Advantage360 Pro">
               Best keyboard I&apos;ve ever used. Also good for my wrists which
               tend to hurt if I use a traditional keyboard for to long.
             </Tool>
-            <Tool title="Apple Magic Mouse">
-              I know, the mouse has some issues, and I wouldn&apos;t buy it
-              again.
+            <Tool title="Logitech MX Vertical">
+              Changed to it because of some wrist issues. Wrist is better since.
             </Tool>
             <Tool title="Apple Airpod Pros 2">
               Most of the time it&apos;s easier to get into the zone with some
@@ -69,16 +68,14 @@ export default function Uses() {
             </Tool>
           </ToolsSection>
           <ToolsSection title="Development tools">
-            <Tool title="VSCode">
-              I also tried NeoVim, but I still enjoy VScode more. I use it with
+            <Tool title="Cursor/Zed">
+              I also tried NeoVim, but I still enjoy Cursor more. I use it with
               the Vim plugin. I believe it is the best editor for me. I also
-              think with all the AI and cloud computing advancements VSCode will
-              adopt quicker.
+              think with all the AI and cloud computing advancements Cursor will
+              adopt quicker. For Rust I tend to use Zed.
             </Tool>
-            <Tool title="Wharp">
-              Gave it another try and I quiet like now except the vim support is
-              missing. It just innovates faster than iTerm2 and it als is faster
-              as its written in Rust.
+            <Tool title="iTerm">
+              Changed back from Wharp as I just prefer the iTerm experience.
             </Tool>
             <Tool title="Github Copilot, ChatGPT other AI tools">
               I like most of them. Makes my day to day easier.
@@ -120,9 +117,14 @@ export default function Uses() {
             <Tool title="SpaceLauncher">
               Simple shortcut app that allows you to mainly open apps.
             </Tool>
+            <Tool title="AltTab">
+              Alternative too SpaceLauncher which displays all the different
+              windows. Does support Vim like navigation.
+            </Tool>
             <Tool title="Cleanshot">
               Need it all the time to take awesome screenshots.
             </Tool>
+            <Tool title="Stats">macOS system monitor in your menu bar</Tool>
           </ToolsSection>
         </div>
       </SimpleLayout>
