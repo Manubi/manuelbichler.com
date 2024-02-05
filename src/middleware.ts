@@ -32,7 +32,7 @@ const isPrivate = (path: string) => {
 
 export default authMiddleware({
   publicRoutes: (req) => !req.url.includes('/dashboard'),
-  debug: true,
+  //debug: true,
 })
 
 export const config = {

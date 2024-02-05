@@ -3,7 +3,6 @@ import { format } from 'date-fns'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 
 export function MessageCard({ msg }) {
-  console.log('MessageCard', msg)
   return (
     <div
       className="px-4 py-5 hover:bg-zinc-50 hover:opacity-100 dark:hover:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl sm:px-6"
@@ -29,7 +28,7 @@ export function MessageCard({ msg }) {
             )}
           </Avatar>
         </div>
-        <div className="flex-1 min-w-0">
+        <div className="min-w-0 flex-1">
           <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
             {msg.user.username}
           </h2>

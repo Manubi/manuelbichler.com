@@ -47,7 +47,6 @@ export default function Guestbook() {
 
   const onSubmit = handleSubmit((data: { message: string }) => {
     const { message } = data
-    console.log('User!!!', user)
     const formData = {
       message,
       username: user?.username,

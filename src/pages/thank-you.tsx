@@ -13,7 +13,7 @@ export default function ThankYou() {
       </Head>
       <SimpleLayout
         title="Thanks for subscribing."
-        intro="Thanks for your interest! To join my mailing list, please confirm your email at hi@manuelbichler.com. As a subscriber, you'll get updates directly from me about new blog posts, project releases, and other content that I believe you'll find interesting. You can opt out anytime - no hard feelings. Looking forward to staying connected!"
+        intro="Thanks for your interest! As a subscriber, you'll get from time to time an update about content that I believe you'll find interesting. You can opt out anytime - no hard feelings."
       />
     </>
   )

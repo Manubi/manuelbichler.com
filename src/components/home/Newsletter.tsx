@@ -33,16 +33,16 @@ export function Newsletter() {
   return (
     <form
       onSubmit={onSubmit}
-      className="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40"
+      className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-        <MailOutlineIcon className="flex-none w-6 h-6" />
+        <MailOutlineIcon className="h-6 w-6 flex-none" />
         <span className="ml-3">Stay up to date</span>
       </h2>
       <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
         Get notified when I publish something new, and unsubscribe at any time.
       </p>
-      <div className="flex mt-6">
+      <div className="mt-6 flex">
         <Input
           {...register('email')}
           type="email"
@@ -52,7 +52,7 @@ export function Newsletter() {
           required
         />
 
-        <Button type="submit" className="flex-none my-4 ml-4">
+        <Button type="submit" className="my-4 ml-4 flex-none">
           Join
         </Button>
       </div>

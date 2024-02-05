@@ -33,7 +33,6 @@ export function MilkdownEditor({ setMarkdown, markdown }: TProps) {
 
         ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {
           setMarkdown(markdown)
-          console.log(markdown)
         })
         ctx.update(editorViewOptionsCtx, (prev) => ({
           ...prev,
