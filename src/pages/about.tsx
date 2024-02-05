@@ -16,7 +16,7 @@ export default function About() {
         <title>About - Manuel Bichler</title>
         <meta
           name="description"
-          content="I’m Manuel Bichler. I live in Vienna/Austria, where I work in biotech as a software engineer."
+          content="I’m Manuel Bichler. I live in Vienna/Austria, where I work as a software engineer."
         />
       </Head>
       <Container className="mt-16 sm:mt-32">
@@ -27,7 +27,7 @@ export default function About() {
                 src={portraitImage}
                 alt=""
                 sizes="(min-width: 1024px) 32rem, 20rem"
-                className="object-cover aspect-square rotate-3 rounded-2xl bg-zinc-100 dark:bg-zinc-800"
+                className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
               />
             </div>
           </div>
@@ -36,7 +36,7 @@ export default function About() {
               I’m Manuel. I live in Vienna/Austria, where I work in biotech as a
               software engineer.
             </h1>
-            <div className="mt-6 text-base space-y-7 text-zinc-600 dark:text-zinc-400">
+            <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <div>
                 <p>
                   You might be interested to know that I do not have any formal
@@ -94,7 +94,7 @@ export default function About() {
               <SocialLink
                 href={`mailto:${routes.contacts.email}`}
                 icon={MailSolidIcon}
-                className="pt-8 mt-8 border-t border-zinc-100 dark:border-zinc-700/40"
+                className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
               >
                 {routes.contacts.email}
               </SocialLink>

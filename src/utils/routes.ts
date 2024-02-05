@@ -30,7 +30,7 @@ export const routes = {
       CeMM: { label: 'CeMM', url: 'https://cemm.at/' },
       Resolute: { label: 'Resolute', url: 'https://re-solute.eu/' },
       AllAboutApps: { label: 'allaboutapps', url: 'https://allaboutapps.at/' },
-      Xbionic: { label: 'X-Bionic', url: 'https://xbionic.com/' },
+      Xbionic: { label: 'X-Bionic', url: 'https://x-bionic.com/' },
     },
     projects: {
       Labio: { label: 'Labio', url: 'http://labio.vercel.app' },

@@ -1,4 +1,4 @@
-import { getAuth, withClerkMiddleware } from '@clerk/nextjs/server'
+import { getAuth, authMiddleware } from '@clerk/nextjs/server'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { routes } from './utils/routes'
@@ -13,31 +13,28 @@ const isPrivate = (path: string) => {
   )
 }
 
-export default withClerkMiddleware((request: NextRequest) => {
-  if (!isPrivate(request.nextUrl.pathname)) {
-    return NextResponse.next()
-  }
-  // if the user is not signed in redirect them to the sign in page.
-  const { userId } = getAuth(request)
-  if (!userId) {
-    // redirect the users to /pages/sign-in/[[...index]].ts
+// export default withClerkMiddleware((request: NextRequest) => {
+//   if (!isPrivate(request.nextUrl.pathname)) {
+//     return NextResponse.next()
+//   }
+//   // if the user is not signed in redirect them to the sign in page.
+//   const { userId } = getAuth(request)
+//   if (!userId) {
+//     // redirect the users to /pages/sign-in/[[...index]].ts
 
-    const signInUrl = new URL('/sign-in', request.url)
-    signInUrl.searchParams.set('redirect_url', request.url)
-    console.log('signingURL', signInUrl)
-    return NextResponse.redirect(signInUrl)
-  }
-  return NextResponse.next()
+//     const signInUrl = new URL('/sign-in', request.url)
+//     signInUrl.searchParams.set('redirect_url', request.url)
+//     console.log('signingURL', signInUrl)
+//     return NextResponse.redirect(signInUrl)
+//   }
+//   return NextResponse.next()
+// })
+
+export default authMiddleware({
+  publicRoutes: (req) => !req.url.includes('/dashboard'),
+  debug: true,
 })
 
 export const config = {
-  /*
-   * Match all request paths except for the ones starting with:
-   * - _next
-   * - static (static files)
-   * - favicon.ico (favicon file)
-   * - image (image files)
-   * - trpc (trpc routes)
-   */
-  matcher: '/(.*?trpc.*?|(?!static|.*\\..*|_next?|image|favicon.ico).*)',
+  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 }
