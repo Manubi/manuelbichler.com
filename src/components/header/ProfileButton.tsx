@@ -23,7 +23,7 @@ export function ProfileButton() {
       {isSignedIn ? (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="relative w-10 h-10 rounded-full">
+            <button className="relative h-10 w-10 rounded-full">
               <span className="sr-only">Open user menu</span>
               <Avatar>
                 {user?.profileImageUrl.includes('gravatar') ? (
@@ -50,13 +50,13 @@ export function ProfileButton() {
             <DropdownMenuGroup>
               <Link href={routes.protected.profile.add.path}>
                 <DropdownMenuItem className="cursor-pointer">
-                  <User className="w-4 h-4 mr-2" />
+                  <User className="mr-2 h-4 w-4" />
                   <span>{routes.protected.profile.add.label}</span>
                 </DropdownMenuItem>
               </Link>
               <a href={`mailto:${routes.contacts.email}`} target="_blank">
                 <DropdownMenuItem className="cursor-pointer">
-                  <LifeBuoy className="w-4 h-4 mr-2" />
+                  <LifeBuoy className="mr-2 h-4 w-4" />
                   <span>Support</span>
                 </DropdownMenuItem>
               </a>
@@ -66,19 +66,19 @@ export function ProfileButton() {
               onClick={() => signOut()}
               className="cursor-pointer"
             >
-              <LogOut className="w-4 h-4 mr-2" />
+              <LogOut className="mr-2 h-4 w-4" />
               <span>Log out</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
         <>
-          <button
+          {/* <button
             className="relative text-sm font-semibold leading-6 text-zinc-800 hover:text-teal-500 dark:divide-zinc-100/5 dark:text-zinc-300 dark:hover:text-teal-400"
             onClick={() => openSignIn()}
           >
             Log in <span aria-hidden="true">&rarr;</span>
-          </button>
+          </button> */}
         </>
       )}
     </>

@@ -25,7 +25,7 @@ export function Footer() {
     <footer className="mt-32">
       <OuterContainer>
         <div className="pb-16">
-          <InnerContainer className="pt-10 border-t border-zinc-100 dark:border-zinc-700/40">
+          <InnerContainer className="border-t border-zinc-100 pt-10 dark:border-zinc-700/40">
             <Spotify />
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="grid grid-cols-3 gap-3 text-sm font-medium text-zinc-800 dark:text-zinc-200 lg:flex lg:gap-6">
@@ -47,9 +47,9 @@ export function Footer() {
                 <NavLink href={routes.public.uses.path}>
                   {routes.public.uses.label}
                 </NavLink>
-                <NavLink href={routes.public.guestbook.path}>
+                {/* <NavLink href={routes.public.guestbook.path}>
                   {routes.public.guestbook.label}
-                </NavLink>
+                </NavLink> */}
               </div>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">
                 &copy; {new Date().getFullYear()} Manuel. All rights reserved.
