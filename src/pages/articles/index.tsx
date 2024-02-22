@@ -45,7 +45,7 @@ export default function ArticlesIndex({ articles }) {
       </Head>
       <SimpleLayout
         title="I write without a goal."
-        intro="What's my hope with this? To improve my thinking. To keep a personal notebook. To send a message to my younger self. What will it be about? A lot of tech. Some biology - I hope. And basically everything else that my mind decides to deal with. As my primary target audience is a cohort of one - myself, please don't expect anything significant from it."
+        intro="What's my hope with this? To improve my thinking. To keep a personal notebook. To send a message to my younger self. What will it be about? A lot of tech. Some biology - I hope. And basically everything else that my mind decides to deal with. As someone said: &quot;One of the best ways to solidify your knowledge is by trying to communicate it. It all sounds reasonable in your head until you try to write it down.&quot; As my primary target audience is a cohort of one - myself, please don't expect anything from it."
       >
         <blockquote className="-mt-8 mb-20 text-xl font-semibold italic text-zinc-600 dark:text-zinc-400">
           <svg

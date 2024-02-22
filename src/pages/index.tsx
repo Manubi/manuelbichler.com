@@ -85,10 +85,11 @@ export default function Home({ articles }) {
               Currently, I&rsquo;m on a sabbatical, actively exploring new
               opportunities and enjoy tinkering with blockchains, the Rust
               programming language and AI. I&rsquo;ve recently started writing
-              about my experiences and the things I learn to better understand
-              them. Although my writing may be bad, I believe that the journey
-              of writing itself is valuable, and ultimately, I write primarily
-              for myself. If you still feel like having a look you can find it{' '}
+              about my experiences and the things I learn to solidify my
+              knowledge about them. Although my writing may be bad, I believe
+              that the journey of writing itself is valuable, and ultimately, I
+              write primarily for myself. If you still feel like having a look
+              you can find it{' '}
               <Link href={routes.public.articles.path}>here</Link>. <br />
               <br />
               Anyway, thanks for stopping by!
