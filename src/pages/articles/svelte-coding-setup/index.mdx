@@ -1,0 +1,71 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import Image from 'next/image'
+import folderName from './foldername.png'
+import indentLine from './indent_line.png'
+
+export const meta = {
+  author: 'Manuel Bichler',
+  date: '2024-02-28',
+  title: 'Start your Svelte journey',
+  description: 'Some tips and tools to make your Svelte life a little easier.',
+}
+
+export default (props) => <ArticleLayout meta={meta} {...props} />
+
+As I recently started developing with Svelte I was looking around how I can make my life easier. This is just a small list of things I think are useful to add to your workflow if you're using Svelte.
+
+## Svelte Extensions for VSCode
+
+You can either have a look at the official VSCode extension for Svelte: [Svelte for VSCode](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode) or just get the bundle of the three most popular extensions [Svelte Bundle](https://marketplace.visualstudio.com/items?itemName=1YiB.svelte-bundle). It packs the three most popular Svelte extensions into one.
+Gives you syntax highlighting, intellisense, diagnostic messages, formatting, snippets...
+
+## Navigation with Short Labels
+
+Add this line to your user settings in VSCode in order to get the short label in every text file header which allows you to easily see to which folder/route a certain `+page.svelte` or `+page.server.ts` belongs. The setting is `"workbench.editor.labelFormat": "short"`.
+
+<Image src={folderName} alt="folder name" />
+
+## Tree indent
+
+Apply these settings for a cleaner look with custom indentation and color-coded guides:
+
+```
+"workbench.tree.renderIndentGuides": "always",
+"workbench.tree.indent": 14,
+"workbench.colorCustomizations": {
+    "tree.indentGuidesStroke": "#2DD4BF"
+  }
+
+```
+
+<Image src={indentLine} alt="indent line" />
+
+## Community
+
+### Svelte Discord
+
+Probably the most important thing on the list in my humble opinion. [Discord Server Invite](https://discord.com/invite/svelte) It's the fastest way to troubleshoot or ask for feedback or just hang out and learn.
+
+## News
+
+I like from time to time read about the latest news and I prefer to do that via newsletters.
+
+### Svelte.dev blog
+
+[Official svelte.dev Blog](https://svelte.dev/blog/)
+
+### The (Unofficial) Svelte JS Newsletter
+
+[Substack - The (Unofficial) Svelte JS Newsletter](https://svelte.substack.com/)
+
+Hope this list helps you a little bit in making your live with svelte even easier.
+
+## Learning
+
+### Advent of Svelte
+
+A little tutorial to get to know Svelte. [Advent of Svelte](https://advent.sveltesociety.dev/)
+
+### Svelte Society
+
+[Svelte Society](https://www.sveltesociety.dev/) is volunteer network of Svelte fans. Gives you information about packages, templates, other resources and recipes as well as events. Have a look, it's definitely worth it.
